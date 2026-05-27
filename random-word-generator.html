@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Word Generator – Generate Random Words Instantly | ScrambLab</title>
+<meta name="description" content="Free random word generator. Generate random words by category, length, and part of speech. Perfect for writers, teachers, game players, and creative exercises. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --ink: #1a1208; --paper: #f5f0e8; --cream: #ede7d9; --amber: #c8651a;
+    --amber-light: #f0dcc0; --amber-pale: #faf5ec; --muted: #7a6e5f;
+    --border: #d4c9b5; --success: #2d6a4f; --success-bg: #d8f3dc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+  header { background: var(--ink); color: var(--paper); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: 0.85rem; font-weight: 500; opacity: 0.7; }
+  .nav-links a { color: var(--paper); text-decoration: none; }
+  .nav-links a:hover { opacity: 1; color: var(--amber); }
+  .hero { background: var(--ink); color: var(--paper); padding: 3rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px); }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; position: relative; }
+  .hero h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; margin-bottom: 1rem; position: relative; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero-sub { font-size: 1rem; opacity: 0.65; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6; position: relative; }
+  .badge-row { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 0.7rem; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; opacity: 0.6; }
+  .main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .controls { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .controls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  select { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; background: var(--amber-pale); color: var(--ink); appearance: none; cursor: pointer; }
+  select:focus { outline: none; border-color: var(--amber); }
+  .btn-generate { width: 100%; padding: 0.85rem; background: var(--amber); color: #fff; border: none; border-radius: 8px; font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.1s; margin-top: 1rem; }
+  .btn-generate:hover { background: #a8521a; }
+  .btn-generate:active { transform: scale(0.98); }
+
+  /* BIG WORD DISPLAY */
+  .word-display { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; }
+  .word-display-head { background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .word-display-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; }
+  .word-display-body { padding: 2rem; text-align: center; }
+  .big-word { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--amber); letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.5rem; animation: popIn 0.3s ease; cursor: pointer; }
+  @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .word-meta { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.75rem; }
+  .word-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: var(--cream); }
+  .btn-next { background: var(--ink); color: var(--paper); border: none; border-radius: 8px; padding: 0.75rem 2rem; font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 1.25rem; transition: opacity 0.2s; }
+  .btn-next:hover { opacity: 0.85; }
+
+  /* WORD HISTORY */
+  .history-panel { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .history-head { background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .history-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; }
+  .clear-btn { font-size: 0.78rem; color: var(--muted); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .clear-btn:hover { color: var(--amber); }
+  .history-body { padding: 1.25rem; }
+  .history-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .history-chip { font-family: 'DM Mono', monospace; font-size: 0.82rem; padding: 5px 12px; border: 1px solid var(--border); border-radius: 6px; color: var(--ink); background: var(--amber-pale); cursor: pointer; transition: all 0.15s; }
+  .history-chip:hover { background: var(--amber-light); border-color: var(--amber); }
+  .history-empty { font-size: 0.85rem; color: var(--muted); text-align: center; padding: 1rem; }
+
+  /* CATEGORY TABS */
+  .cat-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+  .cat-tab { padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; font-family: 'DM Mono', monospace; cursor: pointer; color: var(--muted); background: var(--cream); transition: all 0.15s; }
+  .cat-tab.active { background: var(--amber); border-color: var(--amber); color: #fff; }
+  .cat-tab:hover:not(.active) { border-color: var(--amber); color: var(--amber); }
+
+  .ad-slot { background: var(--cream); border: 1px dashed var(--border); border-radius: 8px; padding: 1rem; text-align: center; margin: 1.5rem 0; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
+  .how-section { max-width: 900px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+  .how-section h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 1.25rem; }
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .how-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .how-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--amber); line-height: 1; margin-bottom: 0.5rem; }
+  .how-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .how-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .faq-section { max-width: 900px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+  .faq-section h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 1.25rem; }
+  .faq-item { border-top: 1px solid var(--border); padding: 1rem 0; }
+  .faq-q { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .faq-a { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  footer { background: var(--ink); color: var(--paper); padding: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.7; }
+  footer a { color: var(--amber); text-decoration: none; }
+  @media (max-width: 640px) { .controls-grid { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } .how-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Scramble<span>Lab</span></div>
+  <ul class="nav-links">
+    <li><a href="/index.html">Word Scramble</a></li>
+    <li><a href="/word-search-generator.html">Word Search</a></li>
+    <li><a href="/anagram-solver.html">Anagram</a></li>
+    <li><a href="/spelling-test-generator.html">Spelling Test</a></li>
+    <li><a href="/random-word-generator.html">Random Word</a></li>
+    <li><a href="/word-counter.html">Word Counter</a></li>
+    <li><a href="/crossword-maker.html">Crossword</a></li>
+  </ul>
+</header>
+<div class="hero">
+  <div class="hero-eyebrow">Free — Instant — No Signup</div>
+  <h1>Random Word<br><em>Generator</em></h1>
+  <p class="hero-sub">Generate random words by category, length, and type. Perfect for creative writing, games, teaching, brainstorming, and word challenges.</p>
+  <div class="badge-row">
+    <span class="badge">10 Categories</span>
+    <span class="badge">Filter by Length</span>
+    <span class="badge">Parts of Speech</span>
+    <span class="badge">Word History</span>
+  </div>
+</div>
+<div class="main">
+  <div class="controls">
+    <div class="controls-grid">
+      <div>
+        <label>Category</label>
+        <select id="category" onchange="generate()">
+          <option value="all">All words</option>
+          <option value="nouns">Nouns</option>
+          <option value="verbs">Verbs</option>
+          <option value="adjectives">Adjectives</option>
+          <option value="animals">Animals</option>
+          <option value="nature">Nature</option>
+          <option value="food">Food</option>
+          <option value="places">Places</option>
+          <option value="actions">Action words</option>
+          <option value="emotions">Emotions</option>
+        </select>
+      </div>
+      <div>
+        <label>Word length</label>
+        <select id="wordLength" onchange="generate()">
+          <option value="any">Any length</option>
+          <option value="short">Short (2–4 letters)</option>
+          <option value="medium">Medium (5–7 letters)</option>
+          <option value="long">Long (8+ letters)</option>
+        </select>
+      </div>
+      <div>
+        <label>Starts with</label>
+        <select id="startLetter" onchange="generate()">
+          <option value="any">Any letter</option>
+          ${Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map(l => `<option value="${l}">${l}</option>`).join('')}
+        </select>
+      </div>
+      <div>
+        <label>How many</label>
+        <select id="count" onchange="generate()">
+          <option value="1">1 word</option>
+          <option value="5" selected>5 words</option>
+          <option value="10">10 words</option>
+          <option value="20">20 words</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-generate" onclick="generate()">🎲 Generate Random Words</button>
+  </div>
+
+  <div class="word-display">
+    <div class="word-display-head">
+      <span class="word-display-title">Generated Words</span>
+      <span id="wordCount" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);"></span>
+    </div>
+    <div class="word-display-body" id="wordDisplay">
+      <div style="color:var(--muted);font-size:0.88rem;">Hit Generate to get your random words!</div>
+    </div>
+  </div>
+
+  <div class="ad-slot">Advertisement · 728×90 · Google AdSense</div>
+
+  <div class="history-panel">
+    <div class="history-head">
+      <span class="history-title">Word History</span>
+      <button class="clear-btn" onclick="clearHistory()">Clear all</button>
+    </div>
+    <div class="history-body">
+      <div class="history-grid" id="historyGrid">
+        <div class="history-empty">Your generated words will appear here.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot">Advertisement · 300×250 · Google AdSense</div>
+</div>
+
+<div class="how-section">
+  <h2>How to use this generator</h2>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-num">1</div><h3>Choose your filters</h3><p>Pick a category, word length, starting letter, and how many words you want. Or leave everything on "any" for fully random results.</p></div>
+    <div class="how-card"><div class="how-num">2</div><h3>Generate instantly</h3><p>Click Generate or change any filter for instant results. Click any word to copy it to your clipboard.</p></div>
+    <div class="how-card"><div class="how-num">3</div><h3>Use your words</h3><p>Use generated words for creative writing prompts, classroom activities, word games, Scrabble practice, or brainstorming.</p></div>
+  </div>
+</div>
+<div class="faq-section">
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item"><div class="faq-q">What is a random word generator used for?</div><div class="faq-a">Random word generators are used for creative writing prompts, classroom vocabulary exercises, word games like Scrabble and Pictionary, brainstorming sessions, and fun challenges like "use this word in a sentence."</div></div>
+  <div class="faq-item"><div class="faq-q">Can I filter by category?</div><div class="faq-a">Yes — choose from 10 categories including nouns, verbs, adjectives, animals, nature, food, places, action words, and emotions.</div></div>
+  <div class="faq-item"><div class="faq-q">How do I copy a word?</div><div class="faq-a">Click any generated word to copy it to your clipboard instantly.</div></div>
+  <div class="faq-item"><div class="faq-q">Is it free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+  <p>© 2025 ScrambLab · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a><br>
+  Also try: <a href="/index.html">Word Scramble Generator</a> · <a href="/word-search-generator.html">Word Search Generator</a> · <a href="/anagram-solver.html">Anagram Solver</a> · <a href="/spelling-test-generator.html">Spelling Test Generator</a></p>
+</footer>
+<script>
+const WORDS = {
+  nouns: ['time','year','people','way','day','man','woman','child','world','life','hand','part','place','case','week','company','system','program','question','work','government','number','night','point','home','water','room','mother','area','money','story','fact','month','lot','right','study','book','eye','job','word','business','issue','side','kind','head','house','service','friend','father','power','hour','game','line','end','among','while','name','land','different','each','just','those','take','school','still','learn','plant','cover','food','sun','four','between','state','keep','never','last','let','thought','city','tree','cross','farm','hard','start','might','story','river','four','carry','state','took','science','eat','room','friend','began','idea','fish','mountain','north','once','base','hear','horse','cut','sure','watch','color','face','wood','main','enough','plain','girl','usual','young','ready','above','ever','red','list','though','feel','talk','bird','soon','body','dog','family','direct','pose','leave','song','measure','door','product','black','short','numeral','class','wind','question','happen','complete','ship','area','half','rock','order','fire','south','problem','piece','told','knew','pass','since','top','whole','king','space','heard','best','hour','better','true','during','hundred','five','remember','step','early','hold','west','ground','interest','reach','fast','verb','sing','listen','six','table','travel','less','morning','ten','simple','several','vowel','toward','war','lay','against','pattern','slow','center','love','person','money','serve','appear','road','map','rain','rule','govern','pull','cold','notice','voice','unit','power','town','fine','drive','print','led','cry','dark','machine','note','wait','plan','figure','star','box','noun','field','rest','correct','able','pound','done','beauty','drive','stood','contain','front','teach','week','final','gave','green','oh','quick','develop','ocean','warm','free','minute','strong','special','behind','clear','tail','produce','fact','street','inch','multiply','nothing','course','stay','wheel','full','force','blue','object','decide','surface','deep','moon','island','foot','system','busy','test','record','boat','common','gold','possible','plane','stead','dry','wonder','laugh','thousand','ago','ran','check','game','shape','equate','hot','miss','brought','heat','snow','tire','bring','yes','distant','fill','east','paint','language','among','grand','ball','yet','wave','drop','heart','am','present','heavy','dance','engine','position','arm','wide','sail','material','size','vary','settle','speak','weight','general','ice','matter','circle','pair','include','divide','syllable','felt','perhaps','pick','sudden','count','square','reason','length','represent','art','subject','region','energy','hunt','probable','bed','brother','egg','ride','cell','believe','fraction','forest','sit','race','window','store','summer','train','sleep','prove','lone','leg','exercise','wall','catch','mount','wish','sky','board','joy','winter','sat','written','wild','instrument','kept','glass','grass','cow','job','edge','sign','visit','past','soft','fun','bright','gas','weather','month','million','bear','finish','happy','hope','flower','clothe','strange','gone','jump','baby','eight','village','meet','root','buy','raise','solve','metal','whether','push','seven','paragraph','third','shall','held','hair','describe','cook','floor','either','result','burn','hill','safe','cat','century','consider','type','law','bit','coast','copy','phrase','silent','tall','sand','soil','roll','temperature','finger','industry','value','fight','lie','beat','excite','natural','view','sense','ear','else','quite','broke','case','middle','kill','son','lake','moment','scale','loud','spring','observe','child','straight','consonant','nation','dictionary','milk','speed','method','organ','pay','age','section','dress','cloud','surprise','quiet','stone','tiny','climb','cool','design','poor','lot','experiment','bottom','key','iron','single','stick','flat','twenty','skin','smile','crease','hole','trade','melody','trip','office','receive','row','mouth','exact','symbol','die','least','trouble','shout','except','wrote','seed','tone','join','suggest','clean','break','lady','yard','rise','bad','blow','oil','blood','touch','grew','cent','mix','team','wire','cost','lost','brown','wear','garden','equal','sent','choose','fell','fit','flow','fair','bank','collect','save','control','decimal','gentle','woman','captain','practice','separate','difficult','doctor','please','protect','noon','whose','locate','ring','character','insect','caught','period','indicate','radio','spoke','atom','human','history','effect','electric','expect','crop','modern','element','hit','student','corner','party','supply','bone','rail','imagine','provide','agree','thus','capital','won','opposite','word','toward','plant','figure','star','box'],
+  verbs: ['run','jump','eat','sleep','walk','talk','sing','dance','play','write','read','think','feel','see','hear','speak','listen','watch','learn','teach','work','help','make','take','give','come','go','know','want','need','use','find','tell','ask','seem','call','keep','let','put','show','try','mean','move','live','believe','hold','bring','happen','must','write','provide','sit','stand','turn','start','might','begin','show','hear','place','lead','own','understand','watch','follow','stop','create','speak','read','spend','grow','open','walk','win','offer','remember','consider','appear','buy','wait','serve','die','send','expect','build','stay','fall','cut','reach','carry','kill','remain','suggest','raise','pass','sell','require','report','decide','pull','break','explain','hit','continue','set','learn','change','lead','understand','produce','look','act','enable','achieve','develop','give','allow','seek','include','enjoy','turn','build','pay','take','drive','represent','choose','move','use','relate','share','approach','try','lead'],
+  adjectives: ['big','small','hot','cold','fast','slow','old','new','good','bad','happy','sad','bright','dark','hard','soft','loud','quiet','clean','dirty','beautiful','ugly','strong','weak','rich','poor','young','old','tall','short','wide','narrow','deep','shallow','heavy','light','thick','thin','rough','smooth','sweet','sour','fresh','stale','sharp','dull','clever','foolish','brave','afraid','calm','angry','gentle','wild','free','busy','lazy','eager','careful','careless','honest','kind','cruel','polite','rude','funny','serious','strange','normal','simple','complex','empty','full','open','closed','live','dead','real','false','safe','dangerous','easy','difficult','possible','impossible','important','ordinary','special','common','rare','ancient','modern','natural','artificial','clear','confused','perfect','broken','ready','tired','sick','healthy','alive','dead','lucky','unlucky','proud','humble','greedy','generous','patient','impatient','serious','playful','honest','tricky','curious','bored','excited','nervous','confident','lonely','popular','famous','unknown','early','late','right','wrong','lost','found','wet','dry','warm','cool','rough','gentle','enormous','tiny','massive','minute','gigantic','microscopic','vast','compact'],
+  animals: ['dog','cat','bird','fish','lion','tiger','bear','wolf','fox','deer','horse','cow','pig','sheep','goat','duck','chicken','rabbit','mouse','rat','elephant','giraffe','zebra','monkey','gorilla','chimpanzee','crocodile','alligator','snake','lizard','turtle','frog','toad','salamander','shark','whale','dolphin','octopus','squid','crab','lobster','shrimp','butterfly','bee','ant','beetle','spider','scorpion','eagle','owl','parrot','penguin','flamingo','peacock','swan','hawk','falcon','crow','sparrow','robin','hummingbird','woodpecker','kangaroo','koala','panda','polar bear','grizzly','black bear','jaguar','leopard','cheetah','hyena','meerkat','mongoose','otter','beaver','badger','hedgehog','squirrel','chipmunk','raccoon','skunk','opossum','armadillo','sloth','anteater','bat','hamster','gerbil','guinea pig','ferret','mink','weasel','stoat','vole','mole','shrew','porcupine','platypus','echidna','llama','alpaca','camel','bison','buffalo','moose','elk','reindeer','caribou','antelope','gazelle','impala','wildebeest','hippopotamus','rhinoceros','warthog','baboon','lemur','iguana','chameleon','gecko','komodo dragon','python','cobra','rattlesnake','boa constrictor','salmon','tuna','trout','bass','catfish','eel','seahorse','starfish','jellyfish','clam','oyster','mussel','snail','slug','earthworm','firefly'],
+  nature: ['mountain','river','ocean','forest','desert','valley','volcano','glacier','waterfall','canyon','cliff','cave','beach','island','peninsula','lake','pond','stream','brook','marsh','swamp','meadow','prairie','tundra','jungle','rainforest','savanna','plateau','delta','bay','harbor','reef','tide','wave','storm','thunder','lightning','rainbow','cloud','fog','mist','frost','snow','ice','mud','rock','stone','pebble','sand','soil','clay','dirt','grass','flower','tree','leaf','branch','root','seed','moss','fern','vine','bush','shrub','reed','bamboo','mushroom','lichen','algae','coral','sunrise','sunset','moon','star','comet','meteor','aurora','horizon','atmosphere','breeze','gust','gale','hurricane','tornado','earthquake','eruption','avalanche','landslide','flood','drought','season','spring','summer','autumn','winter','solstice','equinox'],
+  food: ['apple','banana','orange','grape','strawberry','blueberry','raspberry','cherry','peach','plum','mango','pineapple','coconut','watermelon','cantaloupe','lemon','lime','grapefruit','kiwi','pear','apricot','fig','date','pomegranate','papaya','guava','avocado','tomato','potato','carrot','onion','garlic','pepper','cucumber','zucchini','eggplant','broccoli','cauliflower','spinach','lettuce','cabbage','kale','celery','asparagus','corn','pea','bean','lentil','chickpea','mushroom','pumpkin','squash','sweet potato','beet','radish','turnip','artichoke','leek','scallion','ginger','bread','rice','pasta','noodle','pizza','burger','sandwich','soup','salad','steak','chicken','salmon','tuna','shrimp','egg','cheese','butter','milk','cream','yogurt','honey','jam','chocolate','cookie','cake','pie','muffin','donut','pancake','waffle','cereal','oatmeal','granola','coffee','tea','juice','smoothie','lemonade','water','wine','beer','soda','ice cream','pudding','brownie','cupcake','croissant','bagel','pretzel','chip','cracker','popcorn','peanut','almond','walnut','cashew','pistachio','sunflower seed','olive','pickle','sauce','ketchup','mustard','mayo','salsa','guacamole','hummus','pesto','curry','stew','chili','taco','burrito','sushi','dumpling','spring roll'],
+  places: ['city','town','village','country','continent','island','mountain','valley','forest','desert','ocean','river','lake','beach','park','garden','market','museum','library','school','hospital','church','temple','mosque','palace','castle','tower','bridge','road','highway','airport','station','port','harbor','mall','restaurant','hotel','theater','stadium','arena','gym','pool','zoo','farm','ranch','mine','factory','office','store','shop','bank','post office','police station','fire station','court','prison','cemetery','monument','fountain','plaza','square','alley','boulevard','avenue','street','lane','path','trail','canal','tunnel','dam','lighthouse','bakery','pharmacy','clinic','gallery','academy','university','college','dormitory','apartment','house','mansion','cottage','cabin','tent','camp','resort','spa','spa','club','bar','cafe','diner','cafeteria','kitchen','bedroom','bathroom','living room','basement','attic','garage','yard','garden','patio','balcony','rooftop','lobby','hallway','staircase','elevator'],
+  actions: ['jump','run','walk','swim','fly','climb','crawl','roll','slide','spin','twist','bend','stretch','reach','grab','push','pull','lift','carry','throw','catch','kick','punch','hit','strike','block','dodge','leap','land','fall','rise','stand','sit','kneel','crouch','balance','swing','hang','wave','clap','snap','tap','press','squeeze','pinch','poke','scratch','brush','comb','wash','dry','fold','wrap','tie','cut','tear','break','smash','crush','melt','freeze','boil','cook','bake','fry','grill','stir','mix','blend','pour','fill','empty','open','close','lock','unlock','turn','flip','rotate','slide','zoom','focus','scan','search','find','hide','seek','follow','lead','guide','direct','signal','warn','call','shout','whisper','sing','hum','whistle','laugh','cry','smile','frown','nod','shake','blink','wink','stare','glance','peek','watch','listen','sniff','taste','touch','feel'],
+  emotions: ['happy','sad','angry','afraid','surprised','disgusted','excited','calm','anxious','bored','confused','curious','proud','ashamed','guilty','embarrassed','lonely','loved','grateful','hopeful','hopeless','jealous','envious','content','miserable','ecstatic','devastated','terrified','furious','delighted','disappointed','frustrated','relieved','overwhelmed','nervous','confident','insecure','optimistic','pessimistic','nostalgic','homesick','inspired','motivated','exhausted','energetic','peaceful','restless','tense','relaxed','cheerful','gloomy','enthusiastic','indifferent','passionate','apathetic','sympathetic','empathetic','hostile','friendly','shy','bold','humble','arrogant','generous','selfish','patient','impatient','trusting','suspicious','honest','deceitful','brave','cowardly','determined','hesitant','playful','serious','amused','offended','touched','moved','numb','alive','joyful','melancholy','euphoric','heartbroken','elated','dejected','serene','agitated']
+};
+
+let history = [];
+
+function getWords() {
+  const category = document.getElementById('category').value;
+  const lengthFilter = document.getElementById('wordLength').value;
+  const startLetter = document.getElementById('startLetter').value;
+  const count = parseInt(document.getElementById('count').value);
+
+  let pool = category === 'all' ? Object.values(WORDS).flat() : (WORDS[category] || []);
+
+  if (lengthFilter === 'short') pool = pool.filter(w => w.length <= 4);
+  if (lengthFilter === 'medium') pool = pool.filter(w => w.length >= 5 && w.length <= 7);
+  if (lengthFilter === 'long') pool = pool.filter(w => w.length >= 8);
+  if (startLetter !== 'any') pool = pool.filter(w => w.toUpperCase().startsWith(startLetter));
+
+  pool = [...new Set(pool)];
+  if (pool.length === 0) return [];
+
+  const result = [];
+  const used = new Set();
+  let attempts = 0;
+  while (result.length < count && attempts < 1000) {
+    const w = pool[Math.floor(Math.random() * pool.length)];
+    if (!used.has(w)) { used.add(w); result.push(w); }
+    attempts++;
+  }
+  return result;
+}
+
+function generate() {
+  const words = getWords();
+  const display = document.getElementById('wordDisplay');
+  const countEl = document.getElementById('wordCount');
+
+  if (words.length === 0) {
+    display.innerHTML = '<div style="color:var(--muted);font-size:0.88rem;">No words found with those filters. Try different settings.</div>';
+    countEl.textContent = '';
+    return;
+  }
+
+  countEl.textContent = `${words.length} word${words.length !== 1 ? 's' : ''}`;
+
+  if (words.length === 1) {
+    display.innerHTML = `
+      <div class="big-word" onclick="copyWord('${words[0]}')" title="Click to copy">${words[0]}</div>
+      <div class="word-meta">
+        <span class="word-tag">${words[0].length} letters</span>
+        <span class="word-tag">click to copy</span>
+      </div>
+    `;
+  } else {
+    display.innerHTML = `<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">` +
+      words.map(w => `
+        <div onclick="copyWord('${w}')" style="font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:var(--amber);padding:10px 16px;background:var(--amber-pale);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.15s;letter-spacing:0.02em;" onmouseover="this.style.background='var(--amber-light)'" onmouseout="this.style.background='var(--amber-pale)'" title="Click to copy">${w}<span style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--muted);display:block;font-weight:400;margin-top:2px;">${w.length} letters</span></div>
+      `).join('') + `</div>`;
+  }
+
+  // Add to history
+  words.forEach(w => {
+    if (!history.includes(w)) history.unshift(w);
+  });
+  if (history.length > 50) history = history.slice(0, 50);
+  renderHistory();
+}
+
+function copyWord(word) {
+  navigator.clipboard.writeText(word).then(() => {
+    const notification = document.createElement('div');
+    notification.textContent = `"${word}" copied!`;
+    notification.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 16px;border-radius:8px;font-size:0.85rem;font-family:DM Sans,sans-serif;z-index:999;animation:fadeIn 0.2s ease;';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 1800);
+  });
+}
+
+function renderHistory() {
+  const grid = document.getElementById('historyGrid');
+  if (history.length === 0) {
+    grid.innerHTML = '<div class="history-empty">Your generated words will appear here.</div>';
+    return;
+  }
+  grid.innerHTML = history.map(w => `<span class="history-chip" onclick="copyWord('${w}')">${w}</span>`).join('');
+}
+
+function clearHistory() {
+  history = [];
+  renderHistory();
+}
+
+window.addEventListener('load', generate);
+</script>
+</body>
+</html>

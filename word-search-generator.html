@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Search Generator – Free Printable Puzzle Maker | ScrambLab</title>
+<meta name="description" content="Free word search generator. Create printable word search puzzles instantly. Perfect for teachers, parents, and students. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --amber: #c8651a;
+    --amber-light: #f0dcc0;
+    --amber-pale: #faf5ec;
+    --muted: #7a6e5f;
+    --border: #d4c9b5;
+    --success: #2d6a4f;
+    --success-bg: #d8f3dc;
+    --found: #c8651a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: 0.85rem; font-weight: 500; opacity: 0.7; }
+  .nav-links a { color: var(--paper); text-decoration: none; }
+  .nav-links a:hover { opacity: 1; color: var(--amber); }
+
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
+  }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; position: relative; }
+  .hero h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; margin-bottom: 1rem; position: relative; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero-sub { font-size: 1rem; opacity: 0.65; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6; position: relative; }
+  .badge-row { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 0.7rem; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; opacity: 0.6; }
+
+  .main { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem; display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: start; }
+
+  .panel { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .panel-head { background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
+  .panel-head-icon { width: 28px; height: 28px; background: var(--amber); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+  .panel-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; color: var(--ink); }
+  .panel-body { padding: 1.25rem; }
+
+  label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  textarea { width: 100%; min-height: 130px; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.88rem; resize: vertical; background: var(--amber-pale); color: var(--ink); line-height: 1.6; transition: border-color 0.2s; }
+  textarea:focus { outline: none; border-color: var(--amber); }
+  textarea::placeholder { color: var(--muted); opacity: 0.6; }
+
+  select { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; background: var(--amber-pale); color: var(--ink); appearance: none; cursor: pointer; margin-top: 0.75rem; }
+  select:focus { outline: none; border-color: var(--amber); }
+
+  .opt-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; }
+  .toggle { width: 36px; height: 20px; background: var(--border); border-radius: 10px; position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0; border: none; }
+  .toggle.on { background: var(--amber); }
+  .toggle::after { content: ''; position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; }
+  .toggle.on::after { transform: translateX(16px); }
+  .opt-label { font-size: 0.82rem; color: var(--muted); }
+
+  .btn-generate { width: 100%; margin-top: 1rem; padding: 0.85rem; background: var(--amber); color: #fff; border: none; border-radius: 8px; font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+  .btn-generate:hover { background: #a8521a; }
+  .btn-generate:active { transform: scale(0.98); }
+
+  .hint { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
+
+  /* GRID */
+  .grid-wrap { overflow-x: auto; }
+  .word-grid { border-collapse: collapse; margin: 0 auto; }
+  .word-grid td { width: 28px; height: 28px; text-align: center; vertical-align: middle; font-family: 'Fraunces', serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; border-radius: 4px; transition: background 0.1s; letter-spacing: 0.05em; color: var(--ink); user-select: none; }
+  .word-grid td:hover { background: var(--amber-light); }
+  .word-grid td.found { background: var(--amber); color: #fff; border-radius: 4px; }
+  .word-grid td.selected { background: var(--amber-light); }
+
+  .word-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .word-chip { font-family: 'DM Mono', monospace; font-size: 0.78rem; padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px; color: var(--muted); background: var(--cream); transition: all 0.2s; }
+  .word-chip.found { background: var(--success-bg); border-color: var(--success); color: var(--success); text-decoration: line-through; }
+
+  .stats-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .stat-pill { font-family: 'DM Mono', monospace; font-size: 0.68rem; background: var(--amber-light); color: var(--amber); padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+
+  .output-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+  .output-empty .empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.3; }
+  .output-empty p { font-size: 0.88rem; line-height: 1.6; }
+
+  .action-row { display: flex; gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .btn-action { flex: 1; min-width: 80px; padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; background: var(--cream); color: var(--ink); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+  .btn-action:hover { border-color: var(--amber); background: var(--amber-light); }
+
+  .progress-bar-wrap { background: var(--cream); border-radius: 20px; height: 6px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--amber); border-radius: 20px; transition: width 0.4s ease; }
+
+  .win-banner { background: var(--success-bg); border: 1px solid var(--success); border-radius: 8px; padding: 1rem; text-align: center; margin-top: 1rem; display: none; }
+  .win-banner p { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem; color: var(--success); }
+  .win-banner span { font-size: 0.82rem; color: var(--success); opacity: 0.8; }
+
+  .ad-slot { background: var(--cream); border: 1px dashed var(--border); border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0 0; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  .how-section { max-width: 1000px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+  .how-section h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 1.25rem; }
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .how-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .how-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--amber); line-height: 1; margin-bottom: 0.5rem; }
+  .how-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .how-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  .faq-section { max-width: 1000px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+  .faq-section h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 1.25rem; }
+  .faq-item { border-top: 1px solid var(--border); padding: 1rem 0; }
+  .faq-q { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .faq-a { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  .ad-slot-wide { max-width: 1000px; margin: 0 auto 2rem; padding: 0 1.5rem; }
+
+  footer { background: var(--ink); color: var(--paper); padding: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.7; }
+  footer a { color: var(--amber); text-decoration: none; }
+
+  @media print {
+    header, .hero, .input-col, .action-row, .word-chip.found, footer, .ad-slot, .ad-slot-wide, .how-section, .faq-section { display: none !important; }
+    .main { grid-template-columns: 1fr; padding: 0; }
+    .panel { border: none; }
+    body { background: #fff; }
+    .word-grid td.found { background: #ddd !important; color: #000 !important; -webkit-print-color-adjust: exact; }
+  }
+
+  @media (max-width: 680px) {
+    .main { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .word-grid td { width: 22px; height: 22px; font-size: 0.75rem; }
+  }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">Scramble<span>Lab</span></div>
+  <ul class="nav-links">
+    <li><a href="/index.html">Word Scramble</a></li>
+    <li><a href="/word-search-generator.html">Word Search</a></li>
+    <li><a href="/anagram-solver.html">Anagram</a></li>
+    <li><a href="/spelling-test-generator.html">Spelling Test</a></li>
+    <li><a href="/random-word-generator.html">Random Word</a></li>
+    <li><a href="/word-counter.html">Word Counter</a></li>
+    <li><a href="/crossword-maker.html">Crossword</a></li>
+  </ul>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Free — No Signup — Instant</div>
+  <h1>Word Search<br><em>Generator</em></h1>
+  <p class="hero-sub">Create printable word search puzzles in seconds. Click letters to find hidden words. Perfect for classrooms, game nights, and family fun.</p>
+  <div class="badge-row">
+    <span class="badge">Printable PDF</span>
+    <span class="badge">Interactive Mode</span>
+    <span class="badge">3 Grid Sizes</span>
+    <span class="badge">Answer Key</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- INPUT -->
+  <div class="input-col">
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-head-icon">✏️</div>
+        <div class="panel-title">Your Words</div>
+      </div>
+      <div class="panel-body">
+        <label>Enter words (one per line)</label>
+        <textarea id="wordInput" placeholder="apple&#10;banana&#10;elephant&#10;chocolate&#10;butterfly"></textarea>
+
+        <label style="margin-top:0.75rem;">Grid size</label>
+        <select id="gridSize">
+          <option value="12">Small — 12×12</option>
+          <option value="15" selected>Medium — 15×15</option>
+          <option value="20">Large — 20×20</option>
+        </select>
+
+        <label style="margin-top:0.75rem;">Directions</label>
+        <select id="directions">
+          <option value="easy">Easy — horizontal & vertical only</option>
+          <option value="medium" selected>Medium — + diagonal</option>
+          <option value="hard">Hard — + backwards</option>
+        </select>
+
+        <div class="opt-row">
+          <button class="toggle on" id="showList" onclick="toggleOpt(this)"></button>
+          <span class="opt-label">Show word list</span>
+        </div>
+        <div class="opt-row">
+          <button class="toggle" id="interactiveMode" onclick="toggleOpt(this)"></button>
+          <span class="opt-label">Interactive mode (click to find)</span>
+        </div>
+
+        <button class="btn-generate" onclick="generate()">⚡ Generate Puzzle</button>
+        <p class="hint">Up to 20 words. Works best with 8–15 words for a clean grid.</p>
+
+        <div class="ad-slot">Advertisement · 300×250 · Google AdSense</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="output-col">
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-head-icon">🔍</div>
+        <div class="panel-title" id="outputTitle">Your Puzzle</div>
+      </div>
+      <div class="panel-body">
+        <div class="output-empty" id="emptyState">
+          <div class="empty-icon">🔡</div>
+          <p>Enter your words and hit <strong>Generate Puzzle</strong> to create a word search instantly.</p>
+        </div>
+
+        <div id="puzzleOutput" style="display:none;">
+          <div class="stats-row" id="statsRow"></div>
+          <div class="progress-bar-wrap" id="progressWrap" style="display:none;">
+            <div class="progress-bar" id="progressBar" style="width:0%"></div>
+          </div>
+          <div class="grid-wrap">
+            <table class="word-grid" id="wordGrid"></table>
+          </div>
+          <div class="word-list" id="wordList"></div>
+          <div class="win-banner" id="winBanner">
+            <p>🎉 Puzzle Complete!</p>
+            <span>You found all the words!</span>
+          </div>
+          <div class="action-row">
+            <button class="btn-action" onclick="window.print()">🖨 Print</button>
+            <button class="btn-action" onclick="revealAll()">👁 Answers</button>
+            <button class="btn-action" onclick="generate()">🔀 New Puzzle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ad-slot-wide">
+  <div class="ad-slot">Advertisement · 728×90 Leaderboard · Google AdSense</div>
+</div>
+
+<div class="how-section">
+  <h2>How to use this generator</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">1</div>
+      <h3>Enter your words</h3>
+      <p>Type or paste your word list — vocabulary words, spelling lists, or any themed words you like.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">2</div>
+      <h3>Choose difficulty</h3>
+      <p>Easy keeps words horizontal and vertical. Medium adds diagonals. Hard adds backwards words for experts.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">3</div>
+      <h3>Play or print</h3>
+      <p>Use interactive mode to click and find words on screen, or print a clean worksheet for offline use.</p>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item">
+    <div class="faq-q">Is this word search generator free?</div>
+    <div class="faq-a">Yes — completely free with no account or signup required. Generate unlimited puzzles.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I use it for my classroom?</div>
+    <div class="faq-a">Absolutely. Teachers use ScrambLab to create vocabulary worksheets and end-of-lesson activities. The print layout is clean and student-ready.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How many words can I add?</div>
+    <div class="faq-a">Up to 20 words per puzzle. For the best layout, 8–12 words works best for smaller grids.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can students solve it on screen?</div>
+    <div class="faq-a">Yes — turn on Interactive Mode, then click the first and last letter of each word to highlight it. Words are marked off the list as you find them.</div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 ScrambLab · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a><br>
+  Also try: <a href="/index.html">Word Scramble Generator</a> · <a href="#">Crossword Maker</a> · <a href="#">Anagram Solver</a></p>
+</footer>
+
+<script>
+  let placedWords = [];
+  let grid = [];
+  let gridSize = 15;
+  let selecting = false;
+  let startCell = null;
+  let foundWords = new Set();
+  let interactive = false;
+
+  function toggleOpt(btn) { btn.classList.toggle('on'); }
+
+  function generate() {
+    const raw = document.getElementById('wordInput').value;
+    gridSize = parseInt(document.getElementById('gridSize').value);
+    const dirMode = document.getElementById('directions').value;
+    const showList = document.getElementById('showList').classList.contains('on');
+    interactive = document.getElementById('interactiveMode').classList.contains('on');
+
+    let words = raw.split('\n')
+      .map(w => w.trim().replace(/[^a-zA-Z]/g, '').toUpperCase())
+      .filter(w => w.length > 1 && w.length <= gridSize)
+      .slice(0, 20);
+
+    if (words.length === 0) { alert('Please enter at least one word!'); return; }
+
+    foundWords = new Set();
+    document.getElementById('winBanner').style.display = 'none';
+
+    let directions = [[0,1],[1,0]];
+    if (dirMode === 'medium' || dirMode === 'hard') directions.push([1,1],[-1,1]);
+    if (dirMode === 'hard') directions.push([0,-1],[-1,0],[-1,-1],[1,-1]);
+
+    let success = false;
+    let attempts = 0;
+    while (!success && attempts < 20) {
+      grid = Array.from({length: gridSize}, () => Array(gridSize).fill(''));
+      placedWords = [];
+      success = true;
+      const shuffled = [...words].sort(() => Math.random() - 0.5);
+      for (const word of shuffled) {
+        if (!placeWord(word, directions)) success = false;
+      }
+      attempts++;
+    }
+
+    fillRandom();
+    renderGrid();
+
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('puzzleOutput').style.display = 'block';
+
+    const statsRow = document.getElementById('statsRow');
+    statsRow.innerHTML = `
+      <span class="stat-pill">${words.length} words</span>
+      <span class="stat-pill">${gridSize}×${gridSize} grid</span>
+      <span class="stat-pill">${dirMode} mode</span>
+    `;
+
+    const wordListEl = document.getElementById('wordList');
+    if (showList) {
+      wordListEl.innerHTML = words.map(w => `<span class="word-chip" id="chip-${w}">${w}</span>`).join('');
+      wordListEl.style.display = 'flex';
+    } else {
+      wordListEl.style.display = 'none';
+    }
+
+    const progressWrap = document.getElementById('progressWrap');
+    if (interactive) {
+      progressWrap.style.display = 'block';
+      updateProgress();
+    } else {
+      progressWrap.style.display = 'none';
+    }
+  }
+
+  function placeWord(word, directions) {
+    const dirs = [...directions].sort(() => Math.random() - 0.5);
+    for (let attempts = 0; attempts < 100; attempts++) {
+      const dir = dirs[Math.floor(Math.random() * dirs.length)];
+      const row = Math.floor(Math.random() * gridSize);
+      const col = Math.floor(Math.random() * gridSize);
+      if (canPlace(word, row, col, dir)) {
+        for (let i = 0; i < word.length; i++) {
+          grid[row + dir[0]*i][col + dir[1]*i] = word[i];
+        }
+        placedWords.push({ word, row, col, dir });
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function canPlace(word, row, col, dir) {
+    for (let i = 0; i < word.length; i++) {
+      const r = row + dir[0]*i;
+      const c = col + dir[1]*i;
+      if (r < 0 || r >= gridSize || c < 0 || c >= gridSize) return false;
+      if (grid[r][c] !== '' && grid[r][c] !== word[i]) return false;
+    }
+    return true;
+  }
+
+  function fillRandom() {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let r = 0; r < gridSize; r++)
+      for (let c = 0; c < gridSize; c++)
+        if (grid[r][c] === '') grid[r][c] = letters[Math.floor(Math.random() * 26)];
+  }
+
+  function renderGrid() {
+    const table = document.getElementById('wordGrid');
+    table.innerHTML = '';
+    for (let r = 0; r < gridSize; r++) {
+      const tr = document.createElement('tr');
+      for (let c = 0; c < gridSize; c++) {
+        const td = document.createElement('td');
+        td.textContent = grid[r][c];
+        td.dataset.r = r;
+        td.dataset.c = c;
+        if (interactive) {
+          td.addEventListener('mousedown', startSelect);
+          td.addEventListener('mouseenter', continueSelect);
+          td.addEventListener('mouseup', endSelect);
+          td.addEventListener('touchstart', e => { e.preventDefault(); startSelect(e.touches[0]); }, {passive:false});
+          td.addEventListener('touchmove', e => { e.preventDefault(); const t = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY); if(t && t.tagName==='TD') continueSelect({target:t}); }, {passive:false});
+          td.addEventListener('touchend', endSelect);
+        }
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+  }
+
+  function getCellsInLine(start, end) {
+    const r1 = parseInt(start.dataset.r), c1 = parseInt(start.dataset.c);
+    const r2 = parseInt(end.dataset.r), c2 = parseInt(end.dataset.c);
+    const dr = r2 - r1, dc = c2 - c1;
+    const len = Math.max(Math.abs(dr), Math.abs(dc));
+    if (len === 0) return [start];
+    const sr = dr === 0 ? 0 : dr/Math.abs(dr);
+    const sc = dc === 0 ? 0 : dc/Math.abs(dc);
+    if (Math.abs(dr) !== 0 && Math.abs(dc) !== 0 && Math.abs(dr) !== Math.abs(dc)) return [];
+    const cells = [];
+    for (let i = 0; i <= len; i++) {
+      const el = document.querySelector(`td[data-r="${r1+sr*i}"][data-c="${c1+sc*i}"]`);
+      if (el) cells.push(el);
+    }
+    return cells;
+  }
+
+  let selectedCells = [];
+
+  function startSelect(e) {
+    if (!interactive) return;
+    selecting = true;
+    startCell = e.target.closest ? e.target.closest('td') : e.target;
+    clearSelected();
+    if (startCell) startCell.classList.add('selected');
+  }
+
+  function continueSelect(e) {
+    if (!selecting || !startCell) return;
+    clearSelected();
+    const endCell = e.target.closest ? e.target.closest('td') : e.target;
+    if (!endCell || endCell.tagName !== 'TD') return;
+    selectedCells = getCellsInLine(startCell, endCell);
+    selectedCells.forEach(c => { if (!c.classList.contains('found')) c.classList.add('selected'); });
+  }
+
+  function endSelect() {
+    if (!selecting) return;
+    selecting = false;
+    const word = selectedCells.map(c => c.textContent).join('');
+    const wordRev = word.split('').reverse().join('');
+    const matched = placedWords.find(p => p.word === word || p.word === wordRev);
+    if (matched && !foundWords.has(matched.word)) {
+      foundWords.add(matched.word);
+      selectedCells.forEach(c => { c.classList.remove('selected'); c.classList.add('found'); });
+      const chip = document.getElementById('chip-' + matched.word);
+      if (chip) chip.classList.add('found');
+      updateProgress();
+      if (foundWords.size === placedWords.length) {
+        document.getElementById('winBanner').style.display = 'block';
+      }
+    } else {
+      clearSelected();
+    }
+    selectedCells = [];
+    startCell = null;
+  }
+
+  function clearSelected() {
+    document.querySelectorAll('.word-grid td.selected').forEach(c => c.classList.remove('selected'));
+  }
+
+  function updateProgress() {
+    const pct = placedWords.length > 0 ? (foundWords.size / placedWords.length) * 100 : 0;
+    document.getElementById('progressBar').style.width = Math.round(pct) + '%';
+  }
+
+  function revealAll() {
+    placedWords.forEach(({word, row, col, dir}) => {
+      for (let i = 0; i < word.length; i++) {
+        const td = document.querySelector(`td[data-r="${row+dir[0]*i}"][data-c="${col+dir[1]*i}"]`);
+        if (td) td.classList.add('found');
+      }
+      const chip = document.getElementById('chip-' + word);
+      if (chip) chip.classList.add('found');
+      foundWords.add(word);
+    });
+    updateProgress();
+    document.getElementById('winBanner').style.display = 'block';
+  }
+
+  window.addEventListener('load', () => {
+    document.getElementById('wordInput').value = 'ocean\nmountain\nforest\ndesert\nvolcano\nglacier\ncanyon\nsavanna';
+    document.getElementById('interactiveMode').classList.add('on');
+    generate();
+  });
+</script>
+</body>
+</html>

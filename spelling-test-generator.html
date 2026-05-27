@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spelling Test Generator – Free Printable Spelling Tests | ScrambLab</title>
+<meta name="description" content="Free spelling test generator. Create printable spelling tests instantly for any grade level. Perfect for teachers and parents. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --ink: #1a1208; --paper: #f5f0e8; --cream: #ede7d9; --amber: #c8651a;
+    --amber-light: #f0dcc0; --amber-pale: #faf5ec; --muted: #7a6e5f;
+    --border: #d4c9b5; --success: #2d6a4f; --success-bg: #d8f3dc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+  header { background: var(--ink); color: var(--paper); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: 0.85rem; font-weight: 500; opacity: 0.7; }
+  .nav-links a { color: var(--paper); text-decoration: none; }
+  .nav-links a:hover { opacity: 1; color: var(--amber); }
+  .hero { background: var(--ink); color: var(--paper); padding: 3rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px); }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; position: relative; }
+  .hero h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.05; margin-bottom: 1rem; position: relative; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero-sub { font-size: 1rem; opacity: 0.65; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6; position: relative; }
+  .badge-row { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 0.7rem; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; opacity: 0.6; }
+  .main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .panel { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .panel-head { background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
+  .panel-head-icon { width: 28px; height: 28px; background: var(--amber); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+  .panel-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; }
+  .panel-body { padding: 1.25rem; }
+  label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  textarea { width: 100%; min-height: 140px; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.88rem; resize: vertical; background: var(--amber-pale); color: var(--ink); line-height: 1.6; transition: border-color 0.2s; }
+  textarea:focus { outline: none; border-color: var(--amber); }
+  textarea::placeholder { color: var(--muted); opacity: 0.6; }
+  input[type="text"] { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; background: var(--amber-pale); color: var(--ink); }
+  input[type="text"]:focus { outline: none; border-color: var(--amber); }
+  select { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; background: var(--amber-pale); color: var(--ink); appearance: none; cursor: pointer; }
+  select:focus { outline: none; border-color: var(--amber); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem; }
+  .opt-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; }
+  .toggle { width: 36px; height: 20px; background: var(--border); border-radius: 10px; position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0; border: none; }
+  .toggle.on { background: var(--amber); }
+  .toggle::after { content: ''; position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.2s; }
+  .toggle.on::after { transform: translateX(16px); }
+  .opt-label { font-size: 0.82rem; color: var(--muted); }
+  .btn-generate { width: 100%; margin-top: 1rem; padding: 0.85rem; background: var(--amber); color: #fff; border: none; border-radius: 8px; font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+  .btn-generate:hover { background: #a8521a; }
+  .hint { font-size: 0.75rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
+  .ad-slot { background: var(--cream); border: 1px dashed var(--border); border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0 0; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
+  .output-empty { text-align: center; padding: 2.5rem 1rem; color: var(--muted); }
+  .output-empty .empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.3; }
+  .output-empty p { font-size: 0.88rem; line-height: 1.6; }
+
+  /* TEST SHEET */
+  .test-sheet { }
+  .test-header { text-align: center; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 2px solid var(--ink); }
+  .test-title { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.3rem; }
+  .test-meta { display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem; flex-wrap: wrap; }
+  .test-meta-item { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  .name-line { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; font-size: 0.85rem; }
+  .name-line-label { font-weight: 600; white-space: nowrap; }
+  .name-line-blank { flex: 1; border-bottom: 1px solid var(--ink); height: 20px; }
+  .word-rows { margin-top: 1rem; }
+  .word-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.4rem 0; border-bottom: 1px dashed var(--border); }
+  .word-num { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--muted); width: 20px; flex-shrink: 0; text-align: right; }
+  .word-blank { flex: 1; border-bottom: 1px solid var(--border); height: 24px; }
+  .word-answer { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; color: var(--amber); display: none; }
+  .word-hint { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); background: var(--cream); padding: 2px 7px; border-radius: 4px; }
+  .stats-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .stat-pill { font-family: 'DM Mono', monospace; font-size: 0.68rem; background: var(--amber-light); color: var(--amber); padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .action-row { display: flex; gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .btn-action { flex: 1; padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; background: var(--cream); color: var(--ink); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+  .btn-action:hover { border-color: var(--amber); background: var(--amber-light); }
+  .score-box { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 1rem; }
+  .score-cell { border: 1px solid var(--border); border-radius: 4px; height: 28px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+  .how-section { max-width: 900px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+  .how-section h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 1.25rem; }
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .how-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+  .how-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--amber); line-height: 1; margin-bottom: 0.5rem; }
+  .how-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .how-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .faq-section { max-width: 900px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+  .faq-section h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 1.25rem; }
+  .faq-item { border-top: 1px solid var(--border); padding: 1rem 0; }
+  .faq-q { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .faq-a { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .ad-slot-wide { max-width: 900px; margin: 0 auto 2rem; padding: 0 1.5rem; }
+  footer { background: var(--ink); color: var(--paper); padding: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.7; }
+  footer a { color: var(--amber); text-decoration: none; }
+  @media print {
+    header, .hero, .input-col, .action-row, .btn-action, footer, .ad-slot, .ad-slot-wide, .how-section, .faq-section, .stats-row { display: none !important; }
+    .main { grid-template-columns: 1fr; padding: 0; }
+    .panel { border: none; box-shadow: none; }
+    body { background: #fff; }
+    .word-answer { display: none !important; }
+  }
+  @media (max-width: 640px) { .main { grid-template-columns: 1fr; } .how-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Scramble<span>Lab</span></div>
+  <ul class="nav-links">
+    <li><a href="/index.html">Word Scramble</a></li>
+    <li><a href="/word-search-generator.html">Word Search</a></li>
+    <li><a href="/anagram-solver.html">Anagram</a></li>
+    <li><a href="/spelling-test-generator.html">Spelling Test</a></li>
+    <li><a href="/random-word-generator.html">Random Word</a></li>
+    <li><a href="/word-counter.html">Word Counter</a></li>
+    <li><a href="/crossword-maker.html">Crossword</a></li>
+  </ul>
+</header>
+<div class="hero">
+  <div class="hero-eyebrow">Free — No Signup — Printable</div>
+  <h1>Spelling Test<br><em>Generator</em></h1>
+  <p class="hero-sub">Create professional spelling tests in seconds. Add words, pick a grade level, and print a clean test sheet with answer key.</p>
+  <div class="badge-row">
+    <span class="badge">Printable PDF</span>
+    <span class="badge">Answer Key</span>
+    <span class="badge">Grade Levels</span>
+    <span class="badge">Score Grid</span>
+  </div>
+</div>
+<div class="main">
+  <div class="input-col">
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-head-icon">✏️</div>
+        <div class="panel-title">Build Your Test</div>
+      </div>
+      <div class="panel-body">
+        <label>Spelling words (one per line)</label>
+        <textarea id="wordInput" placeholder="because&#10;necessary&#10;beautiful&#10;different&#10;together&#10;important&#10;language&#10;knowledge"></textarea>
+        <div class="form-row">
+          <div>
+            <label>Test title</label>
+            <input type="text" id="testTitle" value="Spelling Test">
+          </div>
+          <div>
+            <label>Student name line</label>
+            <select id="nameField">
+              <option value="Name">Name</option>
+              <option value="Name & Date">Name & Date</option>
+              <option value="Name, Date & Class">Name, Date & Class</option>
+              <option value="none">No name line</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label>Grade level</label>
+            <select id="gradeLevel">
+              <option value="K-2">K–2nd Grade</option>
+              <option value="3-5" selected>3rd–5th Grade</option>
+              <option value="6-8">6th–8th Grade</option>
+              <option value="9-12">High School</option>
+            </select>
+          </div>
+          <div>
+            <label>Word order</label>
+            <select id="wordOrder">
+              <option value="original">Keep original order</option>
+              <option value="random">Randomize order</option>
+              <option value="alpha">Alphabetical</option>
+            </select>
+          </div>
+        </div>
+        <div class="opt-row">
+          <button class="toggle on" id="showHints" onclick="toggleOpt(this)"></button>
+          <span class="opt-label">Show first letter as hint</span>
+        </div>
+        <div class="opt-row">
+          <button class="toggle on" id="showScore" onclick="toggleOpt(this)"></button>
+          <span class="opt-label">Include score grid</span>
+        </div>
+        <div class="opt-row">
+          <button class="toggle" id="showAnswers" onclick="toggleOpt(this)"></button>
+          <span class="opt-label">Show answer key</span>
+        </div>
+        <button class="btn-generate" onclick="generate()">⚡ Generate Test</button>
+        <p class="hint">Up to 30 words. Prints clean on a single page for up to 20 words.</p>
+        <div class="ad-slot">Advertisement · 300×250 · Google AdSense</div>
+      </div>
+    </div>
+  </div>
+  <div class="output-col">
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-head-icon">📝</div>
+        <div class="panel-title" id="outputTitle">Your Test</div>
+      </div>
+      <div class="panel-body">
+        <div class="output-empty" id="emptyState">
+          <div class="empty-icon">📋</div>
+          <p>Enter your spelling words and hit <strong>Generate Test</strong> to create a printable test sheet instantly.</p>
+        </div>
+        <div id="testOutput" style="display:none;">
+          <div class="stats-row" id="statsRow"></div>
+          <div class="test-sheet" id="testSheet"></div>
+          <div class="action-row">
+            <button class="btn-action" onclick="window.print()">🖨 Print</button>
+            <button class="btn-action" onclick="toggleAnswerKey()">👁 Answer Key</button>
+            <button class="btn-action" onclick="generate()">🔀 Regenerate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ad-slot-wide"><div class="ad-slot">Advertisement · 728×90 Leaderboard · Google AdSense</div></div>
+<div class="how-section">
+  <h2>How to use this generator</h2>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-num">1</div><h3>Enter your words</h3><p>Type or paste your spelling list — weekly vocabulary words, sight words, or any custom list.</p></div>
+    <div class="how-card"><div class="how-num">2</div><h3>Customize the test</h3><p>Choose grade level, add a student name line, randomize word order, and toggle the score grid.</p></div>
+    <div class="how-card"><div class="how-num">3</div><h3>Print & go</h3><p>Print directly from your browser for a clean, professional test sheet. Works on any printer.</p></div>
+  </div>
+</div>
+<div class="faq-section">
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item"><div class="faq-q">Is this spelling test generator free?</div><div class="faq-a">Yes — completely free with no account or signup required. Generate and print as many tests as you need.</div></div>
+  <div class="faq-item"><div class="faq-q">Can I use it for my classroom?</div><div class="faq-a">Absolutely. Teachers use ScrambLab to create weekly spelling tests, vocabulary quizzes, and sight word practice sheets. The print layout is clean and professional.</div></div>
+  <div class="faq-item"><div class="faq-q">How many words can I add?</div><div class="faq-a">Up to 30 words per test. For a clean single-page print, 10–20 words works best.</div></div>
+  <div class="faq-item"><div class="faq-q">Can I print an answer key?</div><div class="faq-a">Yes — toggle the Answer Key option before printing to show the correct spelling next to each blank line.</div></div>
+</div>
+<footer>
+  <p>© 2025 ScrambLab · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a><br>
+  Also try: <a href="/index.html">Word Scramble Generator</a> · <a href="/word-search-generator.html">Word Search Generator</a> · <a href="/anagram-solver.html">Anagram Solver</a></p>
+</footer>
+<script>
+  let currentWords = [];
+  let answersVisible = false;
+
+  function toggleOpt(btn) { btn.classList.toggle('on'); }
+
+  function generate() {
+    const raw = document.getElementById('wordInput').value;
+    const title = document.getElementById('testTitle').value || 'Spelling Test';
+    const nameField = document.getElementById('nameField').value;
+    const grade = document.getElementById('gradeLevel').value;
+    const order = document.getElementById('wordOrder').value;
+    const showHints = document.getElementById('showHints').classList.contains('on');
+    const showScore = document.getElementById('showScore').classList.contains('on');
+    answersVisible = document.getElementById('showAnswers').classList.contains('on');
+
+    let words = raw.split('\n').map(w => w.trim()).filter(w => w.length > 0).slice(0, 30);
+    if (words.length === 0) { alert('Please enter at least one word!'); return; }
+
+    if (order === 'random') words = words.sort(() => Math.random() - 0.5);
+    if (order === 'alpha') words = words.sort();
+    currentWords = words;
+
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('testOutput').style.display = 'block';
+    document.getElementById('outputTitle').textContent = title;
+
+    document.getElementById('statsRow').innerHTML = `
+      <span class="stat-pill">${words.length} words</span>
+      <span class="stat-pill">Grade ${grade}</span>
+      <span class="stat-pill">${order} order</span>
+    `;
+
+    let nameHTML = '';
+    if (nameField !== 'none') {
+      const fields = nameField.split('&').map(f => f.trim());
+      nameHTML = `<div class="test-meta">` + fields.map(f => `
+        <div class="name-line">
+          <span class="name-line-label">${f}:</span>
+          <div class="name-line-blank"></div>
+        </div>
+      `).join('') + `</div>`;
+    }
+
+    const wordRows = words.map((w, i) => `
+      <div class="word-row">
+        <span class="word-num">${i + 1}.</span>
+        <div class="word-blank"></div>
+        ${showHints ? `<span class="word-hint">${w[0].toUpperCase()}___</span>` : ''}
+        <span class="word-answer" id="ans-${i}" style="display:${answersVisible ? 'inline' : 'none'}">${w}</span>
+      </div>
+    `).join('');
+
+    const scoreHTML = showScore ? `
+      <div style="margin-top:1rem;">
+        <div style="font-size:0.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Score</div>
+        <div class="score-box">
+          ${words.map((_, i) => `<div class="score-cell">${i + 1}</div>`).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    document.getElementById('testSheet').innerHTML = `
+      <div class="test-header">
+        <div class="test-title">${title}</div>
+        ${nameHTML}
+      </div>
+      <div class="word-rows">${wordRows}</div>
+      ${scoreHTML}
+    `;
+  }
+
+  function toggleAnswerKey() {
+    answersVisible = !answersVisible;
+    currentWords.forEach((_, i) => {
+      const el = document.getElementById('ans-' + i);
+      if (el) el.style.display = answersVisible ? 'inline' : 'none';
+    });
+  }
+
+  window.addEventListener('load', () => {
+    document.getElementById('wordInput').value = 'because\nnecessary\nbeautiful\ndifferent\ntogether\nimportant\nlanguage\nknowledge\nexcellent\nwonderful';
+    generate();
+  });
+</script>
+</body>
+</html>
