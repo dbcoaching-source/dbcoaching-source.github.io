@@ -1,1 +1,188 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crossword Puzzle Maker - Free Printable Crossword Generator | ScrambLab</title>
+<meta name="description" content="Free crossword puzzle maker. Enter your words and clues to create a printable crossword puzzle instantly. Perfect for teachers, students, and puzzle lovers. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1.5rem;list-style:none;font-size:.85rem;font-weight:500;opacity:.7}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:320px 1fr;gap:2rem;align-items:start}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;gap:.6rem}
+.panel-head-icon{width:28px;height:28px;background:var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.panel-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.panel-body{padding:1.25rem}
+label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+input[type=text]{width:100%;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--amber-pale);color:var(--ink);margin-bottom:.5rem}
+input[type=text]:focus{outline:none;border-color:var(--amber)}
+.word-entry{display:flex;gap:6px;margin-bottom:.5rem;align-items:flex-start}
+.word-entry input{margin-bottom:0}
+.word-input{flex:0 0 100px;font-family:'DM Mono',monospace!important;font-weight:500!important;text-transform:uppercase}
+.clue-input{flex:1}
+.remove-btn{width:28px;height:34px;border:1px solid var(--border);border-radius:6px;background:var(--cream);cursor:pointer;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.remove-btn:hover{border-color:#c0392b;color:#c0392b}
+.add-word-btn{width:100%;padding:7px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--muted);font-size:.82rem;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;margin-top:4px}
+.add-word-btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn-generate{width:100%;margin-top:1rem;padding:.85rem;background:var(--amber);color:#fff;border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s}
+.btn-generate:hover{background:#a8521a}
+.hint{font-size:.75rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1rem 0 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.crossword-wrap{overflow-x:auto}
+.crossword-table{border-collapse:collapse;margin:0 auto}
+.crossword-table td{width:30px;height:30px;border:none;padding:0;position:relative}
+.crossword-table td.white{background:#fff;border:1px solid #999}
+.crossword-table td.black{background:var(--ink)}
+.crossword-table td .cell-num{position:absolute;top:1px;left:2px;font-size:8px;font-family:'DM Mono',monospace;color:var(--muted);line-height:1;z-index:1}
+.crossword-table td .cell-input{position:absolute;inset:0;width:100%;height:100%;border:none;background:transparent;text-align:center;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;color:var(--ink);text-transform:uppercase;cursor:pointer;padding:0;outline:none}
+.crossword-table td.active{background:var(--amber-light)!important}
+.clues-section{margin-top:1.25rem}
+.clues-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.clue-group h3{font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;margin-bottom:.5rem;color:var(--ink);border-bottom:1px solid var(--border);padding-bottom:.4rem}
+.clue-item{font-size:.82rem;color:var(--muted);padding:3px 0;line-height:1.5}
+.clue-item strong{color:var(--ink);font-family:'DM Mono',monospace;font-size:.78rem}
+.output-empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.output-empty .empty-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
+.output-empty p{font-size:.88rem;line-height:1.6}
+.action-row{display:flex;gap:.5rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.btn-action{flex:1;padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.btn-action:hover{border-color:var(--amber);background:var(--amber-light)}
+.stats-row{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.stat-pill{font-family:'DM Mono',monospace;font-size:.68rem;background:var(--amber-light);color:var(--amber);padding:3px 10px;border-radius:20px;font-weight:500}
+.how-section{max-width:1000px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:1000px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+.ad-slot-wide{max-width:1000px;margin:0 auto 2rem;padding:0 1.5rem}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media print{header,.hero,.input-col,.action-row,footer,.ad-slot,.ad-slot-wide,.how-section,.faq-section,.stats-row{display:none!important}.main{grid-template-columns:1fr;padding:0}.panel{border:none}body{background:#fff}.cell-letter{display:none!important}}
+@media(max-width:700px){.main{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.nav-links{display:none}.clues-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+<li><a href="/index.html">Word Scramble</a></li>
+<li><a href="/word-search-generator.html">Word Search</a></li>
+<li><a href="/anagram-solver.html">Anagram</a></li>
+<li><a href="/spelling-test-generator.html">Spelling Test</a></li>
+<li><a href="/random-word-generator.html">Random Word</a></li>
+<li><a href="/word-counter.html">Word Counter</a></li>
+<li><a href="/crossword-maker.html">Crossword</a></li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - No Signup - Printable</div>
+<h1>Crossword Puzzle<br><em>Maker</em></h1>
+<p class="hero-sub">Enter your words and clues to generate a printable crossword puzzle instantly. Perfect for teachers, students, and puzzle enthusiasts.</p>
+<div class="badge-row">
+<span class="badge">Auto layout</span>
+<span class="badge">Printable PDF</span>
+<span class="badge">Answer Key</span>
+<span class="badge">Interactive solve</span>
+</div>
+</div>
+<div class="main">
+<div class="input-col">
+<div class="panel">
+<div class="panel-head"><div class="panel-head-icon">&#9999;&#65039;</div><div class="panel-title">Words &amp; Clues</div></div>
+<div class="panel-body">
+<div style="display:grid;grid-template-columns:100px 1fr 28px;gap:6px;margin-bottom:6px;">
+<label style="margin:0;">Word</label><label style="margin:0;">Clue</label><div></div>
+</div>
+<div id="wordList"></div>
+<button class="add-word-btn" onclick="addWord()">+ Add another word</button>
+<button class="btn-generate" onclick="generate()">&#9889; Generate Crossword</button>
+<p class="hint">Add 5-15 words for the best puzzle layout. Words must share at least one letter to intersect.</p>
+<div class="ad-slot">Advertisement &middot; 300&times;250 &middot; Google AdSense</div>
+</div>
+</div>
+</div>
+<div class="output-col">
+<div class="panel">
+<div class="panel-head"><div class="panel-head-icon">&#128292;</div><div class="panel-title">Your Crossword</div></div>
+<div class="panel-body">
+<div class="output-empty" id="emptyState"><div class="empty-icon">&#128203;</div><p>Enter your words and clues, then hit <strong>Generate Crossword</strong> to build your puzzle instantly.</p></div>
+<div id="puzzleOutput" style="display:none;">
+<div class="stats-row" id="statsRow"></div>
+<div class="crossword-wrap"><table class="crossword-table" id="crosswordGrid"></table></div>
+<div class="clues-section" id="cluesSection"></div>
+<div class="action-row">
+<button class="btn-action" onclick="window.print()">&#128424; Print</button>
+<button class="btn-action" onclick="toggleAnswers()">&#128065; Answers</button>
+<button class="btn-action" onclick="generate()">&#128256; Regenerate</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ad-slot-wide"><div class="ad-slot">Advertisement &middot; 728&times;90 &middot; Google AdSense</div></div>
+<div class="how-section">
+<h2>How to use the crossword maker</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Enter your words</h3><p>Type each word and its clue. Use 5-15 words for the best puzzle. Words that share letters will intersect automatically.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Generate instantly</h3><p>Click Generate and your crossword layout is created automatically. Hit Regenerate for a different arrangement.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Print or solve online</h3><p>Print a blank puzzle for pen-and-paper solving, or solve it interactively right in your browser.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Is this crossword maker free?</div><div class="faq-a">Yes - completely free with no account or signup required.</div></div>
+<div class="faq-item"><div class="faq-q">How many words can I add?</div><div class="faq-a">Up to 20 words. For the best layout with maximum intersections, 8-12 words works best.</div></div>
+<div class="faq-item"><div class="faq-q">Why don't all my words appear in the puzzle?</div><div class="faq-a">Words can only be placed if they share at least one letter with another word already in the grid. If a word cannot intersect, it may be left out. Try adding more words or words that share common letters.</div></div>
+<div class="faq-item"><div class="faq-q">Can I use it for my classroom?</div><div class="faq-a">Absolutely. Teachers use ScrambLab to create vocabulary crosswords, review activities, and end-of-unit puzzles. The print layout is clean and student-ready.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/word-search-generator.html">Word Search</a> &middot; <a href="/anagram-solver.html">Anagram Solver</a> &middot; <a href="/spelling-test-generator.html">Spelling Test</a> &middot; <a href="/random-word-generator.html">Random Word</a> &middot; <a href="/word-counter.html">Word Counter</a></p>
+</footer>
+<script>
+let wordEntries=[];let answersShown=false;
+const DEFAULTS=[{word:'APPLE',clue:'A red or green fruit'},{word:'BANANA',clue:'A yellow curved fruit'},{word:'GRAPE',clue:'Small fruit that grows in clusters'},{word:'LEMON',clue:'A sour yellow citrus fruit'},{word:'PEACH',clue:'A soft fuzzy stone fruit'},{word:'PLUM',clue:'A small purple fruit'},{word:'MANGO',clue:'A tropical orange fruit'},{word:'MELON',clue:'A large sweet fruit with thick rind'}];
+function addWordEntry(word='',clue=''){const id=Date.now()+Math.random();wordEntries.push({id,word,clue});renderWordList();}
+function removeEntry(id){wordEntries=wordEntries.filter(e=>e.id!==id);renderWordList();}
+function renderWordList(){const container=document.getElementById('wordList');container.innerHTML=wordEntries.map(e=>'<div class="word-entry" id="entry-'+e.id+'"><input type="text" class="word-input" placeholder="WORD" value="'+e.word+'" oninput="updateEntry('+e.id+','word',this.value)" style="text-transform:uppercase;"><input type="text" class="clue-input" placeholder="Enter clue here..." value="'+e.clue+'" oninput="updateEntry('+e.id+','clue',this.value)"><button class="remove-btn" onclick="removeEntry('+e.id+')">&times;</button></div>').join('');}
+function updateEntry(id,field,value){const entry=wordEntries.find(e=>e.id===id);if(entry)entry[field]=field==='word'?value.toUpperCase().replace(/[^A-Z]/g,''):value;}
+function addWord(){addWordEntry();}
+function generate(){wordEntries.forEach(e=>{const wi=document.querySelector('#entry-'+e.id+' .word-input');const ci=document.querySelector('#entry-'+e.id+' .clue-input');if(wi)e.word=wi.value.toUpperCase().replace(/[^A-Z]/g,'');if(ci)e.clue=ci.value;});const words=wordEntries.filter(e=>e.word.length>=2).slice(0,20);if(words.length<2){alert('Please enter at least 2 words!');return;}const result=buildCrossword(words.map(e=>({word:e.word,clue:e.clue})));if(!result||result.placed.length<2){alert('Could not build a crossword with these words. Try words that share more letters in common.');return;}document.getElementById('emptyState').style.display='none';document.getElementById('puzzleOutput').style.display='block';answersShown=false;document.getElementById('statsRow').innerHTML='<span class="stat-pill">'+result.placed.length+' words placed</span><span class="stat-pill">'+result.grid[0].length+' x '+result.grid.length+' grid</span>';renderGrid(result);renderClues(result);}
+function buildCrossword(wordObjs){const sorted=[...wordObjs].sort((a,b)=>b.word.length-a.word.length);const GRID_SIZE=21;let grid=Array.from({length:GRID_SIZE},()=>Array(GRID_SIZE).fill(null));const placed=[];const numbers={};let numCounter=1;const first=sorted[0];const startRow=Math.floor(GRID_SIZE/2);const startCol=Math.floor((GRID_SIZE-first.word.length)/2);for(let i=0;i<first.word.length;i++){grid[startRow][startCol+i]=first.word[i];}placed.push({...first,row:startRow,col:startCol,dir:'across',number:numCounter});numbers[startRow+','+startCol]=numCounter++;for(let attempt=0;attempt<3;attempt++){for(let wi=1;wi<sorted.length;wi++){const wo=sorted[wi];if(placed.find(p=>p.word===wo.word))continue;let best=null;for(const pw of placed){for(let pi=0;pi<pw.word.length;pi++){for(let wi2=0;wi2<wo.word.length;wi2++){if(pw.word[pi]!==wo.word[wi2])continue;const newDir=pw.dir==='across'?'down':'across';let row,col;if(newDir==='down'){row=pw.row-wi2;col=pw.col+pi;}else{row=pw.row+pi;col=pw.col-wi2;}if(canPlace(grid,wo.word,row,col,newDir,GRID_SIZE)){const overlaps=countOverlaps(grid,wo.word,row,col,newDir);if(!best||overlaps>best.overlaps){best={word:wo.word,clue:wo.clue,row,col,dir:newDir,overlaps};}}}}}if(best){placeWord(grid,best.word,best.row,best.col,best.dir);const numKey=best.row+','+best.col;if(!numbers[numKey])numbers[numKey]=numCounter++;placed.push({...best,number:numbers[numKey]});}}}let minR=GRID_SIZE,maxR=0,minC=GRID_SIZE,maxC=0;for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<GRID_SIZE;c++){if(grid[r][c]){minR=Math.min(minR,r);maxR=Math.max(maxR,r);minC=Math.min(minC,c);maxC=Math.max(maxC,c);}}const trimmed=[];for(let r=minR-1;r<=maxR+1;r++){const row=[];for(let c=minC-1;c<=maxC+1;c++)row.push((grid[r]||[])[c]||null);trimmed.push(row);}const remapped=placed.map(p=>({...p,row:p.row-minR+1,col:p.col-minC+1}));const cellNums={};const sortedPlaced=[...remapped].sort((a,b)=>a.row!==b.row?a.row-b.row:a.col-b.col);let n=1;sortedPlaced.forEach(p=>{const key=p.row+','+p.col;if(!cellNums[key])cellNums[key]=n++;p.number=cellNums[key];});return{grid:trimmed,placed:remapped,cellNums};}
+function canPlace(grid,word,row,col,dir,size){if(dir==='across'){if(col<0||col+word.length>size)return false;if(col>0&&(grid[row]||[])[col-1])return false;if((grid[row]||[])[col+word.length])return false;for(let i=0;i<word.length;i++){const c=col+i;if(row<0||row>=size)return false;const cell=(grid[row]||[])[c];if(cell&&cell!==word[i])return false;}}else{if(row<0||row+word.length>size)return false;if(row>0&&(grid[row-1]||[])[col])return false;if((grid[row+word.length]||[])[col])return false;for(let i=0;i<word.length;i++){const r=row+i;if(col<0||col>=size)return false;const cell=(grid[r]||[])[col];if(cell&&cell!==word[i])return false;}}return true;}
+function countOverlaps(grid,word,row,col,dir){let count=0;for(let i=0;i<word.length;i++){const r=dir==='across'?row:row+i;const c=dir==='across'?col+i:col;if((grid[r]||[])[c]===word[i])count++;}return count;}
+function placeWord(grid,word,row,col,dir){for(let i=0;i<word.length;i++){const r=dir==='across'?row:row+i;const c=dir==='across'?col+i:col;grid[r][c]=word[i];}}
+function renderGrid(result){const{grid,placed,cellNums}=result;const table=document.getElementById('crosswordGrid');table.innerHTML='';for(let r=0;r<grid.length;r++){const tr=document.createElement('tr');for(let c=0;c<grid[r].length;c++){const td=document.createElement('td');const cell=grid[r][c];if(cell){td.classList.add('white');const num=cellNums[r+','+c];if(num){const numEl=document.createElement('div');numEl.className='cell-num';numEl.textContent=num;td.appendChild(numEl);}const inp=document.createElement('input');inp.type='text';inp.maxLength=1;inp.className='cell-input';inp.dataset.answer=cell;inp.dataset.r=r;inp.dataset.c=c;inp.addEventListener('input',function(){this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');if(this.value){const next=table.querySelector('input[data-r="'+r+'"][data-c="'+(c+1)+'"]')||table.querySelector('input[data-r="'+(r+1)+'"][data-c="'+c+'"]');if(next)next.focus();}});td.appendChild(inp);}else{td.classList.add('black');}tr.appendChild(td);}table.appendChild(tr);}}
+function renderClues(result){const across=result.placed.filter(p=>p.dir==='across').sort((a,b)=>a.number-b.number);const down=result.placed.filter(p=>p.dir==='down').sort((a,b)=>a.number-b.number);document.getElementById('cluesSection').innerHTML='<div class="clues-grid"><div class="clue-group"><h3>Across</h3>'+across.map(p=>'<div class="clue-item"><strong>'+p.number+'.</strong> '+p.clue+'</div>').join('')+'</div><div class="clue-group"><h3>Down</h3>'+down.map(p=>'<div class="clue-item"><strong>'+p.number+'.</strong> '+p.clue+'</div>').join('')+'</div></div>';}
+function toggleAnswers(){answersShown=!answersShown;document.querySelectorAll('.cell-input').forEach(inp=>{inp.value=answersShown?inp.dataset.answer:'';inp.style.color=answersShown?'var(--amber)':'var(--ink)';});}
+window.addEventListener('load',()=>{DEFAULTS.forEach(d=>addWordEntry(d.word,d.clue));generate();});
+</script>
+</body>
+</html>
