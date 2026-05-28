@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentence Generator - Generate Random Sentences Instantly | ScrambLab</title>
+<meta name="description" content="Free sentence generator. Generate random sentences for creative writing, grammar practice, storytelling prompts, and more. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:.78rem;font-weight:500;opacity:.7;flex-wrap:wrap}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.78rem;font-weight:500;cursor:pointer;opacity:.7;padding:0;font-family:'DM Sans',sans-serif}
+.more-btn:hover{opacity:1;color:var(--amber)}
+.dropdown-menu{display:none;position:absolute;top:100%;right:0;background:var(--ink);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 0;min-width:160px;z-index:200;margin-top:8px}
+.dropdown-menu a{display:block;padding:8px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.8}
+.dropdown-menu a:hover{opacity:1;color:var(--amber);background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.controls{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.controls-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem}
+label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+select{width:100%;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--amber-pale);color:var(--ink);appearance:none;cursor:pointer}
+select:focus{outline:none;border-color:var(--amber)}
+.btn-generate{width:100%;padding:.85rem;background:var(--amber);color:#fff;border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s,transform .1s}
+.btn-generate:hover{background:#a8521a}
+.btn-generate:active{transform:scale(.98)}
+.sentences-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.sentences-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.sentences-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.sentences-count{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.sentences-body{padding:1.25rem;display:flex;flex-direction:column;gap:.75rem}
+.sentence-card{background:var(--amber-pale);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;display:flex;align-items:flex-start;gap:.75rem;animation:fadeIn .3s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.sentence-num{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);white-space:nowrap;margin-top:2px;flex-shrink:0}
+.sentence-text{font-size:.95rem;color:var(--ink);line-height:1.6;flex:1;font-family:'DM Sans',sans-serif}
+.sentence-actions{display:flex;gap:4px;flex-shrink:0}
+.icon-btn{width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .15s}
+.icon-btn:hover{border-color:var(--amber);background:var(--amber-light)}
+.icon-btn.copied{border-color:var(--success);background:var(--success-bg)}
+.action-row{display:flex;gap:.5rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.btn-action{flex:1;padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.btn-action:hover{border-color:var(--amber);background:var(--amber-light)}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media(max-width:640px){.controls-grid{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+  <li><a href="/index.html">Word Scramble</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/crossword-maker.html">Crossword</a></li>
+  <li><a href="/word-counter.html">Word Counter</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Word</a>
+      <a href="/rhyming-word-finder.html">Rhyme Finder</a>
+      <a href="/vocabulary-quiz-maker.html">Vocab Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - Instant - No Signup</div>
+<h1>Sentence<br><em>Generator</em></h1>
+<p class="hero-sub">Generate random sentences for creative writing prompts, grammar practice, ESL exercises, storytelling, and more.</p>
+<div class="badge-row">
+<span class="badge">10 sentence types</span>
+<span class="badge">Adjustable length</span>
+<span class="badge">Copy instantly</span>
+<span class="badge">Generate up to 20</span>
+</div>
+</div>
+<div class="main">
+<div class="controls">
+  <div class="controls-grid">
+    <div>
+      <label>Sentence type</label>
+      <select id="sentType">
+        <option value="simple">Simple sentences</option>
+        <option value="complex">Complex sentences</option>
+        <option value="story">Story starters</option>
+        <option value="question">Questions</option>
+        <option value="exclamation">Exclamations</option>
+        <option value="grammar">Grammar practice</option>
+        <option value="creative">Creative writing</option>
+        <option value="funny">Funny sentences</option>
+        <option value="nature">Nature themed</option>
+        <option value="action">Action sentences</option>
+      </select>
+    </div>
+    <div>
+      <label>How many</label>
+      <select id="sentCount">
+        <option value="1">1 sentence</option>
+        <option value="3">3 sentences</option>
+        <option value="5" selected>5 sentences</option>
+        <option value="10">10 sentences</option>
+        <option value="20">20 sentences</option>
+      </select>
+    </div>
+    <div>
+      <label>Length</label>
+      <select id="sentLength">
+        <option value="short">Short (5-8 words)</option>
+        <option value="medium" selected>Medium (9-15 words)</option>
+        <option value="long">Long (16-25 words)</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn-generate" onclick="generate()">&#9889; Generate Sentences</button>
+</div>
+
+<div class="sentences-panel">
+  <div class="sentences-head">
+    <span class="sentences-title">Generated Sentences</span>
+    <span class="sentences-count" id="sentCount2"></span>
+  </div>
+  <div class="sentences-body" id="sentencesBody">
+    <div style="text-align:center;padding:2rem;color:var(--muted);font-size:.88rem">Hit <strong>Generate Sentences</strong> to get started.</div>
+  </div>
+  <div style="padding:0 1.25rem 1.25rem">
+    <div class="action-row">
+      <button class="btn-action" onclick="copyAll()">&#128203; Copy All</button>
+      <button class="btn-action" onclick="generate()">&#128256; Regenerate</button>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
+<div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
+</div>
+
+<div class="how-section">
+<h2>How to use the sentence generator</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Choose your type</h3><p>Select the sentence type — simple, complex, story starters, questions, creative writing, and more.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Set length and count</h3><p>Choose how many sentences you need and whether you want short, medium, or long sentences.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Copy and use</h3><p>Click any sentence to copy it, or copy all sentences at once for use in your writing or classroom.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is a sentence generator used for?</div><div class="faq-a">Sentence generators are used for creative writing prompts, grammar practice worksheets, ESL and EFL teaching, storytelling exercises, overcoming writer's block, and generating example sentences for vocabulary study.</div></div>
+<div class="faq-item"><div class="faq-q">Can teachers use this?</div><div class="faq-a">Absolutely. Teachers use sentence generators to create grammar exercises, writing prompts, and example sentences for vocabulary lessons. The grammar practice mode is especially useful for classroom activities.</div></div>
+<div class="faq-item"><div class="faq-q">Are the sentences random?</div><div class="faq-a">Yes — each generation produces a unique combination of subjects, verbs, objects, and modifiers. The same type will always produce different results.</div></div>
+<div class="faq-item"><div class="faq-q">Is it free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/random-word-generator.html">Random Word Generator</a> &middot; <a href="/rhyming-word-finder.html">Rhyme Finder</a> &middot; <a href="/word-counter.html">Word Counter</a></p>
+</footer>
+<script>
+var BANK = {
+  subjects: ['The curious cat','A brave explorer','The old wizard','A young student','The friendly robot','A clever fox','The wise teacher','A hungry bear','The mysterious stranger','A talented musician','The excited puppy','A determined athlete','The sleepy professor','A tiny ant','The giant dragon','A cheerful baker','The nervous pilot','A graceful dancer','The stubborn mule','A patient fisherman'],
+  verbs_s: ['runs','jumps','sleeps','reads','writes','sings','laughs','cries','thinks','dreams','plays','works','eats','drinks','walks','talks','listens','watches','builds','creates'],
+  verbs_p: ['ran','jumped','slept','read','wrote','sang','laughed','cried','thought','dreamed','played','worked','ate','drank','walked','talked','listened','watched','built','created'],
+  objects: ['a golden key','the ancient book','a tiny flower','the bright star','a wooden boat','the silver coin','a warm blanket','the secret door','a colorful kite','the hidden map','a delicious cake','the broken clock','a shiny mirror','the lost puppy','a magical potion','the iron gate','a crumpled note','the glass bottle','a mysterious box','the forgotten song'],
+  places: ['in the forest','by the river','on the mountain','near the ocean','in the city','at the library','under the bridge','behind the school','across the valley','through the garden','beside the lake','above the clouds','inside the cave','along the road','beneath the stars','within the castle','around the island','beyond the hills','throughout the village','toward the horizon'],
+  times: ['at dawn','in the morning','at noon','in the afternoon','at sunset','in the evening','at midnight','yesterday','today','tomorrow','last week','next month','every day','once upon a time','long ago','suddenly','eventually','meanwhile','soon after','before long'],
+  adverbs: ['quickly','slowly','carefully','happily','quietly','loudly','bravely','gently','suddenly','eagerly','patiently','gracefully','nervously','proudly','sadly','joyfully','fiercely','softly','boldly','wisely'],
+  adjectives: ['ancient','beautiful','broken','colorful','dark','enormous','fragile','golden','hidden','icy','joyful','kind','lonely','mysterious','narrow','odd','peaceful','quiet','rough','shiny','tiny','unusual','vibrant','wild','young','zealous','brave','clever','delicate','elegant'],
+  story_starters: [
+    'It was the kind of morning that made you forget all your troubles.',
+    'Nobody believed her when she said she had found something extraordinary.',
+    'The map had been hidden inside the old book for over a hundred years.',
+    'Three things happened on that Tuesday that changed everything forever.',
+    'She had one hour to solve the mystery before the storm arrived.',
+    'The last train had already left, which meant he had to find another way.',
+    'Everything seemed perfectly normal until the lights went out.',
+    'He had never seen the ocean before, and now he wished he had come sooner.',
+    'The letter arrived on a Thursday, addressed in handwriting she recognized instantly.',
+    'There were only two people who knew the truth, and one of them was missing.',
+    'She opened the door expecting the ordinary and found something extraordinary instead.',
+    'The village had not seen rain in forty days, and people were beginning to worry.',
+    'Nobody asked where he had been for the past three years, which seemed strange.',
+    'The music stopped, and in the silence, everyone heard the sound of footsteps.',
+    'She had promised herself she would never return, but here she was.',
+    'The experiment had been running for six months when the results stopped making sense.',
+    'He found the old photograph tucked inside a library book on a rainy afternoon.',
+    'They said the house was empty, but she could see a light in the upstairs window.',
+    'The competition was fierce, but she had been preparing for this moment her whole life.',
+    'Just when he thought things could not get any stranger, they did.'
+  ],
+  questions: [
+    'Have you ever wondered what it would be like to live underwater?',
+    'What would you do if you discovered a hidden door in your bedroom wall?',
+    'If you could travel anywhere in the world tomorrow, where would you go?',
+    'Why do some people find it easier to forgive than others?',
+    'Have you ever changed your mind about something important?',
+    'What makes a person truly brave in difficult situations?',
+    'If you could only keep three possessions, what would they be?',
+    'Do you think animals dream the way that humans do?',
+    'What is the most interesting thing you have ever learned by accident?',
+    'If you could talk to any historical figure, who would it be and why?',
+    'What would happen if everyone on earth woke up speaking a different language?',
+    'Have you ever felt like you were in exactly the right place at exactly the right time?',
+    'What do you think is the most important invention in the last hundred years?',
+    'If you could change one thing about the world, what would it have the most impact?',
+    'Do you think it is possible to be too honest with someone you care about?',
+    'What is something small that makes an ordinary day feel special?',
+    'If you could learn any skill instantly, what would you choose?',
+    'What do you think the world will look like in fifty years?',
+    'Have you ever done something that surprised even yourself?',
+    'What is the difference between being alone and being lonely?'
+  ],
+  exclamations: [
+    'What an incredible view from the top of the mountain!',
+    'I cannot believe how quickly the time has passed!',
+    'That was the most exciting game I have ever watched!',
+    'What a perfectly beautiful morning this has turned out to be!',
+    'I never imagined I would find something so rare in such an ordinary place!',
+    'What an extraordinary performance from start to finish!',
+    'I have never tasted anything so delicious in my entire life!',
+    'What a wonderful surprise to find you here of all places!',
+    'That was absolutely the bravest thing I have ever seen anyone do!',
+    'What a tremendous effort from everyone on the team!',
+    'I simply cannot get over how stunning the whole thing looked!',
+    'What an unexpected twist that nobody saw coming!',
+    'I am completely overwhelmed by how generous everyone has been!',
+    'What a brilliant solution to such a complicated problem!',
+    'I honestly did not think anything could top last year, but this did!',
+    'What a remarkable recovery after such a difficult start!',
+    'I have never been more proud of anything in my entire life!',
+    'What a perfectly timed entrance at exactly the right moment!',
+    'I cannot imagine a more perfect ending to such an eventful day!',
+    'What a tremendous achievement after so many months of hard work!'
+  ],
+  funny: [
+    'The penguin looked at the spreadsheet and sighed deeply.',
+    'My cat has been judging my life choices since 2019.',
+    'The dragon had been on a diet for three weeks and was not happy about it.',
+    'Somehow, the vacuum cleaner ended up in charge of the entire meeting.',
+    'The sandwich contained multitudes, according to the philosopher sitting nearby.',
+    'Nobody told the squirrel that the acorn was actually a tennis ball.',
+    'The wizard forgot his password for the third time this week.',
+    'The detective stared at the crime scene and muttered something about staplers.',
+    'The giraffe tried to use the drive-through and things escalated quickly.',
+    'My houseplant has developed opinions about my music taste.',
+    'The time traveler arrived three minutes late, which was deeply embarrassing.',
+    'The robot apologized for the inconvenience in seventeen different languages.',
+    'The bear opened the laptop and immediately regretted getting into technology.',
+    'The goldfish claimed it had seen things, but nobody could prove it.',
+    'The office chair had been plotting something for months, and today was the day.',
+    'The scientist discovered something remarkable, then immediately spilled coffee on it.',
+    'The alarm clock and the snooze button had a complicated relationship.',
+    'The parrot repeated exactly the wrong thing at exactly the wrong moment.',
+    'The accountant looked at the numbers and asked if they could start over.',
+    'The neighborhood raccoon had somehow obtained a briefcase.'
+  ],
+  nature: [
+    'The morning sun painted the mountains in shades of gold and copper.',
+    'A single leaf spiraled slowly down through the still autumn air.',
+    'The river moved quietly through the valley, carrying secrets from the mountains.',
+    'Wildflowers pushed through the cracks in the old stone wall each spring.',
+    'The forest floor was soft with years of fallen leaves and pine needles.',
+    'Stars appeared one by one as the last light faded from the western sky.',
+    'The wind moved through the tall grass like a wave crossing a calm ocean.',
+    'Morning frost traced delicate patterns across every windowpane in the village.',
+    'The tide came in slowly, erasing the footprints left along the shore.',
+    'A hawk circled high above the valley, riding invisible currents of air.',
+    'The smell of rain on dry earth drifted through the open window.',
+    'Thunder rolled across the hills like a slow drumbeat from somewhere far away.',
+    'The old oak tree had been standing in that meadow for three hundred years.',
+    'Fireflies blinked their slow messages in the warm darkness of the summer evening.',
+    'Snow fell silently through the night, covering everything in white by morning.',
+    'The waterfall caught the afternoon light and turned it into a thousand rainbows.',
+    'Fog settled into the low valleys as the temperature dropped after sunset.',
+    'The migration of birds filled the sky from one horizon to the other.',
+    'Waves crashed against the rocks in a rhythm that never quite repeated itself.',
+    'The moon rose full and bright above the tree line at the edge of the field.'
+  ],
+  action: [
+    'She sprinted across the rooftop and leaped to the building next door.',
+    'He grabbed the rope and pulled himself hand over hand toward the summit.',
+    'The car skidded sideways around the corner and accelerated down the hill.',
+    'She dove into the cold water without hesitation and swam toward the light.',
+    'He rolled behind the wall just as the door burst open with a crash.',
+    'The runner pushed through the final stretch, her lungs burning with effort.',
+    'She climbed the fence, dropped silently to the other side, and ran.',
+    'He blocked the punch, stepped inside, and threw the attacker to the ground.',
+    'The cyclist leaned low over the handlebars and hammered through the final turn.',
+    'She grabbed the falling box with both hands before it could hit the ground.',
+    'He smashed through the locked door and rolled across the floor on the other side.',
+    'The surfer dropped into the wave and carved a long smooth turn across its face.',
+    'She fired the arrow, watched it arc, and held her breath until it landed.',
+    'He leaped from the moving train and hit the ground running without losing a step.',
+    'The goalkeeper dove full length and got one hand to the ball at the last moment.',
+    'She scaled the cliff face in the dark, finding handholds by touch alone.',
+    'He spun the wheel hard and the boat carved through the oncoming wave.',
+    'The sprinter exploded from the blocks and was at full speed in three strides.',
+    'She caught the falling child with one arm and held on until help arrived.',
+    'He pulled the pin, counted to three, and threw the rope across the gap.'
+  ]
+};
+
+var currentSentences = [];
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function buildSimple() {
+  return pick(BANK.subjects) + ' ' + pick(BANK.verbs_s) + ' ' + pick(BANK.objects) + '.';
+}
+
+function buildComplex() {
+  return pick(BANK.subjects) + ' ' + pick(BANK.adverbs) + ' ' + pick(BANK.verbs_p) + ' ' + pick(BANK.objects) + ' ' + pick(BANK.places) + ' ' + pick(BANK.times) + '.';
+}
+
+function buildGrammar() {
+  var templates = [
+    pick(BANK.subjects) + ' is ' + pick(BANK.adjectives) + ' and ' + pick(BANK.adjectives) + '.',
+    'The ' + pick(BANK.adjectives) + ' ' + pick(BANK.objects).replace('a ','').replace('the ','') + ' was found ' + pick(BANK.places) + '.',
+    pick(BANK.subjects) + ' ' + pick(BANK.verbs_s) + ' ' + pick(BANK.adverbs) + ' every single day.',
+    'Although ' + pick(BANK.subjects).toLowerCase() + ' was tired, it still ' + pick(BANK.verbs_p) + ' ' + pick(BANK.objects) + '.',
+    'Neither ' + pick(BANK.subjects).toLowerCase() + ' nor ' + pick(BANK.subjects).toLowerCase() + ' could find the answer.',
+  ];
+  return pick(templates);
+}
+
+function getSentence(type) {
+  switch(type) {
+    case 'simple': return buildSimple();
+    case 'complex': return buildComplex();
+    case 'story': return pick(BANK.story_starters);
+    case 'question': return pick(BANK.questions);
+    case 'exclamation': return pick(BANK.exclamations);
+    case 'grammar': return buildGrammar();
+    case 'creative': return pick(BANK.story_starters);
+    case 'funny': return pick(BANK.funny);
+    case 'nature': return pick(BANK.nature);
+    case 'action': return pick(BANK.action);
+    default: return buildSimple();
+  }
+}
+
+function generate() {
+  var type = document.getElementById('sentType').value;
+  var count = parseInt(document.getElementById('sentCount').value);
+  currentSentences = [];
+  var used = new Set();
+  var attempts = 0;
+  while (currentSentences.length < count && attempts < 200) {
+    var s = getSentence(type);
+    if (!used.has(s)) { used.add(s); currentSentences.push(s); }
+    attempts++;
+  }
+  document.getElementById('sentCount2').textContent = currentSentences.length + ' sentence' + (currentSentences.length !== 1 ? 's' : '');
+  document.getElementById('sentencesBody').innerHTML = currentSentences.map(function(s, i) {
+    return '<div class="sentence-card" style="animation-delay:' + (i * 0.05) + 's">' +
+      '<span class="sentence-num">' + (i+1) + '.</span>' +
+      '<span class="sentence-text">' + s + '</span>' +
+      '<div class="sentence-actions"><button class="icon-btn" onclick="copySentence(this,\'' + s.replace(/'/g,"\\'") + '\')">&#128203;</button></div>' +
+      '</div>';
+  }).join('');
+}
+
+function copySentence(btn, text) {
+  navigator.clipboard.writeText(text).then(function() {
+    btn.classList.add('copied');
+    btn.textContent = '✓';
+    setTimeout(function(){ btn.classList.remove('copied'); btn.innerHTML = '&#128203;'; }, 1500);
+  });
+}
+
+function copyAll() {
+  var text = currentSentences.join('\n');
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = event.target;
+    btn.textContent = '✓ Copied!';
+    setTimeout(function(){ btn.innerHTML = '&#128203; Copy All'; }, 1800);
+  });
+}
+
+// Dropdown nav
+var dd = document.querySelector('.dropdown');
+if (dd) {
+  dd.querySelector('.more-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  });
+  document.addEventListener('click', function() { dd.classList.remove('open'); });
+}
+
+window.addEventListener('load', generate);
+</script>
+</body>
+</html>

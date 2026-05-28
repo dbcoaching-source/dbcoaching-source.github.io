@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palindrome Checker - Is It a Palindrome? | ScrambLab</title>
+<meta name="description" content="Free palindrome checker. Instantly check if any word, phrase, or sentence is a palindrome. Also includes a list of 200+ famous palindromes. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc;--fail:#a0001c;--fail-bg:#ffe0e6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:.78rem;font-weight:500;opacity:.7;flex-wrap:wrap}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.78rem;font-weight:500;cursor:pointer;opacity:.7;padding:0;font-family:'DM Sans',sans-serif}
+.more-btn:hover{opacity:1;color:var(--amber)}
+.dropdown-menu{display:none;position:absolute;top:100%;right:0;background:var(--ink);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 0;min-width:160px;z-index:200;margin-top:8px}
+.dropdown-menu a{display:block;padding:8px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.8}
+.dropdown-menu a:hover{opacity:1;color:var(--amber);background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.checker-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.big-input{width:100%;padding:1rem;border:1px solid var(--border);border-radius:8px;font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;background:var(--amber-pale);color:var(--ink);text-align:center;transition:border-color .2s;letter-spacing:.03em}
+.big-input:focus{outline:none;border-color:var(--amber)}
+.big-input::placeholder{font-family:'DM Sans',sans-serif;font-weight:400;font-size:1rem;letter-spacing:0;color:var(--muted);opacity:.7}
+.result-box{margin-top:1.25rem;border-radius:10px;padding:1.5rem;text-align:center;display:none}
+.result-box.yes{background:var(--success-bg);border:2px solid var(--success)}
+.result-box.no{background:var(--fail-bg);border:2px solid var(--fail)}
+.result-icon{font-size:3rem;margin-bottom:.5rem}
+.result-word{font-family:'Fraunces',serif;font-weight:900;font-size:1.8rem;margin-bottom:.25rem}
+.result-word.yes{color:var(--success)}
+.result-word.no{color:var(--fail)}
+.result-sub{font-size:.9rem;color:var(--muted);margin-bottom:1rem}
+.mirror-display{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:.75rem}
+.mirror-text{font-family:'DM Mono',monospace;font-size:1rem;font-weight:500}
+.mirror-arrow{font-size:1.2rem;color:var(--muted)}
+.char-pills{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-top:.75rem}
+.char-pill{width:36px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem}
+.char-pill.match{background:var(--success-bg);color:var(--success);border:1px solid var(--success)}
+.char-pill.nomatch{background:var(--fail-bg);color:var(--fail);border:1px solid var(--fail)}
+.char-pill.middle{background:var(--amber-light);color:var(--amber);border:1px solid var(--amber)}
+.opt-row{display:flex;gap:1rem;margin-top:.75rem;flex-wrap:wrap}
+.opt-check{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--muted);cursor:pointer}
+.opt-check input{accent-color:var(--amber);width:15px;height:15px}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+.list-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.list-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.list-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.cat-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.cat-tab{padding:4px 10px;border:1px solid var(--border);border-radius:20px;font-size:.72rem;font-family:'DM Mono',monospace;cursor:pointer;color:var(--muted);background:var(--cream)}
+.cat-tab.active{background:var(--amber);border-color:var(--amber);color:#fff}
+.list-body{padding:1.25rem}
+.palin-grid{display:flex;flex-wrap:wrap;gap:6px}
+.palin-pill{font-family:'DM Mono',monospace;font-size:.82rem;padding:5px 12px;border:1px solid var(--border);border-radius:6px;color:var(--ink);background:var(--amber-pale);cursor:pointer;transition:all .15s}
+.palin-pill:hover{background:var(--amber-light);border-color:var(--amber)}
+.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media(max-width:640px){.how-grid{grid-template-columns:1fr}.nav-links{display:none}.mirror-display{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+  <li><a href="/index.html">Word Scramble</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/crossword-maker.html">Crossword</a></li>
+  <li><a href="/word-counter.html">Word Counter</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Word</a>
+      <a href="/rhyming-word-finder.html">Rhyme Finder</a>
+      <a href="/vocabulary-quiz-maker.html">Vocab Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - Instant - No Signup</div>
+<h1>Palindrome<br><em>Checker</em></h1>
+<p class="hero-sub">Instantly check if any word, phrase, or sentence is a palindrome. Explore 200+ famous palindromes by category.</p>
+<div class="badge-row">
+<span class="badge">Instant check</span>
+<span class="badge">Visual mirror</span>
+<span class="badge">200+ examples</span>
+<span class="badge">Phrase support</span>
+</div>
+</div>
+<div class="main">
+<div class="checker-box">
+  <input type="text" class="big-input" id="palInput" placeholder="Type a word or phrase..." oninput="check()" maxlength="100">
+  <div class="opt-row">
+    <label class="opt-check"><input type="checkbox" id="ignoreSpaces" checked onchange="check()"> Ignore spaces</label>
+    <label class="opt-check"><input type="checkbox" id="ignoreCase" checked onchange="check()"> Ignore capitalization</label>
+    <label class="opt-check"><input type="checkbox" id="ignorePunct" checked onchange="check()"> Ignore punctuation</label>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-icon" id="resultIcon"></div>
+    <div class="result-word" id="resultWord"></div>
+    <div class="result-sub" id="resultSub"></div>
+    <div class="mirror-display" id="mirrorDisplay"></div>
+    <div class="char-pills" id="charPills"></div>
+  </div>
+</div>
+
+<div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
+
+<div class="list-panel">
+  <div class="list-head">
+    <span class="list-title">Famous palindromes</span>
+    <div class="cat-tabs">
+      <button class="cat-tab active" onclick="showCat(this,'words')">Words</button>
+      <button class="cat-tab" onclick="showCat(this,'phrases')">Phrases</button>
+      <button class="cat-tab" onclick="showCat(this,'names')">Names</button>
+      <button class="cat-tab" onclick="showCat(this,'numbers')">Numbers</button>
+    </div>
+  </div>
+  <div class="list-body">
+    <div class="palin-grid" id="palindromeList"></div>
+  </div>
+</div>
+
+<div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
+</div>
+
+<div class="how-section">
+<h2>How to use the palindrome checker</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Type your text</h3><p>Enter any word, name, phrase, or sentence. The checker updates instantly as you type.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>See the mirror</h3><p>A visual character-by-character comparison shows exactly how the text reads forwards and backwards.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Browse examples</h3><p>Explore hundreds of famous palindromes grouped by words, phrases, names, and numbers. Click any to check it.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is a palindrome?</div><div class="faq-a">A palindrome is a word, phrase, number, or sequence that reads the same forwards and backwards. Famous examples include "racecar," "level," and "A man, a plan, a canal: Panama."</div></div>
+<div class="faq-item"><div class="faq-q">Does it work with phrases?</div><div class="faq-a">Yes — toggle the ignore spaces and punctuation options to check full phrases and sentences. "A man a plan a canal Panama" is a classic phrase palindrome.</div></div>
+<div class="faq-item"><div class="faq-q">What is the longest palindrome?</div><div class="faq-a">The longest known palindrome sentence in English is debated, but "A man, a plan, a canal: Panama" is one of the most famous. Some constructed palindromes span thousands of words.</div></div>
+<div class="faq-item"><div class="faq-q">Are numbers palindromes?</div><div class="faq-a">Yes — numbers like 121, 1331, and 12321 are palindromes. These are called palindromic numbers and appear frequently in mathematics.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/anagram-solver.html">Anagram Solver</a> &middot; <a href="/word-unscrambler.html">Word Unscrambler</a> &middot; <a href="/rhyming-word-finder.html">Rhyme Finder</a> &middot; <a href="/word-counter.html">Word Counter</a></p>
+</footer>
+<script>
+var PALINDROMES = {
+  words: ['racecar','level','radar','civic','kayak','refer','madam','noon','deed','rotor','tenet','repaper','reviver','rotator','redder','sexes','aibohphobia','detartrated','tattarrattat','Malayalam','stats','gag','nun','pup','pop','bob','did','eke','eve','eye','gig','pep','pip','tit','wow','bib','dud','ewe','gag','mom','pep','tut','yay','sis','peep','sees','toot','poop','kook','blab','boob','deed','dyed','gag','noon','pup','teet','tot'],
+  phrases: ['A man a plan a canal Panama','Never odd or even','Was it a car or a cat I saw','Do geese see God','No lemon no melon','Step on no pets','Too hot to hoot','Are we not drawn onward we few drawn onward to new era','Able was I ere I saw Elba','A Santa at NASA','Go hang a salami I am a lasagna hog','Yo banana boy','Madam Im Adam','Was it Eliot s toilet I saw','Murder for a jar of red rum','Not a ton','Now I see bees I won','Sit on a potato pan Otis','Dog as a devil deified lived as a god','Flee to me remote elf'],
+  names: ['Hannah','Anna','Bob','Eve','Otto','Ava','Azza','Emme','Iggi','Alla','Elle','Enne','Irri','Neven','Reinier','Renner','Sagas','Samas','Siris','Tenet','Leon Noel','Reviver','Rotator','Redder','Repaper'],
+  numbers: ['0','1','2','3','4','5','6','7','8','9','11','22','33','44','55','66','77','88','99','101','111','121','131','141','151','161','171','181','191','202','212','222','252','262','272','282','292','303','313','323','333','343','353','363','373','383','393','404','414','424','434','444','454','464','474','484','494','505','515','525','535','545','555','565','575','585','595','606','616','626','636','646','656','666','676','686','696','707','717','727','737','747','757','767','777','787','797','808','818','828','838','848','858','868','878','888','898','909','919','929','939','949','959','969','979','989','999','1001','1111','1221','1331','1441','1551','1661','1771','1881','1991','2002','2112','2222','2332','2442','2552','2662','2772','2882','2992','10001','10101','11011','11111','11211','12021','12121','12221']
+};
+
+var currentCat = 'words';
+
+function showCat(btn, cat) {
+  document.querySelectorAll('.cat-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentCat = cat;
+  renderList();
+}
+
+function renderList() {
+  var items = PALINDROMES[currentCat] || [];
+  document.getElementById('palindromeList').innerHTML = items.map(function(p) {
+    return '<span class="palin-pill" onclick="tryIt(\'' + p.replace(/'/g,"\\'") + '\')">' + p + '</span>';
+  }).join('');
+}
+
+function tryIt(text) {
+  document.getElementById('palInput').value = text;
+  check();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function check() {
+  var raw = document.getElementById('palInput').value;
+  if (!raw) { document.getElementById('resultBox').style.display = 'none'; return; }
+
+  var ignoreSpaces = document.getElementById('ignoreSpaces').checked;
+  var ignoreCase = document.getElementById('ignoreCase').checked;
+  var ignorePunct = document.getElementById('ignorePunct').checked;
+
+  var processed = raw;
+  if (ignoreCase) processed = processed.toLowerCase();
+  if (ignoreSpaces) processed = processed.replace(/\s/g,'');
+  if (ignorePunct) processed = processed.replace(/[^a-z0-9]/g,'');
+
+  var reversed = processed.split('').reverse().join('');
+  var isPalin = processed === reversed && processed.length > 0;
+
+  var box = document.getElementById('resultBox');
+  box.style.display = 'block';
+  box.className = 'result-box ' + (isPalin ? 'yes' : 'no');
+
+  document.getElementById('resultIcon').textContent = isPalin ? '✅' : '❌';
+  document.getElementById('resultWord').textContent = isPalin ? 'Yes, it\'s a palindrome!' : 'Not a palindrome';
+  document.getElementById('resultWord').className = 'result-word ' + (isPalin ? 'yes' : 'no');
+  document.getElementById('resultSub').textContent = isPalin
+    ? '"' + raw + '" reads the same forwards and backwards.'
+    : '"' + raw + '" reads "' + reversed + '" backwards.';
+
+  // Mirror display
+  document.getElementById('mirrorDisplay').innerHTML =
+    '<span class="mirror-text">' + processed + '</span>' +
+    '<span class="mirror-arrow">&#8596;</span>' +
+    '<span class="mirror-text">' + reversed + '</span>';
+
+  // Char pills
+  var pills = '';
+  var chars = processed.split('');
+  var n = chars.length;
+  for (var i = 0; i < Math.min(n, 20); i++) {
+    var cls = 'char-pill ';
+    if (n % 2 === 1 && i === Math.floor(n/2)) cls += 'middle';
+    else if (chars[i] === chars[n-1-i]) cls += 'match';
+    else cls += 'nomatch';
+    pills += '<div class="' + cls + '">' + chars[i].toUpperCase() + '</div>';
+  }
+  document.getElementById('charPills').innerHTML = pills;
+}
+
+// Dropdown nav
+var dd = document.querySelector('.dropdown');
+if (dd) {
+  dd.querySelector('.more-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  });
+  document.addEventListener('click', function() { dd.classList.remove('open'); });
+}
+
+window.addEventListener('load', function() {
+  renderList();
+  document.getElementById('palInput').value = 'racecar';
+  check();
+});
+</script>
+</body>
+</html>
