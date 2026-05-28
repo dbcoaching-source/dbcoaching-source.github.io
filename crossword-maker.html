@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Word Counter - Free Online Word and Character Count Tool | ScrambLab</title>
-<meta name="description" content="Free online word counter. Count words, characters, sentences, paragraphs and reading time instantly. No signup required.">
+<title>Crossword Puzzle Maker - Free Printable Crossword Generator | ScrambLab</title>
+<meta name="description" content="Free crossword puzzle maker. Enter your words and clues to create a printable crossword puzzle instantly. No signup required.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
@@ -13,79 +13,75 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
 header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
-.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem}
 .logo span{color:var(--amber)}
-.nav-links{display:flex;gap:1rem;list-style:none;font-size:0.78rem;font-weight:500;opacity:0.7;flex-wrap:wrap}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:.78rem;font-weight:500;opacity:.7;flex-wrap:wrap}
 .nav-links a{color:var(--paper);text-decoration:none}
 .nav-links a:hover{opacity:1;color:var(--amber)}
 .hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
-.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
 .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem}
 .hero h1 em{font-style:italic;color:var(--amber)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
 .hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6}
 .badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
 .badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
-.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
-.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:1.5rem}
-.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
-.stat-card.highlight{border-color:var(--amber)}
-.stat-val{font-family:'Fraunces',serif;font-weight:900;font-size:1.8rem;color:var(--amber);line-height:1}
-.stat-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
-.editor-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
-.editor-head{background:var(--cream);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
-.editor-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
-.editor-actions{display:flex;gap:.5rem}
-.btn-sm{padding:4px 12px;border:1px solid var(--border);border-radius:6px;font-size:.78rem;cursor:pointer;background:var(--paper);color:var(--muted)}
-.btn-sm:hover{border-color:var(--amber);color:var(--amber)}
-textarea{width:100%;min-height:260px;padding:1.25rem;border:none;font-family:'DM Sans',sans-serif;font-size:1rem;resize:vertical;background:#fff;color:var(--ink);line-height:1.7;outline:none}
-.editor-foot{background:var(--cream);border-top:1px solid var(--border);padding:.6rem 1.25rem;display:flex;gap:1rem}
-.foot-stat{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
-.foot-stat span{color:var(--ink);font-weight:500}
-.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.detail-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.detail-head{background:var(--cream);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem}
-.detail-body{padding:1rem 1.25rem}
-.detail-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--border);font-size:.85rem}
-.detail-row:last-child{border-bottom:none}
-.detail-key{color:var(--muted)}
-.detail-val{font-family:'DM Mono',monospace;font-weight:500}
-.keyword-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
-.keyword-head{background:var(--cream);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;display:flex;justify-content:space-between}
-.keyword-body{padding:1rem 1.25rem}
-.keyword-row{display:flex;align-items:center;gap:.75rem;padding:5px 0;border-bottom:1px dashed var(--border)}
-.keyword-row:last-child{border-bottom:none}
-.keyword-word{font-family:'DM Mono',monospace;font-size:.85rem;font-weight:500;min-width:120px}
-.keyword-bar-wrap{flex:1;background:var(--cream);border-radius:20px;height:6px;overflow:hidden}
-.keyword-bar{height:100%;background:var(--amber);border-radius:20px}
-.keyword-count{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);min-width:40px;text-align:right}
-.keyword-empty{font-size:.85rem;color:var(--muted);text-align:center;padding:1rem}
-.limits-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
-.limits-head{background:var(--cream);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem}
-.limits-body{padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.75rem}
-.limit-row{display:flex;align-items:center;gap:.75rem}
-.limit-label{font-size:.82rem;color:var(--muted);min-width:160px}
-.limit-bar-wrap{flex:1;background:var(--cream);border-radius:20px;height:8px;overflow:hidden}
-.limit-bar{height:100%;border-radius:20px}
-.limit-bar.green{background:var(--success)}
-.limit-bar.amber{background:var(--amber)}
-.limit-bar.red{background:#c0392b}
-.limit-val{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);min-width:60px;text-align:right}
-.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
-.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.main{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:320px 1fr;gap:2rem;align-items:start}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;gap:.6rem}
+.panel-head-icon{width:28px;height:28px;background:var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.panel-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.panel-body{padding:1.25rem}
+label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+input[type=text]{width:100%;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--amber-pale);color:var(--ink);margin-bottom:.5rem}
+input[type=text]:focus{outline:none;border-color:var(--amber)}
+.word-entry{display:flex;gap:6px;margin-bottom:.5rem;align-items:flex-start}
+.word-entry input{margin-bottom:0}
+.word-input{flex:0 0 100px;font-family:'DM Mono',monospace!important;text-transform:uppercase}
+.clue-input{flex:1}
+.remove-btn{width:28px;height:34px;border:1px solid var(--border);border-radius:6px;background:var(--cream);cursor:pointer;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.remove-btn:hover{border-color:#c0392b;color:#c0392b}
+.add-word-btn{width:100%;padding:7px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--muted);font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px}
+.add-word-btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn-generate{width:100%;margin-top:1rem;padding:.85rem;background:var(--amber);color:#fff;border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;cursor:pointer}
+.btn-generate:hover{background:#a8521a}
+.hint{font-size:.75rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1rem 0 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+.crossword-wrap{overflow-x:auto}
+.crossword-table{border-collapse:collapse;margin:0 auto}
+.crossword-table td{width:30px;height:30px;border:none;padding:0;position:relative}
+.crossword-table td.white{background:#fff;border:1px solid #999}
+.crossword-table td.black{background:var(--ink)}
+.cell-num{position:absolute;top:1px;left:2px;font-size:8px;font-family:'DM Mono',monospace;color:var(--muted);line-height:1;z-index:1}
+.cell-input{position:absolute;inset:0;width:100%;height:100%;border:none;background:transparent;text-align:center;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;color:var(--ink);text-transform:uppercase;cursor:pointer;padding:0;outline:none}
+.clues-section{margin-top:1.25rem}
+.clues-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.clue-group h3{font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;margin-bottom:.5rem;border-bottom:1px solid var(--border);padding-bottom:.4rem}
+.clue-item{font-size:.82rem;color:var(--muted);padding:3px 0;line-height:1.5}
+.clue-item strong{color:var(--ink);font-family:'DM Mono',monospace;font-size:.78rem}
+.output-empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.output-empty .empty-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
+.output-empty p{font-size:.88rem;line-height:1.6}
+.action-row{display:flex;gap:.5rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.btn-action{flex:1;padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-action:hover{border-color:var(--amber);background:var(--amber-light)}
+.stats-row{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.stat-pill{font-family:'DM Mono',monospace;font-size:.68rem;background:var(--amber-light);color:var(--amber);padding:3px 10px;border-radius:20px;font-weight:500}
+.how-section{max-width:1000px;margin:0 auto 3rem;padding:0 1.5rem}
 .how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
 .how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
 .how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
 .how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
-.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section{max-width:1000px;margin:0 auto 3rem;padding:0 1.5rem}
 .faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
 .faq-item{border-top:1px solid var(--border);padding:1rem 0}
 .faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
 .faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+.ad-slot-wide{max-width:1000px;margin:0 auto 2rem;padding:0 1.5rem}
 footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
 footer a{color:var(--amber);text-decoration:none}
-@media(max-width:640px){.stats-grid{grid-template-columns:repeat(3,1fr)}.details-grid{grid-template-columns:1fr}.nav-links{display:none}.how-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.main{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.nav-links{display:none}.clues-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -102,140 +98,290 @@ footer a{color:var(--amber);text-decoration:none}
 </ul>
 </header>
 <div class="hero">
-<div class="hero-eyebrow">Free - Instant - No Signup</div>
-<h1>Word<br><em>Counter</em></h1>
-<p class="hero-sub">Count words, characters, sentences, and paragraphs instantly. See reading time, keyword density, and check against common limits.</p>
+<div class="hero-eyebrow">Free - No Signup - Printable</div>
+<h1>Crossword Puzzle<br><em>Maker</em></h1>
+<p class="hero-sub">Enter your words and clues to generate a printable crossword puzzle instantly. Perfect for teachers, students, and puzzle enthusiasts.</p>
 <div class="badge-row">
-<span class="badge">Live counting</span><span class="badge">Reading time</span><span class="badge">Keyword density</span><span class="badge">Limit checker</span>
+<span class="badge">Auto layout</span>
+<span class="badge">Printable PDF</span>
+<span class="badge">Answer Key</span>
+<span class="badge">Interactive solve</span>
 </div>
 </div>
 <div class="main">
-<div class="stats-grid">
-<div class="stat-card highlight"><div class="stat-val" id="wc">0</div><div class="stat-label">Words</div></div>
-<div class="stat-card"><div class="stat-val" id="cc">0</div><div class="stat-label">Characters</div></div>
-<div class="stat-card"><div class="stat-val" id="cns">0</div><div class="stat-label">No spaces</div></div>
-<div class="stat-card"><div class="stat-val" id="sc">0</div><div class="stat-label">Sentences</div></div>
-<div class="stat-card"><div class="stat-val" id="pc">0</div><div class="stat-label">Paragraphs</div></div>
-<div class="stat-card"><div class="stat-val" id="rt">0m</div><div class="stat-label">Read time</div></div>
+<div class="input-col">
+<div class="panel">
+<div class="panel-head"><div class="panel-head-icon">&#9999;</div><div class="panel-title">Words and Clues</div></div>
+<div class="panel-body">
+<div style="display:grid;grid-template-columns:100px 1fr 28px;gap:6px;margin-bottom:6px;">
+<label style="margin:0">Word</label><label style="margin:0">Clue</label><div></div>
 </div>
-<div class="editor-panel">
-<div class="editor-head"><span class="editor-title">Your Text</span>
-<div class="editor-actions">
-<button class="btn-sm" onclick="doCopy()">Copy</button>
-<button class="btn-sm" onclick="doClear()">Clear</button>
-</div></div>
-<textarea id="txt" placeholder="Start typing or paste your text here..." oninput="analyze()"></textarea>
-<div class="editor-foot">
-<span class="foot-stat">Words: <span id="fw">0</span></span>
-<span class="foot-stat">Characters: <span id="fc">0</span></span>
-<span class="foot-stat">Reading time: <span id="fr">0 min</span></span>
-</div></div>
-<div class="details-grid">
-<div class="detail-panel"><div class="detail-head">Detailed Stats</div><div class="detail-body">
-<div class="detail-row"><span class="detail-key">Unique words</span><span class="detail-val" id="uw">0</span></div>
-<div class="detail-row"><span class="detail-key">Avg word length</span><span class="detail-val" id="awl">0</span></div>
-<div class="detail-row"><span class="detail-key">Avg sentence length</span><span class="detail-val" id="asl">0 words</span></div>
-<div class="detail-row"><span class="detail-key">Longest word</span><span class="detail-val" id="lw">-</span></div>
-<div class="detail-row"><span class="detail-key">Speaking time</span><span class="detail-val" id="st2">0 min</span></div>
-<div class="detail-row"><span class="detail-key">Lines</span><span class="detail-val" id="lc">0</span></div>
-</div></div>
-<div class="detail-panel"><div class="detail-head">Reading Levels</div><div class="detail-body">
-<div class="detail-row"><span class="detail-key">Silent reading</span><span class="detail-val" id="sr">0 min</span></div>
-<div class="detail-row"><span class="detail-key">Aloud reading</span><span class="detail-val" id="ar">0 min</span></div>
-<div class="detail-row"><span class="detail-key">Fast reader</span><span class="detail-val" id="fr2">0 min</span></div>
-<div class="detail-row"><span class="detail-key">Slow reader</span><span class="detail-val" id="slr">0 min</span></div>
-<div class="detail-row"><span class="detail-key">Syllables</span><span class="detail-val" id="syl">0</span></div>
-</div></div>
-</div>
-<div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
-<div class="limits-panel"><div class="limits-head">Common Limit Checker</div><div class="limits-body">
-<div class="limit-row"><span class="limit-label">Tweet (280 chars)</span><div class="limit-bar-wrap"><div class="limit-bar" id="tb" style="width:0%"></div></div><span class="limit-val" id="tv">0 / 280</span></div>
-<div class="limit-row"><span class="limit-label">Instagram (2,200 chars)</span><div class="limit-bar-wrap"><div class="limit-bar" id="ib" style="width:0%"></div></div><span class="limit-val" id="iv">0 / 2200</span></div>
-<div class="limit-row"><span class="limit-label">Meta description (160)</span><div class="limit-bar-wrap"><div class="limit-bar" id="mb" style="width:0%"></div></div><span class="limit-val" id="mv">0 / 160</span></div>
-<div class="limit-row"><span class="limit-label">College essay (650 words)</span><div class="limit-bar-wrap"><div class="limit-bar" id="eb" style="width:0%"></div></div><span class="limit-val" id="ev">0 / 650</span></div>
-<div class="limit-row"><span class="limit-label">Blog post min (300 words)</span><div class="limit-bar-wrap"><div class="limit-bar" id="bb" style="width:0%"></div></div><span class="limit-val" id="bv">0 / 300</span></div>
-</div></div>
-<div class="keyword-panel"><div class="keyword-head"><span>Top Keywords</span><span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);font-weight:400;">Top 10 most used</span></div>
-<div class="keyword-body" id="kb"><div class="keyword-empty">Start typing to see keyword frequency.</div></div></div>
+<div id="wordList"></div>
+<button class="add-word-btn" id="addBtn">+ Add another word</button>
+<button class="btn-generate" id="genBtn">&#9889; Generate Crossword</button>
+<p class="hint">Add 5-15 words. Words must share at least one letter to intersect.</p>
 <div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
 </div>
-<div class="how-section"><h2>How to use the word counter</h2><div class="how-grid">
-<div class="how-card"><div class="how-num">1</div><h3>Paste your text</h3><p>Type or paste any text. All counts update instantly.</p></div>
-<div class="how-card"><div class="how-num">2</div><h3>Check your stats</h3><p>See word count, reading time, keyword density, and detailed stats.</p></div>
-<div class="how-card"><div class="how-num">3</div><h3>Check limits</h3><p>See how your text measures up against common word and character limits.</p></div>
-</div></div>
-<div class="faq-section"><h2>Frequently asked questions</h2>
-<div class="faq-item"><div class="faq-q">Is this word counter free?</div><div class="faq-a">Yes - completely free with no account or signup required.</div></div>
-<div class="faq-item"><div class="faq-q">Does it count characters with or without spaces?</div><div class="faq-a">Both - the counter shows characters with and without spaces separately.</div></div>
-<div class="faq-item"><div class="faq-q">How is reading time calculated?</div><div class="faq-a">Based on the average adult silent reading speed of 238 words per minute.</div></div>
 </div>
-<footer><p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a><br>
-Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/word-search-generator.html">Word Search</a> &middot; <a href="/crossword-maker.html">Crossword</a></p></footer>
+</div>
+<div class="output-col">
+<div class="panel">
+<div class="panel-head"><div class="panel-head-icon">&#128292;</div><div class="panel-title">Your Crossword</div></div>
+<div class="panel-body">
+<div class="output-empty" id="emptyState"><div class="empty-icon">&#128203;</div><p>Enter your words and clues then hit <strong>Generate Crossword</strong>.</p></div>
+<div id="puzzleOutput" style="display:none">
+<div class="stats-row" id="statsRow"></div>
+<div class="crossword-wrap"><table class="crossword-table" id="crosswordGrid"></table></div>
+<div class="clues-section" id="cluesSection"></div>
+<div class="action-row">
+<button class="btn-action" onclick="window.print()">&#128424; Print</button>
+<button class="btn-action" id="ansBtn">&#128065; Answers</button>
+<button class="btn-action" id="regenBtn">&#128256; Regenerate</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ad-slot-wide"><div class="ad-slot">Advertisement - 728x90 - Google AdSense</div></div>
+<div class="how-section">
+<h2>How to use the crossword maker</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Enter your words</h3><p>Type each word and its clue. Words that share letters will intersect automatically.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Generate instantly</h3><p>Click Generate and your crossword layout is created automatically.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Print or solve online</h3><p>Print a blank puzzle or solve it interactively in your browser.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Is this crossword maker free?</div><div class="faq-a">Yes - completely free with no account or signup required.</div></div>
+<div class="faq-item"><div class="faq-q">How many words can I add?</div><div class="faq-a">Up to 20 words. For the best layout, 8-12 words works best.</div></div>
+<div class="faq-item"><div class="faq-q">Why do some words not appear?</div><div class="faq-a">Words can only be placed if they share at least one letter with another word in the grid.</div></div>
+<div class="faq-item"><div class="faq-q">Can I use it for my classroom?</div><div class="faq-a">Absolutely. Teachers use ScrambLab to create vocabulary crosswords and review activities.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a><br>
+Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/word-search-generator.html">Word Search</a> &middot; <a href="/anagram-solver.html">Anagram Solver</a> &middot; <a href="/word-counter.html">Word Counter</a></p>
+</footer>
 <script>
-const SW=new Set(["the","and","is","in","it","of","to","a","an","that","this","was","for","on","are","with","as","at","be","by","from","or","but","not","have","had","has","he","she","they","we","you","i","my","your","his","her","our","its","if","do","did","so","up","out","no","can","all","been","were","what","when","will","there","their","would","about","which","who","more","just","into","over","after","also","than","then","how","some","could","other","these","those","like","only","time","one","two","three","get","got","go","use","used","way","may","new","now","any","see","him","us"]);
-function t(n){return n<1?"< 1 min":n+" min";}
-function analyze(){
-const text=document.getElementById("txt").value;
-const words=text.trim()===""?[]:text.trim().split(/\s+/).filter(function(w){return w.length>0;});
-const wc=words.length,cc=text.length,cns=text.split("").filter(function(c){return c.trim()!=="";}).length;
-const sents=text.trim()===""?0:Math.max((text.match(/[.!?]+/g)||[]).length,wc>0?1:0);
-const paras=text.trim()===""?0:Math.max(text.split(/\n\s*\n/).filter(function(p){return p.trim().length>0;}).length,wc>0?1:0);
-const lines=text.trim()===""?0:text.split("\n").filter(function(l){return l.trim().length>0;}).length;
-const sr=Math.ceil(wc/238),ar=Math.ceil(wc/130),fr2=Math.ceil(wc/400),slr=Math.ceil(wc/150);
-const cw=words.map(function(w){return w.toLowerCase().replace(/[^a-z]/g,"");}).filter(function(w){return w.length>0;});
-const uw=new Set(cw).size;
-const awl=cw.length>0?(cw.reduce(function(s,w){return s+w.length;},0)/cw.length).toFixed(1):0;
-const asl=sents>0?Math.round(wc/sents):0;
-const lw=cw.length>0?cw.reduce(function(a,b){return a.length>=b.length?a:b;}):"-";
-const syl=cw.reduce(function(s,w){return s+cs(w);},0);
-document.getElementById("wc").textContent=wc.toLocaleString();
-document.getElementById("cc").textContent=cc.toLocaleString();
-document.getElementById("cns").textContent=cns.toLocaleString();
-document.getElementById("sc").textContent=sents.toLocaleString();
-document.getElementById("pc").textContent=paras.toLocaleString();
-document.getElementById("rt").textContent=sr<1?"<1m":sr+"m";
-document.getElementById("fw").textContent=wc.toLocaleString();
-document.getElementById("fc").textContent=cc.toLocaleString();
-document.getElementById("fr").textContent=t(sr);
-document.getElementById("uw").textContent=uw.toLocaleString();
-document.getElementById("awl").textContent=awl+" letters";
-document.getElementById("asl").textContent=asl+" words";
-document.getElementById("lw").textContent=lw;
-document.getElementById("st2").textContent=t(ar);
-document.getElementById("lc").textContent=lines.toLocaleString();
-document.getElementById("sr").textContent=t(sr);
-document.getElementById("ar").textContent=t(ar);
-document.getElementById("fr2").textContent=t(fr2);
-document.getElementById("slr").textContent=t(slr);
-document.getElementById("syl").textContent=syl.toLocaleString();
-ul("tb","tv",cc,280);ul("ib","iv",cc,2200);ul("mb","mv",cc,160);ul("eb","ev",wc,650);ul("bb","bv",wc,300);
-uk(cw);
+var entries = [];
+var answersShown = false;
+var DEFAULTS = [
+  {word:'APPLE',clue:'A red or green fruit'},
+  {word:'BANANA',clue:'A yellow curved fruit'},
+  {word:'GRAPE',clue:'Small fruit in clusters'},
+  {word:'LEMON',clue:'A sour yellow citrus fruit'},
+  {word:'PEACH',clue:'A soft fuzzy stone fruit'},
+  {word:'PLUM',clue:'A small purple fruit'},
+  {word:'MANGO',clue:'A tropical orange fruit'},
+  {word:'MELON',clue:'A large sweet fruit with thick rind'}
+];
+
+function addEntry(word, clue) {
+  var id = Date.now() + Math.random();
+  entries.push({id:id, word:word||'', clue:clue||''});
+  renderList();
 }
-function cs(w){
-if(w.length<=3)return 1;
-var x=w.toLowerCase();
-var m=x.match(/[aeiouy]+/g);
-return m?m.length:1;
+
+function removeEntry(id) {
+  entries = entries.filter(function(e){ return e.id !== id; });
+  renderList();
 }
-function ul(bi,vi,cur,max){
-var pct=Math.min((cur/max)*100,100);
-var b=document.getElementById(bi);
-b.style.width=pct+"%";
-b.className="limit-bar "+(pct>=100?"red":pct>=80?"amber":"green");
-document.getElementById(vi).textContent=cur.toLocaleString()+" / "+max.toLocaleString();
+
+function renderList() {
+  var html = '';
+  for (var i = 0; i < entries.length; i++) {
+    var e = entries[i];
+    html += '<div class="word-entry" id="entry' + e.id + '">';
+    html += '<input type="text" class="word-input" placeholder="WORD" value="' + e.word + '" style="text-transform:uppercase" data-id="' + e.id + '" data-field="word">';
+    html += '<input type="text" class="clue-input" placeholder="Enter clue..." value="' + e.clue + '" data-id="' + e.id + '" data-field="clue">';
+    html += '<button class="remove-btn" data-rid="' + e.id + '">&times;</button>';
+    html += '</div>';
+  }
+  document.getElementById('wordList').innerHTML = html;
+  var inputs = document.getElementById('wordList').querySelectorAll('input');
+  for (var j = 0; j < inputs.length; j++) {
+    inputs[j].addEventListener('input', function() {
+      var id = parseFloat(this.getAttribute('data-id'));
+      var field = this.getAttribute('data-field');
+      for (var k = 0; k < entries.length; k++) {
+        if (entries[k].id === id) {
+          entries[k][field] = field === 'word' ? this.value.toUpperCase().replace(/[^A-Z]/g,'') : this.value;
+          break;
+        }
+      }
+    });
+  }
+  var btns = document.getElementById('wordList').querySelectorAll('.remove-btn');
+  for (var m = 0; m < btns.length; m++) {
+    btns[m].addEventListener('click', function() {
+      removeEntry(parseFloat(this.getAttribute('data-rid')));
+    });
+  }
 }
-function uk(words){
-var freq={};
-words.forEach(function(w){if(w.length>2&&!SW.has(w))freq[w]=(freq[w]||0)+1;});
-var sorted=Object.entries(freq).sort(function(a,b){return b[1]-a[1];}).slice(0,10);
-var body=document.getElementById("kb");
-if(sorted.length===0){body.innerHTML='<div class="keyword-empty">Start typing to see keyword frequency.</div>';return;}
-var mx=sorted[0][1];
-body.innerHTML=sorted.map(function(e){return '<div class="keyword-row"><span class="keyword-word">'+e[0]+'</span><div class="keyword-bar-wrap"><div class="keyword-bar" style="width:'+(e[1]/mx*100)+'%"></div></div><span class="keyword-count">'+e[1]+'x</span></div>';}).join("");
+
+function generate() {
+  var words = entries.filter(function(e){ return e.word.length >= 2; }).slice(0,20);
+  if (words.length < 2) { alert('Please enter at least 2 words!'); return; }
+  var result = buildCrossword(words);
+  if (!result || result.placed.length < 2) { alert('Could not build crossword. Try words that share more letters.'); return; }
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('puzzleOutput').style.display = 'block';
+  answersShown = false;
+  document.getElementById('statsRow').innerHTML = '<span class="stat-pill">' + result.placed.length + ' words</span><span class="stat-pill">' + result.grid[0].length + 'x' + result.grid.length + ' grid</span>';
+  renderGrid(result);
+  renderClues(result);
 }
-function doClear(){document.getElementById("txt").value="";analyze();}
-function doCopy(){navigator.clipboard.writeText(document.getElementById("txt").value).then(function(){var b=event.target;b.textContent="Copied!";setTimeout(function(){b.textContent="Copy";},1800);});}
-window.addEventListener("load",function(){document.getElementById("txt").value="The quick brown fox jumps over the lazy dog. This sentence is used for typing practice and contains every letter of the alphabet. Word counters help writers stay within limits.";analyze();});
+
+function buildCrossword(wordObjs) {
+  var sorted = wordObjs.slice().sort(function(a,b){ return b.word.length - a.word.length; });
+  var GS = 21;
+  var grid = [];
+  for (var i = 0; i < GS; i++) {
+    grid.push([]);
+    for (var j = 0; j < GS; j++) grid[i].push(null);
+  }
+  var placed = [];
+  var first = sorted[0];
+  var sr = Math.floor(GS/2);
+  var sc = Math.floor((GS - first.word.length) / 2);
+  for (var i = 0; i < first.word.length; i++) grid[sr][sc+i] = first.word[i];
+  placed.push({word:first.word, clue:first.clue, row:sr, col:sc, dir:'across'});
+  for (var attempt = 0; attempt < 3; attempt++) {
+    for (var wi = 1; wi < sorted.length; wi++) {
+      var wo = sorted[wi];
+      var alreadyPlaced = false;
+      for (var x = 0; x < placed.length; x++) { if (placed[x].word === wo.word) { alreadyPlaced = true; break; } }
+      if (alreadyPlaced) continue;
+      var best = null;
+      for (var pi = 0; pi < placed.length; pi++) {
+        var pw = placed[pi];
+        for (var li = 0; li < pw.word.length; li++) {
+          for (var wi2 = 0; wi2 < wo.word.length; wi2++) {
+            if (pw.word[li] !== wo.word[wi2]) continue;
+            var nd = pw.dir === 'across' ? 'down' : 'across';
+            var nr = nd === 'down' ? pw.row - wi2 : pw.row + li;
+            var nc = nd === 'down' ? pw.col + li : pw.col - wi2;
+            if (canPlace(grid, wo.word, nr, nc, nd, GS)) {
+              var ov = countOverlaps(grid, wo.word, nr, nc, nd);
+              if (!best || ov > best.ov) best = {word:wo.word, clue:wo.clue, row:nr, col:nc, dir:nd, ov:ov};
+            }
+          }
+        }
+      }
+      if (best) { placeWord(grid, best.word, best.row, best.col, best.dir); placed.push(best); }
+    }
+  }
+  var minR=GS, maxR=0, minC=GS, maxC=0;
+  for (var r = 0; r < GS; r++) for (var c = 0; c < GS; c++) if (grid[r][c]) { minR=Math.min(minR,r); maxR=Math.max(maxR,r); minC=Math.min(minC,c); maxC=Math.max(maxC,c); }
+  var trimmed = [];
+  for (var r = minR-1; r <= maxR+1; r++) {
+    var row = [];
+    for (var c = minC-1; c <= maxC+1; c++) row.push(grid[r] && grid[r][c] ? grid[r][c] : null);
+    trimmed.push(row);
+  }
+  var remap = placed.map(function(p){ return {word:p.word, clue:p.clue, row:p.row-minR+1, col:p.col-minC+1, dir:p.dir}; });
+  var sp = remap.slice().sort(function(a,b){ return a.row !== b.row ? a.row - b.row : a.col - b.col; });
+  var cn = {}, n = 1;
+  for (var i = 0; i < sp.length; i++) { var k = sp[i].row + ',' + sp[i].col; if (!cn[k]) cn[k] = n++; sp[i].number = cn[k]; }
+  for (var i = 0; i < remap.length; i++) { var k2 = remap[i].row + ',' + remap[i].col; remap[i].number = cn[k2]; }
+  return {grid:trimmed, placed:remap, cellNums:cn};
+}
+
+function canPlace(grid, word, row, col, dir, GS) {
+  if (dir === 'across') {
+    if (col < 0 || col + word.length > GS) return false;
+    if (col > 0 && grid[row] && grid[row][col-1]) return false;
+    if (grid[row] && grid[row][col+word.length]) return false;
+    for (var i = 0; i < word.length; i++) {
+      if (row < 0 || row >= GS) return false;
+      var c = grid[row] && grid[row][col+i];
+      if (c && c !== word[i]) return false;
+    }
+  } else {
+    if (row < 0 || row + word.length > GS) return false;
+    if (row > 0 && grid[row-1] && grid[row-1][col]) return false;
+    if (grid[row+word.length] && grid[row+word.length][col]) return false;
+    for (var i = 0; i < word.length; i++) {
+      if (col < 0 || col >= GS) return false;
+      var c = grid[row+i] && grid[row+i][col];
+      if (c && c !== word[i]) return false;
+    }
+  }
+  return true;
+}
+
+function countOverlaps(grid, word, row, col, dir) {
+  var count = 0;
+  for (var i = 0; i < word.length; i++) {
+    var r = dir === 'across' ? row : row + i;
+    var c = dir === 'across' ? col + i : col;
+    if (grid[r] && grid[r][c] === word[i]) count++;
+  }
+  return count;
+}
+
+function placeWord(grid, word, row, col, dir) {
+  for (var i = 0; i < word.length; i++) {
+    var r = dir === 'across' ? row : row + i;
+    var c = dir === 'across' ? col + i : col;
+    grid[r][c] = word[i];
+  }
+}
+
+function renderGrid(result) {
+  var table = document.getElementById('crosswordGrid');
+  table.innerHTML = '';
+  for (var r = 0; r < result.grid.length; r++) {
+    var tr = document.createElement('tr');
+    for (var c = 0; c < result.grid[r].length; c++) {
+      var td = document.createElement('td');
+      var cell = result.grid[r][c];
+      if (cell) {
+        td.className = 'white';
+        var num = result.cellNums[r + ',' + c];
+        if (num) { var ne = document.createElement('div'); ne.className = 'cell-num'; ne.textContent = num; td.appendChild(ne); }
+        var inp = document.createElement('input');
+        inp.type = 'text'; inp.maxLength = 1; inp.className = 'cell-input';
+        inp.setAttribute('data-answer', cell);
+        inp.addEventListener('input', function() { this.value = this.value.toUpperCase().replace(/[^A-Z]/g,''); });
+        td.appendChild(inp);
+      } else { td.className = 'black'; }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+}
+
+function renderClues(result) {
+  var across = result.placed.filter(function(p){ return p.dir === 'across'; }).sort(function(a,b){ return a.number - b.number; });
+  var down = result.placed.filter(function(p){ return p.dir === 'down'; }).sort(function(a,b){ return a.number - b.number; });
+  var html = '<div class="clues-grid"><div class="clue-group"><h3>Across</h3>';
+  for (var i = 0; i < across.length; i++) html += '<div class="clue-item"><strong>' + across[i].number + '.</strong> ' + across[i].clue + '</div>';
+  html += '</div><div class="clue-group"><h3>Down</h3>';
+  for (var i = 0; i < down.length; i++) html += '<div class="clue-item"><strong>' + down[i].number + '.</strong> ' + down[i].clue + '</div>';
+  html += '</div></div>';
+  document.getElementById('cluesSection').innerHTML = html;
+}
+
+function toggleAnswers() {
+  answersShown = !answersShown;
+  var inputs = document.querySelectorAll('.cell-input');
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].value = answersShown ? inputs[i].getAttribute('data-answer') : '';
+    inputs[i].style.color = answersShown ? 'var(--amber)' : 'var(--ink)';
+  }
+}
+
+document.getElementById('addBtn').addEventListener('click', function(){ addEntry('', ''); });
+document.getElementById('genBtn').addEventListener('click', generate);
+document.getElementById('ansBtn').addEventListener('click', toggleAnswers);
+document.getElementById('regenBtn').addEventListener('click', generate);
+
+window.addEventListener('load', function() {
+  for (var i = 0; i < DEFAULTS.length; i++) addEntry(DEFAULTS[i].word, DEFAULTS[i].clue);
+  generate();
+});
 </script>
 </body>
 </html>
