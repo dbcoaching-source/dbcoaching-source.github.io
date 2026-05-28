@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Quiz Maker - Free Printable Vocabulary Quizzes | ScrambLab</title>
+<meta name="description" content="Free vocabulary quiz maker. Enter words and definitions to create printable vocabulary quizzes instantly. Perfect for teachers and students. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:0.78rem;font-weight:500;opacity:0.7;flex-wrap:wrap}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;gap:.6rem}
+.panel-head-icon{width:28px;height:28px;background:var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.panel-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.panel-body{padding:1.25rem}
+label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+input[type=text],select{width:100%;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--amber-pale);color:var(--ink);appearance:none;margin-bottom:.75rem}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--amber)}
+.word-entry{display:grid;grid-template-columns:1fr 1fr 28px;gap:6px;margin-bottom:.5rem;align-items:start}
+.word-entry input{margin-bottom:0}
+.remove-btn{width:28px;height:34px;border:1px solid var(--border);border-radius:6px;background:var(--cream);cursor:pointer;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.remove-btn:hover{border-color:#c0392b;color:#c0392b}
+.add-btn{width:100%;padding:7px;border:1px dashed var(--border);border-radius:8px;background:none;color:var(--muted);font-size:.82rem;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;margin-top:4px}
+.add-btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn-generate{width:100%;margin-top:1rem;padding:.85rem;background:var(--amber);color:#fff;border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s}
+.btn-generate:hover{background:#a8521a}
+.hint{font-size:.75rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1rem 0 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.empty-state{text-align:center;padding:2.5rem 1rem;color:var(--muted)}
+.empty-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
+.empty-state p{font-size:.88rem;line-height:1.6}
+.quiz-header{text-align:center;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:2px solid var(--ink)}
+.quiz-title{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem}
+.name-row{display:flex;align-items:center;gap:.5rem;margin-top:.75rem;font-size:.85rem}
+.name-label{font-weight:600;white-space:nowrap}
+.name-blank{flex:1;border-bottom:1px solid var(--ink);height:20px}
+.quiz-type-tabs{display:flex;gap:0;margin-bottom:1rem}
+.quiz-tab{flex:1;padding:8px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--cream);color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s}
+.quiz-tab:first-child{border-radius:8px 0 0 8px}
+.quiz-tab:last-child{border-radius:0 8px 8px 0}
+.quiz-tab.active{background:var(--amber);border-color:var(--amber);color:#fff}
+.q-item{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px dashed var(--border)}
+.q-item:last-child{border-bottom:none}
+.q-num{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:4px}
+.q-text{font-size:.9rem;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.q-blank{border-bottom:1px solid var(--border);height:24px;margin-top:6px}
+.q-answer{font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;color:var(--amber);display:none}
+.mc-options{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.mc-opt{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mc-opt::before{content:'○';font-size:.9rem}
+.mc-opt.correct::before{content:'●';color:var(--amber)}
+.stats-row{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.stat-pill{font-family:'DM Mono',monospace;font-size:.68rem;background:var(--amber-light);color:var(--amber);padding:3px 10px;border-radius:20px;font-weight:500}
+.action-row{display:flex;gap:.5rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.btn-action{flex:1;padding:.6rem;border:1px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.btn-action:hover{border-color:var(--amber);background:var(--amber-light)}
+.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+.ad-slot-wide{max-width:900px;margin:0 auto 2rem;padding:0 1.5rem}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media print{header,.hero,.input-col,.action-row,footer,.ad-slot,.ad-slot-wide,.how-section,.faq-section,.stats-row,.quiz-type-tabs{display:none!important}.main{grid-template-columns:1fr;padding:0}.panel{border:none}body{background:#fff}.q-answer{display:none!important}}
+@media(max-width:640px){.main{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.nav-links{display:none}.word-entry{grid-template-columns:1fr 28px}.word-entry input:first-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+<li><a href="/index.html">Word Scramble</a></li>
+<li><a href="/word-search-generator.html">Word Search</a></li>
+<li><a href="/anagram-solver.html">Anagram</a></li>
+<li><a href="/spelling-test-generator.html">Spelling Test</a></li>
+<li><a href="/random-word-generator.html">Random Word</a></li>
+<li><a href="/word-counter.html">Word Counter</a></li>
+<li><a href="/crossword-maker.html">Crossword</a></li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - No Signup - Printable</div>
+<h1>Vocabulary Quiz<br><em>Maker</em></h1>
+<p class="hero-sub">Enter your vocabulary words and definitions to create printable quizzes instantly. Three quiz formats for every classroom need.</p>
+<div class="badge-row">
+<span class="badge">3 quiz formats</span>
+<span class="badge">Printable PDF</span>
+<span class="badge">Answer Key</span>
+<span class="badge">Multiple choice</span>
+</div>
+</div>
+<div class="main">
+<div class="input-col">
+<div class="panel">
+<div class="panel-head"><div class="panel-head-icon">✏️</div><div class="panel-title">Words & Definitions</div></div>
+<div class="panel-body">
+<div style="display:grid;grid-template-columns:1fr 1fr 28px;gap:6px;margin-bottom:6px;">
+<label style="margin:0;">Word</label><label style="margin:0;">Definition</label><div></div>
+</div>
+<div id="wordList"></div>
+<button class="add-btn" onclick="addEntry()">+ Add another word</button>
+<div style="margin-top:.75rem;">
+<label>Quiz title</label>
+<input type="text" id="quizTitle" value="Vocabulary Quiz">
+</div>
+<div>
+<label>Quiz format</label>
+<select id="quizFormat">
+<option value="fill">Fill in the blank</option>
+<option value="match">Matching</option>
+<option value="mc">Multiple choice</option>
+</select>
+</div>
+<button class="btn-generate" onclick="generate()">⚡ Generate Quiz</button>
+<p class="hint">Add 5-20 words. Each word needs a definition to generate the quiz.</p>
+<div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
+</div>
+</div>
+</div>
+<div class="output-col">
+<div class="panel">
+<div class="panel-head"><div class="panel-head-icon">📋</div><div class="panel-title" id="outputTitle">Your Quiz</div></div>
+<div class="panel-body">
+<div class="empty-state" id="emptyState">
+<div class="empty-icon">📚</div>
+<p>Enter your vocabulary words and definitions, then hit <strong>Generate Quiz</strong> to create a printable quiz instantly.</p>
+</div>
+<div id="quizOutput" style="display:none;">
+<div class="stats-row" id="statsRow"></div>
+<div id="quizContent"></div>
+<div class="action-row">
+<button class="btn-action" onclick="window.print()">🖨 Print</button>
+<button class="btn-action" onclick="toggleAnswers()">👁 Answer Key</button>
+<button class="btn-action" onclick="generate()">🔀 Regenerate</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ad-slot-wide"><div class="ad-slot">Advertisement - 728x90 - Google AdSense</div></div>
+<div class="how-section">
+<h2>How to use the vocabulary quiz maker</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Enter your words</h3><p>Type each vocabulary word and its definition. Use your textbook glossary, word wall, or any vocabulary list.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Choose quiz format</h3><p>Pick from fill-in-the-blank, matching, or multiple choice. Each format tests vocabulary differently.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Print and use</h3><p>Print a clean quiz sheet for your students, or toggle the answer key for grading.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Is this vocabulary quiz maker free?</div><div class="faq-a">Yes - completely free with no account or signup required. Create as many quizzes as you need.</div></div>
+<div class="faq-item"><div class="faq-q">What quiz formats are available?</div><div class="faq-a">Three formats: fill-in-the-blank (students write the word from the definition), matching (draw lines between words and definitions), and multiple choice (four options per question).</div></div>
+<div class="faq-item"><div class="faq-q">How many words can I add?</div><div class="faq-a">Up to 20 words per quiz. For the best print layout, 10-15 words works best.</div></div>
+<div class="faq-item"><div class="faq-q">Can I print an answer key?</div><div class="faq-a">Yes - click the Answer Key button before printing to show all correct answers on the sheet.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/spelling-test-generator.html">Spelling Test</a> &middot; <a href="/crossword-maker.html">Crossword Maker</a> &middot; <a href="/word-counter.html">Word Counter</a></p>
+</footer>
+<script>
+let entries = [];
+let answersShown = false;
+
+const DEFAULTS = [
+  {word:'photosynthesis', def:'The process by which plants use sunlight to make food'},
+  {word:'ecosystem', def:'A community of living things interacting with their environment'},
+  {word:'metamorphosis', def:'A change in form during development, such as a caterpillar becoming a butterfly'},
+  {word:'migration', def:'The seasonal movement of animals from one region to another'},
+  {word:'predator', def:'An animal that hunts and eats other animals'},
+  {word:'habitat', def:'The natural environment where an organism lives'},
+  {word:'adaptation', def:'A trait that helps an organism survive in its environment'},
+  {word:'camouflage', def:'The ability to blend in with surroundings to avoid detection'},
+];
+
+function addEntry(word, def){
+  word = word || ''; def = def || '';
+  const id = Date.now() + Math.random();
+  entries.push({id, word, def});
+  renderList();
+}
+
+function removeEntry(id){
+  entries = entries.filter(e => e.id !== id);
+  renderList();
+}
+
+function renderList(){
+  const container = document.getElementById('wordList');
+  container.innerHTML = entries.map(e =>
+    '<div class="word-entry" id="entry-'+e.id+'">' +
+    '<input type="text" placeholder="Word" value="'+e.word+'" oninput="updateEntry('+e.id+',\'word\',this.value)">' +
+    '<input type="text" placeholder="Definition" value="'+e.def+'" oninput="updateEntry('+e.id+',\'def\',this.value)">' +
+    '<button class="remove-btn" onclick="removeEntry('+e.id+')">&times;</button>' +
+    '</div>'
+  ).join('');
+}
+
+function updateEntry(id, field, value){
+  const e = entries.find(e => e.id === id);
+  if(e) e[field] = value;
+}
+
+function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
+
+function generate(){
+  entries.forEach(e => {
+    const wi = document.querySelector('#entry-'+e.id+' input:first-child');
+    const di = document.querySelector('#entry-'+e.id+' input:nth-child(2)');
+    if(wi) e.word = wi.value;
+    if(di) e.def = di.value;
+  });
+
+  const valid = entries.filter(e => e.word.trim() && e.def.trim()).slice(0, 20);
+  if(valid.length < 2){ alert('Please enter at least 2 words with definitions!'); return; }
+
+  const title = document.getElementById('quizTitle').value || 'Vocabulary Quiz';
+  const format = document.getElementById('quizFormat').value;
+  answersShown = false;
+
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('quizOutput').style.display = 'block';
+  document.getElementById('outputTitle').textContent = title;
+
+  document.getElementById('statsRow').innerHTML =
+    '<span class="stat-pill">'+valid.length+' words</span>' +
+    '<span class="stat-pill">'+format+' format</span>';
+
+  const shuffled = shuffle(valid);
+  let html = '<div class="quiz-header"><div class="quiz-title">'+title+'</div>' +
+    '<div class="name-row"><span class="name-label">Name:</span><div class="name-blank"></div>' +
+    '<span class="name-label" style="margin-left:1rem;">Date:</span><div class="name-blank"></div></div></div>';
+
+  if(format === 'fill'){
+    html += shuffled.map((e, i) =>
+      '<div class="q-item">' +
+      '<div class="q-num">'+( i+1)+'.</div>' +
+      '<div class="q-text">'+e.def+'</div>' +
+      '<div class="q-blank"></div>' +
+      '<span class="q-answer" id="ans-'+i+'">'+e.word+'</span>' +
+      '</div>'
+    ).join('');
+  } else if(format === 'match'){
+    const words = shuffle(shuffled.map(e => e.word));
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">' +
+      '<div><strong style="font-size:.82rem;color:var(--muted);">DEFINITIONS</strong>' +
+      shuffled.map((e, i) =>
+        '<div class="q-item"><div class="q-num">'+(i+1)+'.</div><div class="q-text">'+e.def+'</div>' +
+        '<span class="q-answer" id="ans-'+i+'" style="font-size:.82rem;">→ '+e.word+'</span></div>'
+      ).join('') + '</div>' +
+      '<div><strong style="font-size:.82rem;color:var(--muted);">WORDS</strong>' +
+      words.map((w, i) =>
+        '<div class="q-item"><div class="q-num" style="color:var(--amber);">'+String.fromCharCode(65+i)+'.</div>' +
+        '<div class="q-text" style="font-family:\'DM Mono\',monospace;font-weight:500;">'+w+'</div></div>'
+      ).join('') + '</div></div>';
+  } else {
+    html += shuffled.map((e, i) => {
+      const wrong = shuffle(shuffled.filter(x => x.word !== e.word)).slice(0, 3).map(x => x.word);
+      const options = shuffle([e.word, ...wrong]);
+      return '<div class="q-item">' +
+        '<div class="q-num">'+(i+1)+'.</div>' +
+        '<div class="q-text">'+e.def+'</div>' +
+        '<div class="mc-options">' +
+        options.map(o =>
+          '<div class="mc-opt'+(o === e.word ? ' correct" id="ans-'+i+'"' : '"')+'>'+o+'</div>'
+        ).join('') +
+        '</div></div>';
+    }).join('');
+  }
+
+  document.getElementById('quizContent').innerHTML = html;
+
+  // Hide answers by default
+  document.querySelectorAll('.q-answer, .correct').forEach(el => {
+    el.style.display = 'none';
+  });
+}
+
+function toggleAnswers(){
+  answersShown = !answersShown;
+  document.querySelectorAll('.q-answer, .correct').forEach(el => {
+    el.style.display = answersShown ? 'block' : 'none';
+  });
+}
+
+window.addEventListener('load', () => {
+  DEFAULTS.forEach(d => addEntry(d.word, d.def));
+  generate();
+});
+</script>
+</body>
+</html>

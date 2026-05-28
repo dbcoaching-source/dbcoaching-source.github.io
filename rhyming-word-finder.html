@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhyming Word Finder - Find Words That Rhyme Instantly | ScrambLab</title>
+<meta name="description" content="Free rhyming word finder. Type any word and instantly find words that rhyme. Perfect for poets, songwriters, teachers, and students. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:0.78rem;font-weight:500;opacity:0.7;flex-wrap:wrap}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.search-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.search-row{display:flex;gap:.75rem}
+.search-input{flex:1;padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;background:var(--amber-pale);color:var(--ink);letter-spacing:.05em;transition:border-color .2s}
+.search-input:focus{outline:none;border-color:var(--amber)}
+.search-input::placeholder{font-family:'DM Sans',sans-serif;font-weight:400;font-size:1rem;letter-spacing:0;color:var(--muted);opacity:.7}
+.btn-find{padding:.85rem 1.5rem;background:var(--amber);color:#fff;border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s;white-space:nowrap}
+.btn-find:hover{background:#a8521a}
+.filter-row{display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.filter-btn{padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--cream);font-size:.78rem;font-family:'DM Mono',monospace;cursor:pointer;color:var(--muted);transition:all .15s}
+.filter-btn.active{background:var(--amber);border-color:var(--amber);color:#fff}
+.filter-btn:hover:not(.active){border-color:var(--amber);color:var(--amber)}
+.results-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.results-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.results-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.results-count{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.results-body{padding:1.25rem}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.empty-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
+.empty-state p{font-size:.88rem;line-height:1.6}
+.rhyme-group{margin-bottom:1.5rem}
+.rhyme-label{font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+.rhyme-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.rhyme-grid{display:flex;flex-wrap:wrap;gap:6px}
+.rhyme-pill{font-family:'DM Mono',monospace;font-size:.85rem;padding:6px 14px;border:1px solid var(--border);border-radius:6px;color:var(--ink);background:var(--amber-pale);cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.rhyme-pill:hover{background:var(--amber-light);border-color:var(--amber)}
+.rhyme-pill.copied{background:var(--success-bg);border-color:var(--success);color:var(--success)}
+.syllable-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1rem}
+.syl-tab{padding:8px 16px;font-size:.82rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif}
+.syl-tab.active{color:var(--amber);border-bottom-color:var(--amber)}
+.syl-tab:hover:not(.active){color:var(--ink)}
+.no-results{text-align:center;padding:2rem;color:var(--muted);font-size:.88rem}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media(max-width:640px){.search-row{flex-direction:column}.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+<li><a href="/index.html">Word Scramble</a></li>
+<li><a href="/word-search-generator.html">Word Search</a></li>
+<li><a href="/anagram-solver.html">Anagram</a></li>
+<li><a href="/spelling-test-generator.html">Spelling Test</a></li>
+<li><a href="/random-word-generator.html">Random Word</a></li>
+<li><a href="/word-counter.html">Word Counter</a></li>
+<li><a href="/crossword-maker.html">Crossword</a></li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - Instant - No Signup</div>
+<h1>Rhyming Word<br><em>Finder</em></h1>
+<p class="hero-sub">Type any word and instantly find everything that rhymes with it. Perfect for poets, songwriters, teachers, and students.</p>
+<div class="badge-row">
+<span class="badge">Perfect rhymes</span>
+<span class="badge">Near rhymes</span>
+<span class="badge">Filter by syllables</span>
+<span class="badge">Click to copy</span>
+</div>
+</div>
+<div class="main">
+<div class="search-box">
+<div class="search-row">
+<input type="text" class="search-input" id="wordInput" placeholder="Type a word..." oninput="onInput()" onkeydown="if(event.key==='Enter')findRhymes()" maxlength="20">
+<button class="btn-find" onclick="findRhymes()">Find Rhymes</button>
+</div>
+<div class="filter-row">
+<span class="filter-label">Syllables:</span>
+<button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+<button class="filter-btn" onclick="setFilter(this,'1')">1</button>
+<button class="filter-btn" onclick="setFilter(this,'2')">2</button>
+<button class="filter-btn" onclick="setFilter(this,'3')">3</button>
+<button class="filter-btn" onclick="setFilter(this,'4+')">4+</button>
+</div>
+</div>
+<div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
+<div class="results-panel">
+<div class="results-head">
+<span class="results-title" id="resultsTitle">Rhymes</span>
+<span class="results-count" id="resultsCount"></span>
+</div>
+<div class="results-body">
+<div class="empty-state" id="emptyState">
+<div class="empty-icon">🎵</div>
+<p>Type a word above to find everything that rhymes with it.</p>
+</div>
+<div id="resultsArea" style="display:none;"></div>
+</div>
+</div>
+<div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
+</div>
+<div class="how-section">
+<h2>How to use the rhyme finder</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Type your word</h3><p>Enter any word you want to find rhymes for. Results appear instantly as you type.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Filter by syllables</h3><p>Narrow results by syllable count to find rhymes that fit your meter or rhythm perfectly.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Click to copy</h3><p>Click any rhyming word to copy it to your clipboard instantly for use in your writing.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Is this rhyme finder free?</div><div class="faq-a">Yes - completely free with no account or signup required. Find as many rhymes as you need.</div></div>
+<div class="faq-item"><div class="faq-q">What is the difference between perfect and near rhymes?</div><div class="faq-a">Perfect rhymes share the exact same ending sound (cat/hat). Near rhymes (also called slant rhymes) share a similar but not identical sound (cat/back). Both are commonly used in poetry and songwriting.</div></div>
+<div class="faq-item"><div class="faq-q">Can I use it for songwriting?</div><div class="faq-a">Absolutely. The syllable filter is especially useful for songwriting, letting you find rhymes that fit specific rhythmic patterns in your lyrics.</div></div>
+<div class="faq-item"><div class="faq-q">Does it work on mobile?</div><div class="faq-a">Yes - the rhyme finder is fully responsive and works on phones and tablets.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/word-search-generator.html">Word Search</a> &middot; <a href="/anagram-solver.html">Anagram Solver</a> &middot; <a href="/word-counter.html">Word Counter</a> &middot; <a href="/crossword-maker.html">Crossword Maker</a></p>
+</footer>
+<script>
+// Rhyme dictionary - ending sounds mapped to words
+const RHYMES = {
+  'at':['cat','bat','hat','mat','rat','sat','fat','pat','flat','that','chat','brat','splat','spat','gnat','vat','drat','scat','stat','what'],
+  'ay':['day','say','way','play','stay','may','pay','ray','bay','clay','gray','pray','sway','tray','way','display','away','today','okay','hooray','relay','delay','decay','essay','spray','stray','betray','portray'],
+  'ee':['tree','free','see','be','me','we','he','she','key','tea','sea','pea','glee','three','flee','knee','agree','degree','spree','debris','marquee'],
+  'ight':['night','light','right','might','sight','fight','tight','bright','flight','fright','slight','blight','plight','knight','delight','tonight','moonlight','sunlight','upright','midnight','highlight'],
+  'ine':['line','mine','fine','wine','shine','spine','vine','pine','dine','nine','sign','time','rhyme','climb','prime','crime','lime','chime','sublime','divine','combine','define','decline','design','assign','confine','incline','refine'],
+  'ing':['ring','sing','bring','spring','string','thing','king','wing','sting','swing','cling','fling','sling','ping','zing','offering','everything','anything','something','beginning','morning','evening'],
+  'ove':['love','dove','above','shove','glove','of','give','live'],
+  'ow':['know','show','flow','grow','blow','snow','glow','throw','crow','slow','go','so','though','although','below','bestow','follow','hollow','shadow','meadow','rainbow','elbow'],
+  'ound':['sound','found','ground','round','bound','pound','mound','wound','around','abound','surround','background','compound','profound','rebound','resound','expound','astound','confound','hound','mound','sound'],
+  'ove2':['move','prove','groove','approve','improve','remove','behoove'],
+  'oo':['too','do','true','blue','new','you','through','knew','flew','grew','drew','clue','glue','shoe','who','two','view','few','dew','crew','stew','brew','chew','pursue','imbue','debut','renew','review','subdue','undo','taboo','bamboo','shampoo','tattoo','voodoo'],
+  'ack':['back','black','track','crack','pack','rack','stack','lack','knack','attack','snack','slack','smack','shack','jack','hack','quack','exact','abstract','impact','contact','interact','react','attract','distract','enact','extract'],
+  'ame':['name','game','came','same','flame','blame','claim','frame','shame','tame','fame','aim','became','became','exclaim','proclaim','reclaim'],
+  'ake':['make','take','lake','cake','shake','wake','fake','bake','break','stake','snake','brake','mistake','awake','forsake','heartbreak','snowflake','cupcake','earthquake','overtake','undertake'],
+  'an':['can','man','plan','ran','fan','ban','van','scan','span','than','began','Japan','caravan','understand','command','demand','expand','grand','hand','land','sand','stand','brand','bland','bland'],
+  'and':['hand','land','sand','band','stand','grand','brand','bland','planned','command','demand','expand','understand','withstand','island','quicksand','disband','contraband'],
+  'are':['care','share','there','where','bear','air','fair','hair','pair','wear','dare','fare','rare','spare','stare','aware','compare','declare','prepare','beware','nightmare','elsewhere','software','hardware'],
+  'art':['heart','start','part','art','smart','chart','dart','apart','depart','impart','restart','sweetheart','upstart','counterpart'],
+  'ell':['tell','well','sell','bell','fell','spell','shell','smell','yell','cell','dwell','excel','expel','propel','rebel','hotel','doorbell','farewell','nutshell','seashell','parallel'],
+  'end':['friend','send','bend','lend','spend','blend','trend','defend','extend','offend','pretend','depend','attend','contend','intend','suspend','amend','commend','recommend'],
+  'ent':['went','sent','bent','lent','rent','tent','vent','spent','meant','event','content','intent','extent','invent','prevent','present','percent','cement','descent','dissent','consent'],
+  'est':['best','rest','test','nest','chest','blessed','quest','dressed','stress','express','success','address','confess','impress','progress','suggest','contest','protest','request','arrest','invest','manifest','harvest','interest'],
+  'ew':['new','few','knew','flew','grew','drew','true','blue','you','do','through','view','dew','crew','stew','brew','chew','pursue','renew','review','debut'],
+  'ide':['side','wide','hide','ride','tide','guide','pride','bride','slide','glide','stride','divide','decide','provide','outside','inside','beside','confide','reside','collide','override','worldwide','suicide','coincide'],
+  'ile':['mile','smile','while','style','file','pile','tile','trial','dial','denial','meanwhile','worthwhile','profile','mobile','compile','exile','fragile','hostile','juvenile','versatile'],
+  'ill':['will','still','fill','hill','kill','mill','spill','thrill','drill','grill','skill','bill','chill','fulfill','distill','goodwill','uphill','downhill','treadmill','windmill','instill'],
+  'ime':['time','rhyme','climb','prime','crime','lime','chime','sublime','paradigm','overtime','sometime','lifetime','daytime','nighttime','halftime','pastime','maritime','pantomime'],
+  'ind':['mind','find','kind','blind','behind','wind','bind','grind','remind','mankind','designed','refined','combined','declined','defined','inclined','resigned','confined','intertwined','unkind','unwind'],
+  'ite':['write','night','white','bright','quite','unite','invite','ignite','polite','despite','delight','recite','excite','despite','finite','infinite','appetite','opposite','satellite','prerequisite'],
+  'ong':['song','long','strong','wrong','along','belong','among','prolong','headstrong','lifelong','singsong','before long','all along','Hong Kong'],
+  'ook':['look','book','took','cook','hook','brook','shook','crook','overlook','mistook','notebook','textbook','handbook','cookbook','outlook','facebook'],
+  'oon':['moon','soon','tune','june','spoon','balloon','cartoon','cocoon','afternoon','honeymoon','platoon','bassoon','typhoon','immune','commune','fortune','opportune'],
+  'ore':['more','store','before','score','floor','door','explore','ignore','adore','therefore','furthermore','hardcore','onshore','offshore','restore','implore','deplore','folklore','sophomore','carnivore'],
+  'orn':['born','corn','horn','worn','torn','morn','sworn','adorn','reborn','unicorn','popcorn','longhorn','forlorn','scorn','acorn','firstborn'],
+  'ove3':['stove','drove','wove','strove','clove','cove','trove','mauve','intertwove'],
+  'own':['town','down','brown','crown','gown','clown','frown','drown','renown','breakdown','countdown','downtown','sundown','uptown','markdown','slowdown','showdown','meltdown','crackdown','lockdown'],
+  'ue':['true','blue','new','you','through','do','who','too','clue','glue','shoe','two','view','few','dew','crew','stew','brew','chew','pursue','renew','debut','taboo','bamboo','voodoo'],
+  'um':['come','some','drum','sum','gum','run','fun','sun','gun','bun','done','none','ton','one','begun','overcome','welcome','become','income','outcome','troublesome','handsome','awesome','tiresome','worrisome'],
+  'un':['run','fun','sun','gun','bun','done','none','ton','one','begun','overcome','someone','everyone','anyone','everyone','outrun','rerun','undone','outdone','overrun'],
+  'ung':['young','song','strong','long','hung','lung','rung','sung','tongue','among','belong','along','prolong','headstrong'],
+  'ure':['sure','pure','cure','your','poor','tour','secure','mature','obscure','endure','assure','ensure','allure','procure','manure','brochure','contour','velour','detour','troubadour'],
+  'urn':['turn','burn','learn','earn','return','concern','discern','pattern','modern','govern','eastern','western','northern','southern','lantern','intern','extern','overturn','adjourn'],
+  'ust':['just','must','trust','dust','bust','gust','rust','crust','adjust','disgust','mistrust','robust','august','discussed','discussed','unjust','combust','entrust','thrust'],
+  'all':['call','fall','hall','tall','wall','ball','small','recall','install','overall','rainfall','downfall','football','baseball','basketball','waterfall','overhaul','enthral','appal'],
+  'old':['old','told','cold','bold','gold','hold','fold','sold','rolled','controlled','enrolled','untold','household','stronghold','threshold','scaffold','manifold','blindfold'],
+  'ool':['cool','school','fool','pool','tool','rule','full','pull','bull','beautiful','powerful','grateful','careful','skillful','helpful','awful','useful','peaceful','successful','wonderful','colorful','meaningful','painful','playful','wasteful'],
+  'oom':['room','bloom','zoom','doom','gloom','boom','loom','assume','consume','costume','perfume','resume','mushroom','bedroom','bathroom','classroom','heirloom','mushroom','honeymoon'],
+  'ose':['close','those','chose','nose','rose','pose','goes','flows','knows','shows','froze','prose','suppose','compose','disclose','enclose','expose','impose','oppose','propose','disclose','foreclose','transpose'],
+};
+
+let currentFilter = 'all';
+let currentResults = [];
+
+function onInput(){
+  const val = document.getElementById('wordInput').value;
+  if(val.length >= 2) findRhymes();
+}
+
+function setFilter(btn, val){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = val;
+  renderResults();
+}
+
+function countSyllables(word){
+  word = word.toLowerCase();
+  if(word.length <= 3) return 1;
+  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '').replace(/^y/, '');
+  const m = word.match(/[aeiouy]{1,2}/g);
+  return m ? m.length : 1;
+}
+
+function findRhymes(){
+  const input = document.getElementById('wordInput').value.toLowerCase().trim().replace(/[^a-z]/g,'');
+  if(!input || input.length < 2) return;
+
+  document.getElementById('resultsTitle').textContent = 'Rhymes for "' + input.toUpperCase() + '"';
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('resultsArea').style.display = 'block';
+
+  // Find matching rhyme groups
+  const found = new Set();
+  const perfect = [];
+  const near = [];
+
+  // Check each rhyme group
+  for(const [ending, words] of Object.entries(RHYMES)){
+    const inputInGroup = words.some(w => w === input);
+    if(inputInGroup){
+      words.forEach(w => { if(w !== input && !found.has(w)){ found.add(w); perfect.push(w); }});
+    }
+  }
+
+  // Near rhymes - same ending letters
+  const endings = [input.slice(-3), input.slice(-2)];
+  for(const [ending, words] of Object.entries(RHYMES)){
+    words.forEach(w => {
+      if(w !== input && !found.has(w)){
+        if(endings.some(e => w.endsWith(e) || e.length >= 2 && w.slice(-2) === input.slice(-2))){
+          found.add(w); near.push(w);
+        }
+      }
+    });
+  }
+
+  // Also add words ending similarly from all rhyme groups
+  const allWords = Object.values(RHYMES).flat();
+  allWords.forEach(w => {
+    if(w !== input && !found.has(w) && w.slice(-2) === input.slice(-2)){
+      found.add(w); near.push(w);
+    }
+  });
+
+  currentResults = { perfect: [...new Set(perfect)], near: [...new Set(near)] };
+  renderResults();
+}
+
+function renderResults(){
+  const area = document.getElementById('resultsArea');
+  const countEl = document.getElementById('resultsCount');
+
+  let perfect = currentResults.perfect || [];
+  let near = currentResults.near || [];
+
+  if(currentFilter !== 'all'){
+    const n = currentFilter === '4+' ? null : parseInt(currentFilter);
+    perfect = perfect.filter(w => n === null ? countSyllables(w) >= 4 : countSyllables(w) === n);
+    near = near.filter(w => n === null ? countSyllables(w) >= 4 : countSyllables(w) === n);
+  }
+
+  const total = perfect.length + near.length;
+  countEl.textContent = total + ' rhyme' + (total !== 1 ? 's' : '') + ' found';
+
+  if(total === 0){
+    area.innerHTML = '<div class="no-results">No rhymes found with these filters. Try removing the syllable filter.</div>';
+    return;
+  }
+
+  let html = '';
+  if(perfect.length > 0){
+    html += '<div class="rhyme-group"><div class="rhyme-label">Perfect rhymes — ' + perfect.length + ' words</div><div class="rhyme-grid">' +
+      perfect.map(w => '<span class="rhyme-pill" onclick="copyRhyme(this,\''+w+'\')">' + w + '</span>').join('') +
+      '</div></div>';
+  }
+  if(near.length > 0){
+    html += '<div class="rhyme-group"><div class="rhyme-label">Near rhymes — ' + near.length + ' words</div><div class="rhyme-grid">' +
+      near.map(w => '<span class="rhyme-pill" onclick="copyRhyme(this,\''+w+'\')">' + w + '</span>').join('') +
+      '</div></div>';
+  }
+  area.innerHTML = html;
+}
+
+function copyRhyme(el, word){
+  navigator.clipboard.writeText(word).then(() => {
+    el.classList.add('copied');
+    el.textContent = word + ' ✓';
+    setTimeout(() => { el.classList.remove('copied'); el.textContent = word; }, 1500);
+  });
+}
+
+window.addEventListener('load', () => {
+  document.getElementById('wordInput').value = 'love';
+  findRhymes();
+});
+</script>
+</body>
+</html>
