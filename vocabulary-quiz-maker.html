@@ -217,7 +217,8 @@ const DEFAULTS = [
 
 function addEntry(word, def){
   word = word || ''; def = def || '';
-  const id = Date.now() + Math.random();
+  entryCounter++;
+  const id = entryCounter;
   entries.push({id, word, def});
   renderList();
 }
@@ -230,10 +231,10 @@ function removeEntry(id){
 function renderList(){
   const container = document.getElementById('wordList');
   container.innerHTML = entries.map(e =>
-    '<div class="word-entry" id="entry-'+e.id+'">' +
+    '<div class="word-entry" data-entry-id="'+e.id+'">' +
     '<input type="text" placeholder="Word" value="'+e.word+'" oninput="updateEntry('+e.id+',\'word\',this.value)">' +
     '<input type="text" placeholder="Definition" value="'+e.def+'" oninput="updateEntry('+e.id+',\'def\',this.value)">' +
-    '<button class="remove-btn" onclick="removeEntry('+e.id+')">&times;</button>' +
+    '<button class="remove-btn" data-rid="'+e.id+'" onclick="removeEntry('+e.id+')">'&times;</button>' +
     '</div>'
   ).join('');
 }
@@ -247,8 +248,8 @@ function shuffle(arr){ return [...arr].sort(() => Math.random() - 0.5); }
 
 function generate(){
   entries.forEach(e => {
-    const wi = document.querySelector('#entry-'+e.id+' input:first-child');
-    const di = document.querySelector('#entry-'+e.id+' input:nth-child(2)');
+    const wi = document.querySelector('[data-entry-id="'+e.id+'"] input:first-child');
+    const di = document.querySelector('[data-entry-id="'+e.id+'"] input:nth-child(2)');
     if(wi) e.word = wi.value;
     if(di) e.def = di.value;
   });
