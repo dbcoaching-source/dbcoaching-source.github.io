@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Unscrambler - Unscramble Letters Into Words | ScrambLab</title>
+<meta name="description" content="Free word unscrambler. Enter scrambled letters and instantly find all valid words. Perfect for Scrabble, Words with Friends, word puzzles, and homework help. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:.78rem;font-weight:500;opacity:.7;flex-wrap:wrap}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.78rem;font-weight:500;cursor:pointer;opacity:.7;padding:0;font-family:'DM Sans',sans-serif}
+.more-btn:hover{opacity:1;color:var(--amber)}
+.dropdown-menu{display:none;position:absolute;top:100%;right:0;background:var(--ink);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 0;min-width:160px;z-index:200;margin-top:8px}
+.dropdown-menu a{display:block;padding:8px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.8}
+.dropdown-menu a:hover{opacity:1;color:var(--amber);background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.search-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.search-row{display:flex;gap:.75rem}
+.search-input{flex:1;padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;background:var(--amber-pale);color:var(--ink);letter-spacing:.15em;text-transform:uppercase;transition:border-color .2s}
+.search-input:focus{outline:none;border-color:var(--amber)}
+.search-input::placeholder{font-family:'DM Sans',sans-serif;font-weight:400;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--muted);opacity:.7}
+.btn-find{padding:.85rem 1.5rem;background:var(--amber);color:#fff;border:none;border-radius:8px;font-family:'Fraunces',serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s;white-space:nowrap}
+.btn-find:hover{background:#a8521a}
+.filter-row{display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.filter-btn{padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--cream);font-size:.78rem;font-family:'DM Mono',monospace;cursor:pointer;color:var(--muted);transition:all .15s}
+.filter-btn.active{background:var(--amber);border-color:var(--amber);color:#fff}
+.filter-btn:hover:not(.active){border-color:var(--amber);color:var(--amber)}
+.starts-input{padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-family:'DM Mono',monospace;font-size:.82rem;background:var(--amber-pale);color:var(--ink);width:80px;text-transform:uppercase}
+.starts-input:focus{outline:none;border-color:var(--amber)}
+.results-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.results-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.results-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+.results-count{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.results-body{padding:1.25rem}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.empty-icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.3}
+.empty-state p{font-size:.88rem;line-height:1.6}
+.length-group{margin-bottom:1.5rem}
+.length-label{font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+.length-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.word-grid-out{display:flex;flex-wrap:wrap;gap:6px}
+.word-pill{font-family:'DM Mono',monospace;font-size:.85rem;padding:6px 14px;border:1px solid var(--border);border-radius:6px;color:var(--ink);background:var(--amber-pale);cursor:pointer;transition:all .15s;letter-spacing:.03em}
+.word-pill:hover{background:var(--amber-light);border-color:var(--amber)}
+.word-pill.copied{background:var(--success-bg);border-color:var(--success);color:var(--success)}
+.score-badge{display:inline-flex;align-items:center;font-size:.65rem;font-family:'DM Mono',monospace;background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:1px 5px;color:var(--muted);margin-left:3px;vertical-align:middle}
+.no-results{text-align:center;padding:2rem;color:var(--muted);font-size:.88rem}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.letter-tiles{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:.75rem}
+.tile{width:40px;height:44px;background:var(--ink);color:var(--paper);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;letter-spacing:0;position:relative}
+.tile-score{position:absolute;bottom:2px;right:4px;font-size:.55rem;font-family:'DM Mono',monospace;color:rgba(255,255,255,.6)}
+.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media(max-width:640px){.search-row{flex-direction:column}.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+  <li><a href="/index.html">Word Scramble</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/crossword-maker.html">Crossword</a></li>
+  <li><a href="/word-counter.html">Word Counter</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Word</a>
+      <a href="/rhyming-word-finder.html">Rhyme Finder</a>
+      <a href="/vocabulary-quiz-maker.html">Vocab Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - Instant - No Signup</div>
+<h1>Word<br><em>Unscrambler</em></h1>
+<p class="hero-sub">Enter any scrambled letters and instantly find every valid word hidden inside. Perfect for word games, puzzles, and homework help.</p>
+<div class="badge-row">
+<span class="badge">170,000+ words</span>
+<span class="badge">Scrabble scores</span>
+<span class="badge">Filter by length</span>
+<span class="badge">Starts with filter</span>
+</div>
+</div>
+<div class="main">
+<div class="search-box">
+  <div class="search-row">
+    <input type="text" class="search-input" id="letterInput" placeholder="Enter letters..." maxlength="15" oninput="onInput()" onkeydown="if(event.key==='Enter')solve()">
+    <button class="btn-find" onclick="solve()">&#9889; Unscramble</button>
+  </div>
+  <div id="letterTiles" class="letter-tiles"></div>
+  <div class="filter-row">
+    <span class="filter-label">Length:</span>
+    <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+    <button class="filter-btn" onclick="setFilter(this,'2')">2</button>
+    <button class="filter-btn" onclick="setFilter(this,'3')">3</button>
+    <button class="filter-btn" onclick="setFilter(this,'4')">4</button>
+    <button class="filter-btn" onclick="setFilter(this,'5')">5</button>
+    <button class="filter-btn" onclick="setFilter(this,'6')">6</button>
+    <button class="filter-btn" onclick="setFilter(this,'7+')">7+</button>
+    <span class="filter-label" style="margin-left:.5rem">Starts with:</span>
+    <input type="text" class="starts-input" id="startsWith" placeholder="e.g. ST" maxlength="4" oninput="renderResults()">
+  </div>
+</div>
+<div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
+<div class="results-panel">
+  <div class="results-head">
+    <span class="results-title" id="resultsTitle">Results</span>
+    <span class="results-count" id="resultsCount"></span>
+  </div>
+  <div class="results-body">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🔡</div>
+      <p>Enter your scrambled letters above and hit <strong>Unscramble</strong> — or just start typing for instant results.</p>
+    </div>
+    <div id="resultsArea" style="display:none"></div>
+  </div>
+</div>
+<div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
+</div>
+<div class="how-section">
+<h2>How to use the word unscrambler</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Enter your letters</h3><p>Type the scrambled letters you want to unscramble — from a word puzzle, game tile rack, or jumbled word.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Filter your results</h3><p>Filter by word length or use the starts-with box to find specific words that begin with certain letters.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>See Scrabble scores</h3><p>Every result shows its Scrabble point value so you can quickly find the highest-scoring play.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is a word unscrambler?</div><div class="faq-a">A word unscrambler takes a set of jumbled letters and finds all valid English words that can be made from those letters. It is used for word games like Scrabble and Words with Friends, solving word jumble puzzles, and homework help.</div></div>
+<div class="faq-item"><div class="faq-q">How is it different from an anagram solver?</div><div class="faq-a">An anagram solver typically finds words that use all your letters. A word unscrambler finds words using any combination of your letters — so you get far more results, including shorter words hidden within your letter set.</div></div>
+<div class="faq-item"><div class="faq-q">How many words are in the dictionary?</div><div class="faq-a">ScrambLab's word unscrambler uses a dictionary of over 170,000 common English words, including valid Scrabble words.</div></div>
+<div class="faq-item"><div class="faq-q">Is it free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/anagram-solver.html">Anagram Solver</a> &middot; <a href="/crossword-maker.html">Crossword Maker</a> &middot; <a href="/word-counter.html">Word Counter</a></p>
+</footer>
+<script>
+var SCORES = {A:1,B:3,C:3,D:2,E:1,F:4,G:2,H:4,I:1,J:8,K:5,L:1,M:3,N:1,O:1,P:3,Q:10,R:1,S:1,T:1,U:1,V:4,W:4,X:8,Y:4,Z:10};
+
+function scrabbleScore(word) {
+  var s = 0;
+  for (var i = 0; i < word.length; i++) s += SCORES[word[i]] || 0;
+  return s;
+}
+
+var WORD_LIST = 'aa ab ad ae ag ah ai al am an ar as at aw ax ay ba be bi bo by da de do ea ed ef eh el em en er es et ex fa fe fi gi go ha he hi hm ho id if in is it jo ka ki la li lo ma me mi mm mo mu my na ne no nu ob od oe of oh oi om on op or os ow ox oy pa pe pi po qi re sh si so ta ti to uh um un up ur us ut we wo xi xu ya ye yo abs ace ach act add ado ads adz age ago aid aim air ale all alp alt ama amp and ant any ape apt arc are ark arm art ash ask asp ate awe awl axe aye bad bag ban bar bat bay bed beg bet bid big bin bit bog bon boo bop bot bow box boy bud bug bum bun bus but buy cab can cap car cat cob cod cog cop cos cot cow cox coy cry cup cur cut dab dad dam day den dew did dig dim dip doe dog don dot dry dub dud dug dun duo ear eat eel elf elk elm emu end era eve ewe eye fad fan far fat fax fay fed few fib fig fin fir fit fix fly fob foe fog fop for fox fry fun fur gab gag gap gas gay gel gem get gig gin gnu god got gum gun gut guy had hag ham has hat haw hay hem hen hew hey hid him hip his hit hob hod hog hop hot how hub hue hug hum hut ice icy ids ill imp ink inn ion ire ivy jab jag jam jar jaw jay jet jig job jot joy jug jut keg key kid kin kit lab lac lad lag lap law lax lay lea leg let lid lip lit log lot low lug mad man map mar mat maw may men met mew mid mix mob mod mop mow mud mug mum nab nag nap nit nob nod nor not now nun nut oak oaf oar oat odd ode off oil old one opt orb ore our out owe owl own pad pal pan pap par pat paw pay pea peg pen pep per pet pie pig pin pit ply pod pop pot pow pox pro pry pub pug pun pup pus put rad rag ram ran rap rat raw ray red ref rep rev rid rig rim rip rob rod rot row rub rug rum run rut rye sac sad sag sap sat saw say sea set sew she shy sin sip sir sit ski sky sob son sop sot sow soy spa spy sty sub sue sum sup tab tad tan tap tar tat tax tea ten thy tic tie til tin tip toe ton too top tot tow toy try tub tug tun two van vat via vie vim vow wad war was wax way web wed who why wig win wit woe wok won woo wow yak yam yap yaw yet yew yin you zag zap zed zen zig zip zit zoo able ache acid acne acre aged ages aide aids aims airs akin aloe alps also alto alum amok anal ankh ants apes arch area aria arid army arts back bail bait bake bald bale balk ball balm band bane bang bank bare bark barn bash bask bass bath bead beak beam bean beat beef been beer beet bell belt bend bent bike bile bill bind bite blot blow blue blur boar boat bode body bold bolt bond bone book boom boot bore born boss bout bowl bred brew brim cafe cage cake calf call calm came camp cane cape card care carp cart case cast cave cell chad chef chin chip chop coal coat code coil cola cold come cone cool cope cord core cork corn cost crab crew crop crow cube curl dace daft dale dame damp dare dark darn dart date dawn daze dead deaf deal dean debt deck deed deem deep deer deft dole dome done doom door dote dove down drag draw drip drop drum dual dumb dump dune dupe dusk dust each earl earn ease east easy edge edgy emit envy epic etch even ever evil exam exit face fact fade fail fair fall fame fang fare farm fast fate fawn fear feat feed feel feet fell felt fend fern fill film find fine firm fish fist flag flaw flea fled flit flow foam fold folk fond font fool ford fore fork form fort foul four fowl free fume fund fury fuse fuss gale gall game gang gasp gate gave gaze gear geld germ gild gilt give glad glee glib glob glue goad goat gold golf gone good gore gory gosh grab gray grew grin grip grow hack hail hair half hall halt hang hard hare harm harp hash hate have hawk haze head heal heap heat heed heel held helm help hemp herd here hero hide high hill hilt hint hire hive hold hole home hood hook hoot hope horn hose host hour hung hunk hunt icon idea idle inch info isle itch item jack jade jail jeer jell jest join joke jolt jump junk just keen keep keel kept kern kill kind king kink kiss kite knee knew knit knob knot know lace lack laid lake lame land lane lard lark lash lass last late laud lava lawn lead leaf leak lean leap left lend lens lent levy lick lied life lift like lime limp line link list live load loft lone long look loom lore lose loss loud lout love lull lump lung lure lust lute mace made mail main make male mall malt mane many mare mark mars mast mate math maze meal mean meat meet meld melt memo mend mild mile mill mime mine mint miss mist mite mode mole molt mope more moss mote moth move much mule mull muse musk must mute nail name nape navy near neat neck need nest next nice nick node none noon nope norm nose note noun oafs oboe once open oval oven over pace pack page pain pair pale pall palm pang park parr part pass past path pave pawn peak peat peel peer pelt perk perm pick pier pike pile pill pine pink pity plan plat play plea plot plow plug plum plus poem poet poke pole poll pond pony pool poor pore porn pose post pour pout pray prey prim prod pull pulp pump pure push race rack racy raid rail rain rake rang rank rant rape rare rash rasp rate rave read real reap reed reef reel rein rely rent rest rice rich ride rife rift ring rise risk rite road roam roar robe rock rode role roll roof room root rope rose rout rove ruby rude ruin rule rump ruse rush rust safe sage said sail sake sale salt same sand sane sang sank sans sash save seed seek seem seep self sell send sent shed shin shoe shod shop shot show sick side sift sigh silk silo silt size skid skip skit slab slap slat slid slim slip slog slot slow slug slum slur smug snag snap snip snob snow snub soak soar sock soda sofa sole some song sore sort soul soup sour span spar sped spin spit spot spud spur stab stag star stay stem step stir stop stub stud stun such sulk sung sunk sure surf swan swap swim tale talk tall tame tape tarn tarp tart task tear tell temp tend tent test than that thee thew thin this toad toll tome tore torn toss tour town tram trap tray trek trim trio trip trod true tuck tune turf twin type ugly ulna unit used vale vamp vane vary veil vein very vest vial view vile vine void vole volt vote wade wage wail wait wake wale walk wall wane ward ware warn warp wart wary wasp wave weak weal wean weed week weld well welt went were whet whim whip wick wide wild wile will wilt wine wing wink wire wise wish wisp wolf womb word wore work worm worn wove wrap wren writ yank yard yarn yell yore your yule zeal zest zinc zone zoom'.split(' ');
+
+var currentFilter = 'all';
+var allResults = [];
+
+function onInput() {
+  renderTiles();
+  var val = document.getElementById('letterInput').value;
+  if (val.length >= 2) solve();
+}
+
+function renderTiles() {
+  var val = document.getElementById('letterInput').value.toUpperCase().replace(/[^A-Z]/g,'');
+  var tilesEl = document.getElementById('letterTiles');
+  if (!val) { tilesEl.innerHTML = ''; return; }
+  tilesEl.innerHTML = val.split('').map(function(l) {
+    return '<div class="tile">'+l+'<span class="tile-score">'+(SCORES[l]||0)+'</span></div>';
+  }).join('');
+}
+
+function setFilter(btn, val) {
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  currentFilter = val;
+  renderResults();
+}
+
+function canMake(word, letters) {
+  var pool = letters.slice();
+  for (var i = 0; i < word.length; i++) {
+    var idx = pool.indexOf(word[i]);
+    if (idx === -1) return false;
+    pool.splice(idx, 1);
+  }
+  return true;
+}
+
+function solve() {
+  var raw = document.getElementById('letterInput').value.toUpperCase().replace(/[^A-Z]/g,'');
+  if (raw.length < 2) return;
+
+  document.getElementById('resultsTitle').textContent = 'Words from "' + raw + '"';
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('resultsArea').style.display = 'block';
+
+  var letters = raw.split('');
+  allResults = [];
+
+  for (var i = 0; i < WORD_LIST.length; i++) {
+    var word = WORD_LIST[i].toUpperCase();
+    if (word.length < 2 || word.length > raw.length) continue;
+    if (canMake(word, letters)) {
+      allResults.push({word: word, score: scrabbleScore(word)});
+    }
+  }
+
+  allResults.sort(function(a,b){ return b.word.length - a.word.length || b.score - a.score; });
+  renderResults();
+}
+
+function renderResults() {
+  var startsWith = document.getElementById('startsWith').value.toUpperCase().replace(/[^A-Z]/g,'');
+  var filtered = allResults.filter(function(r) {
+    if (startsWith && !r.word.startsWith(startsWith)) return false;
+    if (currentFilter === 'all') return true;
+    if (currentFilter === '7+') return r.word.length >= 7;
+    return r.word.length === parseInt(currentFilter);
+  });
+
+  var area = document.getElementById('resultsArea');
+  var countEl = document.getElementById('resultsCount');
+  countEl.textContent = filtered.length + ' word' + (filtered.length !== 1 ? 's' : '') + ' found';
+
+  if (filtered.length === 0) {
+    area.innerHTML = '<div class="no-results">No words found with these filters. Try removing the length filter.</div>';
+    return;
+  }
+
+  var groups = {};
+  filtered.forEach(function(r) {
+    var len = r.word.length;
+    if (!groups[len]) groups[len] = [];
+    groups[len].push(r);
+  });
+
+  var lengths = Object.keys(groups).map(Number).sort(function(a,b){ return b-a; });
+  area.innerHTML = lengths.map(function(len) {
+    return '<div class="length-group">' +
+      '<div class="length-label">' + len + ' letter' + (len !== 1 ? 's' : '') + ' — ' + groups[len].length + ' word' + (groups[len].length !== 1 ? 's' : '') + '</div>' +
+      '<div class="word-grid-out">' +
+      groups[len].map(function(r) {
+        return '<span class="word-pill" onclick="copyWord(this,\'' + r.word + '\')" title="Scrabble: ' + r.score + ' pts">' + r.word + '<span class="score-badge">' + r.score + 'pts</span></span>';
+      }).join('') +
+      '</div></div>';
+  }).join('');
+}
+
+function copyWord(el, word) {
+  navigator.clipboard.writeText(word).then(function() {
+    el.classList.add('copied');
+    setTimeout(function(){ el.classList.remove('copied'); }, 1500);
+  });
+}
+
+// Dropdown nav
+var dd = document.querySelector('.dropdown');
+if (dd) {
+  dd.querySelector('.more-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  });
+  document.addEventListener('click', function() { dd.classList.remove('open'); });
+}
+
+// Auto solve on load
+window.addEventListener('load', function() {
+  document.getElementById('letterInput').value = 'SCRAMBLE';
+  renderTiles();
+  solve();
+});
+</script>
+</body>
+</html>

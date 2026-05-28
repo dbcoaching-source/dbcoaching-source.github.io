@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syllable Counter - Count Syllables in Any Word or Text | ScrambLab</title>
+<meta name="description" content="Free syllable counter. Count syllables in any word, sentence, or paragraph instantly. Perfect for teachers, poets, songwriters, and students. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#f0dcc0;--amber-pale:#faf5ec;--muted:#7a6e5f;--border:#d4c9b5;--success:#2d6a4f;--success-bg:#d8f3dc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);color:var(--paper);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;letter-spacing:-0.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1rem;list-style:none;font-size:.78rem;font-weight:500;opacity:.7;flex-wrap:wrap}
+.nav-links a{color:var(--paper);text-decoration:none}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.78rem;font-weight:500;cursor:pointer;opacity:.7;padding:0;font-family:'DM Sans',sans-serif}
+.more-btn:hover{opacity:1;color:var(--amber)}
+.dropdown-menu{display:none;position:absolute;top:100%;right:0;background:var(--ink);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 0;min-width:160px;z-index:200;margin-top:8px}
+.dropdown-menu a{display:block;padding:8px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.8}
+.dropdown-menu a:hover{opacity:1;color:var(--amber);background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.03) 39px,rgba(255,255,255,.03) 40px)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1rem;opacity:.65;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;position:relative}
+.badge-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{font-family:'DM Mono',monospace;font-size:.7rem;padding:4px 10px;border:1px solid rgba(255,255,255,.2);border-radius:20px;opacity:.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* SINGLE WORD MODE */
+.mode-tabs{display:flex;gap:0;margin-bottom:1.5rem;background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.mode-tab{flex:1;padding:10px;font-size:.85rem;font-weight:600;cursor:pointer;border:none;background:none;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s}
+.mode-tab.active{background:var(--amber);color:#fff}
+
+.single-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.big-input{width:100%;padding:1rem;border:1px solid var(--border);border-radius:8px;font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;background:var(--amber-pale);color:var(--ink);letter-spacing:.05em;text-align:center;transition:border-color .2s}
+.big-input:focus{outline:none;border-color:var(--amber)}
+.big-input::placeholder{font-family:'DM Sans',sans-serif;font-weight:400;font-size:1rem;letter-spacing:0;color:var(--muted);opacity:.7}
+.syllable-display{text-align:center;margin-top:1.25rem}
+.syllable-num{font-family:'Fraunces',serif;font-weight:900;font-size:5rem;color:var(--amber);line-height:1}
+.syllable-label{font-family:'DM Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:4px}
+.syllable-breakdown{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin-top:.75rem;letter-spacing:.05em}
+.syllable-breakdown .syl{display:inline-block;border-bottom:3px solid var(--amber);margin:0 2px;padding:0 1px}
+.stress-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:.7rem;background:var(--amber-light);color:var(--amber);border:1px solid var(--border);border-radius:4px;padding:2px 8px;margin-top:.5rem}
+
+/* TEXT MODE */
+.text-box{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.text-head{background:var(--cream);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;font-family:'Fraunces',serif;font-weight:700;font-size:1rem}
+textarea{width:100%;min-height:200px;padding:1.25rem;border:none;font-family:'DM Sans',sans-serif;font-size:1rem;resize:vertical;background:#fff;color:var(--ink);line-height:1.7;outline:none}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.stat-card.highlight{border-color:var(--amber)}
+.stat-val{font-family:'Fraunces',serif;font-weight:900;font-size:1.8rem;color:var(--amber);line-height:1}
+.stat-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+
+/* WORD TABLE */
+.word-table-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.word-table-head{background:var(--cream);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem}
+.word-table{width:100%;border-collapse:collapse}
+.word-table th{text-align:left;padding:8px 16px;font-size:.72rem;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--cream)}
+.word-table td{padding:8px 16px;font-size:.85rem;border-bottom:1px dashed var(--border)}
+.word-table tr:last-child td{border-bottom:none}
+.word-table td:first-child{font-family:'Fraunces',serif;font-weight:700}
+.word-table td:nth-child(2){font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted)}
+.word-table td:nth-child(3){font-family:'DM Mono',monospace;font-weight:500;color:var(--amber)}
+.syl-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber);margin:0 2px}
+
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.how-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem;opacity:.7}
+footer a{color:var(--amber);text-decoration:none}
+@media(max-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Scramble<span>Lab</span></div>
+<ul class="nav-links">
+  <li><a href="/index.html">Word Scramble</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/crossword-maker.html">Crossword</a></li>
+  <li><a href="/word-counter.html">Word Counter</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Word</a>
+      <a href="/rhyming-word-finder.html">Rhyme Finder</a>
+      <a href="/vocabulary-quiz-maker.html">Vocab Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free - Instant - No Signup</div>
+<h1>Syllable<br><em>Counter</em></h1>
+<p class="hero-sub">Count syllables in any word, sentence, or passage instantly. Perfect for teachers, poets, songwriters, and students learning phonics.</p>
+<div class="badge-row">
+<span class="badge">Single word mode</span>
+<span class="badge">Full text mode</span>
+<span class="badge">Word breakdown</span>
+<span class="badge">Syllable patterns</span>
+</div>
+</div>
+<div class="main">
+
+<div class="mode-tabs">
+  <button class="mode-tab active" id="tab-single" onclick="switchMode('single')">Single Word</button>
+  <button class="mode-tab" id="tab-text" onclick="switchMode('text')">Full Text</button>
+</div>
+
+<!-- SINGLE WORD MODE -->
+<div id="mode-single">
+  <div class="single-box">
+    <input type="text" class="big-input" id="singleInput" placeholder="Type a word..." oninput="analyzeSingle()" maxlength="30">
+    <div class="syllable-display" id="singleDisplay" style="display:none">
+      <div class="syllable-num" id="sylNum">0</div>
+      <div class="syllable-label">syllable<span id="sylPlural">s</span></div>
+      <div class="syllable-breakdown" id="sylBreakdown"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
+
+  <!-- Common word lookup -->
+  <div class="word-table-panel">
+    <div class="word-table-head">Common word syllable counts</div>
+    <table class="word-table">
+      <thead><tr><th>Word</th><th>Breakdown</th><th>Syllables</th></tr></thead>
+      <tbody id="commonTable"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TEXT MODE -->
+<div id="mode-text" style="display:none">
+  <div class="stats-grid">
+    <div class="stat-card highlight"><div class="stat-val" id="totalSyl">0</div><div class="stat-label">Total syllables</div></div>
+    <div class="stat-card"><div class="stat-val" id="totalWords">0</div><div class="stat-label">Words</div></div>
+    <div class="stat-card"><div class="stat-val" id="avgSyl">0</div><div class="stat-label">Avg per word</div></div>
+    <div class="stat-card"><div class="stat-val" id="readLevel">-</div><div class="stat-label">Reading level</div></div>
+  </div>
+  <div class="text-box">
+    <div class="text-head">Your Text</div>
+    <textarea id="textInput" placeholder="Paste or type your text here to count syllables in every word..." oninput="analyzeText()"></textarea>
+  </div>
+  <div class="ad-slot">Advertisement - 728x90 - Google AdSense</div>
+  <div class="word-table-panel">
+    <div class="word-table-head">Syllable breakdown by word</div>
+    <table class="word-table">
+      <thead><tr><th>Word</th><th>Breakdown</th><th>Syllables</th></tr></thead>
+      <tbody id="textTable"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="ad-slot">Advertisement - 300x250 - Google AdSense</div>
+</div>
+
+<div class="how-section">
+<h2>How to use the syllable counter</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Single word mode</h3><p>Type any word to instantly see its syllable count and visual breakdown showing where each syllable falls.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Full text mode</h3><p>Paste a paragraph or poem to count syllables in every word at once, with a complete word-by-word breakdown.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Reading level</h3><p>Full text mode estimates reading level based on average syllables per word — a key measure of text complexity.</p></div>
+</div>
+</div>
+<div class="faq-section">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Is this syllable counter free?</div><div class="faq-a">Yes - completely free with no account or signup required.</div></div>
+<div class="faq-item"><div class="faq-q">How are syllables counted?</div><div class="faq-a">Syllables are counted using standard English phonics rules — each vowel sound represents one syllable. Silent vowels and vowel combinations are accounted for. The count may occasionally differ from dictionaries for unusual words.</div></div>
+<div class="faq-item"><div class="faq-q">Why do teachers use syllable counters?</div><div class="faq-a">Syllable counting is a fundamental phonics skill. Teachers use syllable counters to help students decode unfamiliar words, improve spelling, and understand word structure. It is also essential for poetry writing and meter analysis.</div></div>
+<div class="faq-item"><div class="faq-q">Can I use it for poetry and haiku?</div><div class="faq-a">Absolutely. The syllable counter is perfect for writing haiku (5-7-5), sonnets, and other metered poetry. Use full text mode to check syllable counts across an entire poem.</div></div>
+</div>
+<footer>
+<p>&copy; 2025 ScrambLab &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a><br>
+Also try: <a href="/index.html">Word Scramble</a> &middot; <a href="/word-counter.html">Word Counter</a> &middot; <a href="/rhyming-word-finder.html">Rhyme Finder</a> &middot; <a href="/crossword-maker.html">Crossword Maker</a></p>
+</footer>
+<script>
+var currentMode = 'single';
+
+// Known syllable exceptions
+var EXCEPTIONS = {
+  'the':1,'a':1,'i':1,'are':1,'were':1,'you':1,'your':1,'our':1,'hour':1,'fire':2,'hire':2,'wire':2,'tire':2,'desire':3,'entire':3,'require':3,'inspire':3,'admire':3,'empire':3,'vampire':3,'acquire':3,'expire':3,'perspire':3,'aspire':3,'squire':2,'shire':2,'liar':2,'prior':2,'friar':2,'via':2,'idea':3,'area':3,'real':1,'deal':1,'heal':1,'meal':1,'seal':1,'feel':1,'peel':1,'reel':1,'steel':1,'wheel':1,'kneel':1,'cruel':2,'fuel':2,'duel':2,'gruel':2,'jewel':2,'vowel':2,'towel':2,'bowel':2,'power':2,'tower':2,'flower':2,'shower':2,'lower':2,'mower':2,'sewer':2,'fewer':2,'newer':2,'truer':2,'bluer':2,'truer':2,'viewer':2,'brewer':2
+};
+
+function countSyllables(word) {
+  word = word.toLowerCase().replace(/[^a-z]/g,'');
+  if (!word) return 0;
+  if (word.length <= 2) return 1;
+  if (EXCEPTIONS[word] !== undefined) return EXCEPTIONS[word];
+
+  var w = word;
+  w = w.replace(/(?:[^laeiouy]es|[^laeiouy]ed|[aeiouy]le)$/, '');
+  w = w.replace(/^y/, '');
+  var m = w.match(/[aeiouy]{1,2}/g);
+  var count = m ? m.length : 1;
+  return Math.max(1, count);
+}
+
+function breakIntoSyllables(word) {
+  var clean = word.toLowerCase().replace(/[^a-z]/g,'');
+  var n = countSyllables(word);
+  if (n <= 1) return [word];
+  // Simple visual split - divide roughly evenly at vowel boundaries
+  var parts = [];
+  var vowels = 'aeiouy';
+  var current = '';
+  var sylCount = 0;
+  var targetPerSyl = Math.ceil(clean.length / n);
+  for (var i = 0; i < clean.length; i++) {
+    current += clean[i];
+    if (vowels.includes(clean[i]) && current.length >= 1) {
+      var remaining = n - sylCount - 1;
+      var charsLeft = clean.length - i - 1;
+      if (remaining > 0 && charsLeft >= remaining && (current.length >= 2 || i === clean.length - 2)) {
+        parts.push(current);
+        current = '';
+        sylCount++;
+        if (sylCount >= n - 1) {
+          parts.push(clean.slice(i + 1));
+          current = '';
+          break;
+        }
+      }
+    }
+  }
+  if (current) parts.push(current);
+  if (parts.length !== n) {
+    // Fallback: split by length
+    parts = [];
+    var len = clean.length;
+    var base = Math.floor(len / n);
+    var rem = len % n;
+    var idx = 0;
+    for (var j = 0; j < n; j++) {
+      var size = base + (j < rem ? 1 : 0);
+      parts.push(clean.slice(idx, idx + size));
+      idx += size;
+    }
+  }
+  return parts;
+}
+
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById('mode-single').style.display = mode === 'single' ? 'block' : 'none';
+  document.getElementById('mode-text').style.display = mode === 'text' ? 'block' : 'none';
+  document.getElementById('tab-single').classList.toggle('active', mode === 'single');
+  document.getElementById('tab-text').classList.toggle('active', mode === 'text');
+  if (mode === 'text') analyzeText();
+}
+
+function analyzeSingle() {
+  var word = document.getElementById('singleInput').value.trim();
+  var display = document.getElementById('singleDisplay');
+  if (!word) { display.style.display = 'none'; return; }
+  display.style.display = 'block';
+  var n = countSyllables(word);
+  document.getElementById('sylNum').textContent = n;
+  document.getElementById('sylPlural').textContent = n === 1 ? '' : 's';
+  var parts = breakIntoSyllables(word);
+  document.getElementById('sylBreakdown').innerHTML = parts.map(function(p) {
+    return '<span class="syl">' + p + '</span>';
+  }).join(' · ');
+}
+
+function analyzeText() {
+  var text = document.getElementById('textInput').value;
+  var words = text.trim() === '' ? [] : text.match(/[a-zA-Z]+/g) || [];
+  var totalSyl = 0;
+  var rows = [];
+  var seen = {};
+  words.forEach(function(word) {
+    var n = countSyllables(word);
+    totalSyl += n;
+    if (!seen[word.toLowerCase()]) {
+      seen[word.toLowerCase()] = true;
+      var parts = breakIntoSyllables(word);
+      rows.push({word: word, parts: parts, n: n});
+    }
+  });
+  var avg = words.length > 0 ? (totalSyl / words.length).toFixed(1) : 0;
+  var level = avg < 1.3 ? 'K-2' : avg < 1.6 ? '3-5' : avg < 1.9 ? '6-8' : avg < 2.2 ? '9-12' : 'College';
+  document.getElementById('totalSyl').textContent = totalSyl;
+  document.getElementById('totalWords').textContent = words.length;
+  document.getElementById('avgSyl').textContent = avg;
+  document.getElementById('readLevel').textContent = level;
+  document.getElementById('textTable').innerHTML = rows.slice(0, 50).map(function(r) {
+    return '<tr><td>' + r.word + '</td><td style="color:var(--muted)">' + r.parts.join(' · ') + '</td><td>' + r.n + '</td></tr>';
+  }).join('');
+}
+
+// Common words table
+var COMMON_WORDS = ['beautiful','elephant','computer','education','basketball','mathematics','information','caterpillar','butterfly','celebration','understanding','pronunciation','extraordinary','communication','entertainment','disappointment','congratulations','autobiography','simultaneously','unconditionally'];
+var tableHTML = COMMON_WORDS.map(function(w) {
+  var n = countSyllables(w);
+  var parts = breakIntoSyllables(w);
+  return '<tr><td>'+w+'</td><td style="color:var(--muted)">'+parts.join(' · ')+'</td><td>'+n+'</td></tr>';
+}).join('');
+document.getElementById('commonTable').innerHTML = tableHTML;
+
+// Dropdown nav
+var dd = document.querySelector('.dropdown');
+if (dd) {
+  dd.querySelector('.more-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  });
+  document.addEventListener('click', function() { dd.classList.remove('open'); });
+}
+
+// Auto demo
+window.addEventListener('load', function() {
+  document.getElementById('singleInput').value = 'beautiful';
+  analyzeSingle();
+});
+</script>
+</body>
+</html>
