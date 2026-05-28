@@ -234,7 +234,7 @@ function renderList(){
     '<div class="word-entry" data-entry-id="'+e.id+'">' +
     '<input type="text" placeholder="Word" value="'+e.word+'" oninput="updateEntry('+e.id+',\'word\',this.value)">' +
     '<input type="text" placeholder="Definition" value="'+e.def+'" oninput="updateEntry('+e.id+',\'def\',this.value)">' +
-    '<button class="remove-btn" data-rid="'+e.id+'" onclick="removeEntry('+e.id+')">'&times;</button>' +
+    '<button class="remove-btn" data-rid="'+e.id+'" onclick="removeEntry('+e.id+')">×</button>' +
     '</div>'
   ).join('');
 }
