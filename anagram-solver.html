@@ -116,6 +116,14 @@
     .how-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
+
+  .dropdown { position: relative; }
+  .more-btn { background: none; border: none; color: var(--paper); font-size: 0.78rem; font-weight: 500; cursor: pointer; opacity: 0.7; padding: 0; font-family: 'DM Sans', sans-serif; }
+  .more-btn:hover { opacity: 1; color: var(--amber); }
+  .dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--ink); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 6px 0; min-width: 160px; z-index: 200; margin-top: 8px; }
+  .dropdown-menu a { display: block; padding: 8px 16px; color: var(--paper); text-decoration: none; font-size: 0.82rem; opacity: 0.8; }
+  .dropdown-menu a:hover { opacity: 1; color: var(--amber); background: rgba(255,255,255,0.05); }
+  .dropdown.open .dropdown-menu { display: block; }
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047"
      crossorigin="anonymous"></script>
@@ -125,14 +133,21 @@
 <header>
   <div class="logo">Scramble<span>Lab</span></div>
   <ul class="nav-links">
-    <li><a href="/index.html">Word Scramble</a></li>
-    <li><a href="/word-search-generator.html">Word Search</a></li>
-    <li><a href="/anagram-solver.html">Anagram</a></li>
-    <li><a href="/spelling-test-generator.html">Spelling Test</a></li>
-    <li><a href="/random-word-generator.html">Random Word</a></li>
-    <li><a href="/word-counter.html">Word Counter</a></li>
-    <li><a href="/crossword-maker.html">Crossword</a></li>
-  </ul>
+  <li><a href="/index.html">Word Scramble</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/crossword-maker.html">Crossword</a></li>
+  <li><a href="/word-counter.html">Word Counter</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Word</a>
+      <a href="/rhyming-word-finder.html">Rhyme Finder</a>
+      <a href="/vocabulary-quiz-maker.html">Vocab Quiz</a>
+    </div>
+  </li>
+</ul>
 </header>
 
 <div class="hero">
@@ -461,6 +476,16 @@ window.addEventListener('load', () => {
   document.getElementById('letterInput').value = 'listen';
   solve();
 });
+
+  // Dropdown nav
+  var dd = document.querySelector('.dropdown');
+  if (dd) {
+    dd.querySelector('.more-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+    });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+  }
 </script>
 </body>
 </html>
