@@ -102,13 +102,15 @@ footer a{color:var(--amber);text-decoration:none}
   <li><a href="/anagram-solver.html">Anagram</a></li>
   <li><a href="/crossword-maker.html">Crossword</a></li>
   <li><a href="/word-counter.html">Word Counter</a></li>
-        <li class="dropdown">
+          <li class="dropdown">
     <button class="more-btn">More &#9660;</button>
     <div class="dropdown-menu">
       <a href="/spelling-test-generator.html">Spelling Test</a>
-      <a href="/random-word-generator.html">Random Word</a>
-      <a href="/rhyming-word-finder.html">Rhyme Finder</a>
-      <a href="/vocabulary-quiz-maker.html">Vocab Quiz</a>
+      <a href="/random-word-generator.html">Random Words</a>
+      <a href="/word-counter.html">Word Counter</a>
+      <a href="/crossword-maker.html">Crossword Maker</a>
+      <a href="/rhyming-word-finder.html">Rhyming Words</a>
+      <a href="/vocabulary-quiz-maker.html">Vocabulary Quiz</a>
       <a href="/word-unscrambler.html">Word Unscrambler</a>
       <a href="/syllable-counter.html">Syllable Counter</a>
       <a href="/palindrome-checker.html">Palindrome Checker</a>
@@ -117,9 +119,14 @@ footer a{color:var(--amber);text-decoration:none}
       <a href="/mad-libs-generator.html">Mad Libs</a>
       <a href="/acronym-generator.html">Acronym Generator</a>
       <a href="/hangman-word-generator.html">Hangman Words</a>
-      <a href="/scrabble-word-finder.html">Scrabble Words</a>
-      <a href="/boggle-word-finder.html">Boggle Words</a>
+      <a href="/scrabble-word-finder.html">Scrabble Finder</a>
+      <a href="/boggle-word-finder.html">Boggle Finder</a>
       <a href="/tongue-twister-generator.html">Tongue Twisters</a>
+      <a href="/word-ladder-generator.html">Word Ladder</a>
+      <a href="/cipher-generator.html">Cipher Generator</a>
+      <a href="/word-bingo-generator.html">Word Bingo</a>
+      <a href="/portmanteau-generator.html">Portmanteau</a>
+      <a href="/word-association-game.html">Word Association</a>
     </div>
   </li>
 </ul>
@@ -272,9 +279,7 @@ var dd = document.querySelector('.dropdown');
 if (dd) {
   dd.querySelector('.more-btn').addEventListener('click', function(e) {
     e.stopPropagation();
-    dd.classList.toggle('open');
   });
-  document.addEventListener('click', function() { dd.classList.remove('open'); });
 }
 
 window.addEventListener('load', function() {
@@ -282,6 +287,12 @@ window.addEventListener('load', function() {
   document.getElementById('palInput').value = 'racecar';
   check();
 });
+
+var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
+if(_mb&&_dd){
+  _mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});
+  document.addEventListener('click',function(){_dd.classList.remove('open');});
+}
 </script>
 </body>
 </html>
