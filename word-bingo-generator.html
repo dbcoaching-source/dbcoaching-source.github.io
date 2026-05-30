@@ -235,7 +235,7 @@ function makeCard(words,title,freeSpace){
   for(var i=0;i<25;i++){
     var word=shuffled[i]||'';
     var isFree=word==='FREE';
-    html+='<div class="bingo-cell'+(isFree?' free':'')+('" onclick="this.classList.toggle(\'marked\')")>'+word+'</div>';
+    html+='<div class="bingo-cell'+(isFree?' free':'')+' marked-cell" onclick="this.classList.toggle(\'marked\')">'+(isFree?'FREE':word)+'</div>';
   }
   html+='</div></div>';
   return html;
