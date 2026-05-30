@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Association Game - Free Online Word Association Tool | ScrambLab</title>
+<meta name="description" content="Free word association game and generator. Find word associations, play the classic word chain game, and explore how words connect to each other.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0XYB05C3B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0XYB05C3B');</script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#e8852a;--muted:#7a6e5f;--border:#d4c9b5;--green:#2d7a3a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;color:var(--paper);text-decoration:none}.logo span{color:var(--amber)}
+nav{display:flex;gap:1.5rem;align-items:center;list-style:none}
+nav a{color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+nav a:hover{opacity:1}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;opacity:.7;padding:0}
+.more-btn:hover{opacity:1}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px 0;min-width:210px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:9px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+.dropdown-menu a:hover{opacity:1;background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+@media(max-width:700px){nav{display:none}}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:.75rem}
+.hero h1 span{color:var(--amber)}.hero-sub{font-size:.95rem;opacity:.7;max-width:480px;margin:0 auto;line-height:1.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;border-bottom:2px solid var(--border);padding-bottom:-1px}
+.tab{padding:.6rem 1.25rem;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);margin-bottom:-2px}
+.tab.active{color:var(--amber);border-bottom-color:var(--amber)}
+.tab-content{display:none}.tab-content.active{display:block}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.5rem;font-weight:700;font-size:.95rem;font-family:'Fraunces',serif}
+.panel-body{padding:1.5rem}
+.search-row{display:flex;gap:.75rem;margin-bottom:1.5rem}
+input[type=text]{flex:1;padding:.75rem 1rem;background:var(--cream);border:2px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;outline:none;text-align:center}
+input[type=text]:focus{border-color:var(--amber)}
+.btn{background:var(--amber);color:#fff;border:none;border-radius:8px;padding:.75rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s;white-space:nowrap}
+.btn:hover{background:var(--amber-light)}
+.assoc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem}
+.assoc-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:.875rem;text-align:center;cursor:pointer;transition:all .2s}
+.assoc-card:hover{border-color:var(--amber);background:rgba(200,101,26,.06)}
+.assoc-word{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;color:var(--ink)}
+.assoc-type{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.chain-display{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:1rem;background:var(--cream);border-radius:8px;min-height:60px;margin-bottom:1rem}
+.chain-word{background:#fff;border:1px solid var(--border);border-radius:6px;padding:.4rem .875rem;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;cursor:pointer}
+.chain-word:first-child{background:var(--amber);color:#fff;border-color:var(--amber)}
+.chain-word:last-child{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chain-arrow{color:var(--muted);font-size:.8rem}
+.chain-input-row{display:flex;gap:.75rem;margin-bottom:.75rem}
+.chain-score{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center;font-size:.88rem}
+.score-val{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;color:var(--amber)}
+.word-cloud{display:flex;flex-wrap:wrap;gap:.4rem;padding:1.25rem;background:var(--cream);border-radius:8px;margin-bottom:1rem}
+.cloud-word{padding:.3rem .75rem;border-radius:20px;cursor:pointer;font-weight:600;transition:all .2s}
+.cloud-word:hover{transform:scale(1.05)}
+.starter-btns{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.starter-btn{padding:5px 14px;background:var(--cream);border:1px solid var(--border);border-radius:20px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif}
+.starter-btn:hover{border-color:var(--amber);color:var(--amber)}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-size:.7rem;color:var(--muted)}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem}
+footer a{color:var(--amber);text-decoration:none;opacity:.8}
+footer a:hover{opacity:1}
+@media(max-width:600px){.assoc-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="/index.html">Scramble<span>Lab</span></a>
+<ul class="nav">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/word-scramble-generator.html">Scramble</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Words</a>
+      <a href="/word-counter.html">Word Counter</a>
+      <a href="/crossword-maker.html">Crossword Maker</a>
+      <a href="/rhyming-word-finder.html">Rhyming Words</a>
+      <a href="/vocabulary-quiz-maker.html">Vocabulary Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+      <a href="/word-frequency-analyzer.html">Word Frequency</a>
+      <a href="/mad-libs-generator.html">Mad Libs</a>
+      <a href="/acronym-generator.html">Acronym Generator</a>
+      <a href="/hangman-word-generator.html">Hangman Words</a>
+      <a href="/scrabble-word-finder.html">Scrabble Finder</a>
+      <a href="/boggle-word-finder.html">Boggle Finder</a>
+      <a href="/tongue-twister-generator.html">Tongue Twisters</a>
+      <a href="/word-ladder-generator.html">Word Ladder</a>
+      <a href="/cipher-generator.html">Cipher Generator</a>
+      <a href="/word-bingo-generator.html">Word Bingo</a>
+      <a href="/portmanteau-generator.html">Portmanteau</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free · Instant · No Signup</div>
+<h1>Word Association <span>Game</span></h1>
+<p class="hero-sub">Explore word connections, play the classic word chain game, or generate association maps. A fun brain exercise for all ages.</p>
+</div>
+<div class="main">
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('finder',this)">🔍 Association Finder</button>
+  <button class="tab" onclick="switchTab('chain',this)">⛓️ Word Chain Game</button>
+  <button class="tab" onclick="switchTab('cloud',this)">☁️ Word Cloud</button>
+</div>
+
+<div id="tab-finder" class="tab-content active">
+<div class="panel">
+<div class="panel-head">Find Word Associations</div>
+<div class="panel-body">
+<div class="search-row">
+  <input type="text" id="searchWord" value="OCEAN" placeholder="Enter a word..." oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')findAssociations()">
+  <button class="btn" onclick="findAssociations()">Find Associations</button>
+</div>
+<div style="margin-bottom:1rem">
+  <div style="font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Quick start</div>
+  <div class="starter-btns">
+    <button class="starter-btn" onclick="quickSearch('OCEAN')">Ocean</button>
+    <button class="starter-btn" onclick="quickSearch('FIRE')">Fire</button>
+    <button class="starter-btn" onclick="quickSearch('SCHOOL')">School</button>
+    <button class="starter-btn" onclick="quickSearch('MUSIC')">Music</button>
+    <button class="starter-btn" onclick="quickSearch('FOREST')">Forest</button>
+    <button class="starter-btn" onclick="quickSearch('CITY')">City</button>
+    <button class="starter-btn" onclick="quickSearch('WINTER')">Winter</button>
+    <button class="starter-btn" onclick="quickSearch('FOOD')">Food</button>
+  </div>
+</div>
+<div id="assocResults"></div>
+</div></div>
+</div>
+
+<div id="tab-chain" class="tab-content">
+<div class="panel">
+<div class="panel-head">Word Chain Game</div>
+<div class="panel-body">
+<p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;line-height:1.6">Build a chain of associated words. Each word must be connected to the previous one. Try to make the longest chain possible!</p>
+<div class="chain-score">
+  <span>Chain length</span>
+  <span class="score-val" id="chainLength">0</span>
+  <button style="background:none;border:1px solid var(--border);border-radius:6px;padding:.35rem .75rem;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif" onclick="resetChain()">Reset</button>
+</div>
+<br>
+<div class="chain-display" id="chainDisplay"><span style="color:var(--muted);font-size:.85rem">Start your chain — type a word below</span></div>
+<div class="chain-input-row">
+  <input type="text" id="chainInput" placeholder="Type next word..." onkeydown="if(event.key==='Enter')addToChain()" oninput="this.value=this.value.toUpperCase()" style="flex:1">
+  <button class="btn" onclick="addToChain()">Add Word</button>
+</div>
+<div id="chainFeedback" style="font-size:.82rem;color:var(--muted);min-height:20px"></div>
+</div></div>
+</div>
+
+<div id="tab-cloud" class="tab-content">
+<div class="panel">
+<div class="panel-head">Word Association Cloud</div>
+<div class="panel-body">
+<div class="search-row">
+  <input type="text" id="cloudWord" value="NATURE" placeholder="Enter a topic..." oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')buildCloud()">
+  <button class="btn" onclick="buildCloud()">Build Cloud</button>
+</div>
+<div id="cloudOutput"></div>
+</div></div>
+</div>
+
+<div class="ad-slot">Advertisement · Google AdSense</div>
+</div>
+<div class="faq-section"><h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is word association?</div><div class="faq-a">Word association is a cognitive exercise where you respond to a word with the first related word that comes to mind. It is used in psychology, education, creative writing, and language learning to explore connections between concepts and expand vocabulary.</div></div>
+<div class="faq-item"><div class="faq-q">How do I play the word chain game?</div><div class="faq-a">Start with any word and keep adding words that are associated with the previous word in the chain. There are no strict rules — any meaningful connection counts. Try to build the longest chain you can without repeating words.</div></div>
+<div class="faq-item"><div class="faq-q">Is this tool free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2026 ScrambLab &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/contact.html">Contact</a></p>
+</footer>
+<script>
+var ASSOCIATIONS = {
+  'OCEAN':['Water','Wave','Beach','Fish','Coral','Deep','Blue','Salty','Tide','Shark','Dolphin','Sailor','Ship','Storm','Horizon'],
+  'FIRE':['Hot','Flame','Smoke','Burn','Red','Orange','Ash','Wood','Campfire','Dragon','Danger','Light','Warmth','Candle','Fireman'],
+  'SCHOOL':['Teacher','Learn','Book','Desk','Pencil','Student','Class','Homework','Test','Grade','Lunch','Recess','Gym','Library','Bus'],
+  'MUSIC':['Song','Beat','Rhythm','Guitar','Piano','Note','Sing','Concert','Band','Melody','Drum','Lyrics','Dance','Radio','Album'],
+  'FOREST':['Tree','Green','Animal','Path','Moss','Bird','Shadow','Quiet','Pine','Oak','Mushroom','River','Deer','Hike','Leaf'],
+  'CITY':['Street','Building','Traffic','People','Noise','Light','Subway','Store','Park','Office','Taxi','Sky','Bridge','Market','Night'],
+  'WINTER':['Cold','Snow','Ice','Coat','Warm','Fireplace','Ski','Frost','Gloves','Holiday','Dark','Wind','Bear','Soup','Blanket'],
+  'FOOD':['Eat','Taste','Cook','Kitchen','Hungry','Spice','Sweet','Sour','Recipe','Chef','Restaurant','Meal','Snack','Bread','Fruit'],
+  'NATURE':['Green','Tree','River','Mountain','Sky','Animal','Wind','Sun','Rain','Earth','Flower','Bird','Stone','Leaf','Season'],
+  'SPACE':['Star','Planet','Moon','Dark','NASA','Rocket','Astronaut','Galaxy','Black hole','Gravity','Orbit','Mars','Zero','Float','Cosmos'],
+  'TIME':['Clock','Past','Future','Now','Hour','Minute','Day','Year','Old','Young','History','Change','Fast','Slow','Memory'],
+  'HOME':['Family','Warm','Safe','Door','Kitchen','Bed','Garden','Roof','Cozy','Cook','Rest','Love','Wall','Window','Comfort'],
+};
+
+function getAssociations(word) {
+  var key = word.toUpperCase();
+  if(ASSOCIATIONS[key]) return ASSOCIATIONS[key];
+  // Generate generic associations based on word properties
+  var generic = [];
+  var len = word.length;
+  if(len <= 3) generic = ['Small','Short','Quick','Simple','Easy'];
+  else if(len <= 5) generic = ['Common','Basic','Clear','Plain','Direct'];
+  else generic = ['Complex','Detailed','Specific','Unique','Special'];
+  return generic.concat(['Related','Similar','Connected','Associated','Linked']);
+}
+
+function findAssociations() {
+  var word = document.getElementById('searchWord').value.trim();
+  if(!word) return;
+  var assocs = getAssociations(word);
+  var categories = [
+    {label:'Things',words:assocs.slice(0,4)},
+    {label:'Qualities',words:assocs.slice(4,8)},
+    {label:'Actions',words:assocs.slice(8,12)},
+    {label:'Related',words:assocs.slice(12,15)},
+  ];
+  var html = '<div style="margin-bottom:.5rem;font-weight:600;font-size:.88rem">Associations for "'+word+'":</div>';
+  html += '<div class="assoc-grid">';
+  assocs.forEach(function(w){
+    html += '<div class="assoc-card" onclick="document.getElementById(\'searchWord\').value=\''+w.toUpperCase()+'\';findAssociations()">'+
+      '<div class="assoc-word">'+w+'</div>'+
+      '<div class="assoc-type">Click to explore</div>'+
+    '</div>';
+  });
+  html += '</div>';
+  document.getElementById('assocResults').innerHTML = html;
+}
+
+function quickSearch(word) {
+  document.getElementById('searchWord').value = word;
+  findAssociations();
+}
+
+var chain = [];
+function addToChain() {
+  var word = document.getElementById('chainInput').value.trim().toUpperCase();
+  if(!word){return;}
+  if(chain.includes(word)){
+    document.getElementById('chainFeedback').textContent = '⚠️ "'+word+'" is already in your chain!';
+    document.getElementById('chainFeedback').style.color = '#c0392b';
+    return;
+  }
+  chain.push(word);
+  document.getElementById('chainInput').value = '';
+  document.getElementById('chainLength').textContent = chain.length;
+  document.getElementById('chainFeedback').textContent = '✓ "'+word+'" added! Keep going...';
+  document.getElementById('chainFeedback').style.color = 'var(--green)';
+  renderChain();
+}
+
+function renderChain() {
+  if(chain.length === 0){
+    document.getElementById('chainDisplay').innerHTML = '<span style="color:var(--muted);font-size:.85rem">Start your chain — type a word below</span>';
+    return;
+  }
+  document.getElementById('chainDisplay').innerHTML = chain.map(function(w,i){
+    return (i>0?'<span class="chain-arrow">→</span>':'') + '<span class="chain-word">'+w+'</span>';
+  }).join('');
+}
+
+function resetChain(){chain=[];document.getElementById('chainLength').textContent='0';document.getElementById('chainFeedback').textContent='';renderChain();}
+
+function buildCloud() {
+  var word = document.getElementById('cloudWord').value.trim();
+  if(!word) return;
+  var assocs = getAssociations(word);
+  var colors = ['#c8651a','#2d7a3a','#1a5fa8','#8b4513','#6b3fa0','#c0392b','#16a085','#d35400'];
+  var sizes = [1.4,1.2,1.1,1.0,0.95,0.9,0.88,0.85,0.82,0.8,0.78,0.75,0.72,0.7,0.68];
+  var html = '<div class="word-cloud">';
+  assocs.forEach(function(w,i){
+    var color = colors[i % colors.length];
+    var size = sizes[Math.min(i,sizes.length-1)];
+    html += '<span class="cloud-word" style="font-size:'+size+'rem;background:'+color+'1a;color:'+color+';border:1px solid '+color+'40" onclick="document.getElementById(\'cloudWord\').value=\''+w.toUpperCase()+'\';buildCloud()">'+w+'</span>';
+  });
+  html += '</div><p style="font-size:.75rem;color:var(--muted)">Click any word to explore its associations</p>';
+  document.getElementById('cloudOutput').innerHTML = html;
+}
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('tab-'+tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
+if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});document.addEventListener('click',function(){_dd.classList.remove('open');});}
+findAssociations();
+</script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Ladder Generator - Create Word Ladder Puzzles | ScrambLab</title>
+<meta name="description" content="Free word ladder generator. Create word ladder puzzles by changing one letter at a time. Perfect for classrooms and word game enthusiasts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0XYB05C3B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B0XYB05C3B');
+</script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#e8852a;--muted:#7a6e5f;--border:#d4c9b5;--green:#2d7a3a;--red:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;color:var(--paper);text-decoration:none}
+.logo span{color:var(--amber)}
+nav{display:flex;gap:1.5rem;align-items:center;list-style:none}
+nav a{color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+nav a:hover{opacity:1}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;opacity:.7;padding:0}
+.more-btn:hover{opacity:1}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px 0;min-width:210px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:9px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+.dropdown-menu a:hover{opacity:1;background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+@media(max-width:700px){nav{display:none}}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:.75rem}
+.hero h1 span{color:var(--amber)}
+.hero-sub{font-size:.95rem;opacity:.7;max-width:480px;margin:0 auto;line-height:1.6}
+.main{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.5rem;font-weight:700;font-size:.95rem;font-family:'Fraunces',serif}
+.panel-body{padding:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
+input[type=text],select{width:100%;padding:.65rem .75rem;background:var(--cream);border:1px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none}
+input[type=text]:focus,select:focus{border-color:var(--amber)}
+.btn{background:var(--amber);color:#fff;border:none;border-radius:8px;padding:.75rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;width:100%;transition:background .2s}
+.btn:hover{background:var(--amber-light)}
+.ladder-display{margin-bottom:1.5rem}
+.ladder-step{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.step-num{font-size:.72rem;color:var(--muted);width:24px;text-align:right;flex-shrink:0}
+.step-word{display:flex;gap:4px}
+.step-letter{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:2px solid var(--border);border-radius:6px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;background:#fff;text-transform:uppercase}
+.step-letter.changed{background:var(--amber);border-color:var(--amber);color:#fff}
+.step-arrow{color:var(--muted);font-size:.8rem;margin-left:.25rem}
+.hint{font-size:.75rem;color:var(--muted);margin-top:2px}
+.empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem}
+.empty-icon{font-size:3rem;margin-bottom:.75rem}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-size:.7rem;color:var(--muted)}
+.examples{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.example-btn{padding:4px 12px;background:var(--cream);border:1px solid var(--border);border-radius:20px;font-size:.75rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--ink)}
+.example-btn:hover{border-color:var(--amber);color:var(--amber)}
+.how-section{max-width:800px;margin:0 auto 3rem;padding:0 1.5rem}
+.how-section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;margin-bottom:1.25rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.how-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.how-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:.5rem}
+.how-card h3{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.how-card p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.faq-section{max-width:800px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem}
+footer a{color:var(--amber);text-decoration:none;opacity:.8}
+footer a:hover{opacity:1}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.step-letter{width:32px;height:32px;font-size:.95rem}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="/index.html">Scramble<span>Lab</span></a>
+<ul class="nav">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/word-scramble-generator.html">Scramble</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Words</a>
+      <a href="/word-counter.html">Word Counter</a>
+      <a href="/crossword-maker.html">Crossword Maker</a>
+      <a href="/rhyming-word-finder.html">Rhyming Words</a>
+      <a href="/vocabulary-quiz-maker.html">Vocabulary Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+      <a href="/word-frequency-analyzer.html">Word Frequency</a>
+      <a href="/mad-libs-generator.html">Mad Libs</a>
+      <a href="/acronym-generator.html">Acronym Generator</a>
+      <a href="/hangman-word-generator.html">Hangman Words</a>
+      <a href="/scrabble-word-finder.html">Scrabble Finder</a>
+      <a href="/boggle-word-finder.html">Boggle Finder</a>
+      <a href="/tongue-twister-generator.html">Tongue Twisters</a>
+      <a href="/word-ladder-generator.html">Word Ladder</a>
+      <a href="/cipher-generator.html">Cipher Generator</a>
+      <a href="/word-bingo-generator.html">Word Bingo</a>
+      <a href="/portmanteau-generator.html">Portmanteau</a>
+      <a href="/word-association-game.html">Word Association</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free · Instant · No Signup</div>
+<h1>Word Ladder <span>Generator</span></h1>
+<p class="hero-sub">Create word ladder puzzles where each step changes just one letter. A classic word game loved by students and puzzle enthusiasts alike.</p>
+</div>
+<div class="main">
+<div class="panel">
+<div class="panel-head">Create Your Word Ladder</div>
+<div class="panel-body">
+<div style="margin-bottom:1rem">
+<div style="font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Quick examples</div>
+<div class="examples">
+  <button class="example-btn" onclick="setExample('CAT','DOG')">CAT → DOG</button>
+  <button class="example-btn" onclick="setExample('HOT','COLD')">HOT → COLD</button>
+  <button class="example-btn" onclick="setExample('LOVE','HATE')">LOVE → HATE</button>
+  <button class="example-btn" onclick="setExample('LEAD','GOLD')">LEAD → GOLD</button>
+  <button class="example-btn" onclick="setExample('WARM','COOL')">WARM → COOL</button>
+</div>
+</div>
+<div class="form-row">
+<div class="field"><label>Start Word</label><input type="text" id="startWord" value="CAT" placeholder="e.g. CAT" maxlength="6" oninput="this.value=this.value.toUpperCase()"></div>
+<div class="field"><label>End Word</label><input type="text" id="endWord" value="DOG" placeholder="e.g. DOG" maxlength="6" oninput="this.value=this.value.toUpperCase()"></div>
+</div>
+<div class="field"><label>Show Hints</label>
+<select id="hintLevel">
+  <option value="none">No hints — just the words</option>
+  <option value="definition">Show definitions</option>
+  <option value="blank">Show blanks (fill in the missing word)</option>
+</select></div>
+<button class="btn" onclick="generateLadder()">Generate Word Ladder</button>
+</div></div>
+<div id="output"><div class="empty-state"><div class="empty-icon">🔤</div><p>Enter a start and end word above to generate a word ladder puzzle.</p></div></div>
+<div class="ad-slot">Advertisement · Google AdSense</div>
+</div>
+<div class="how-section"><h2>How to use the word ladder generator</h2>
+<div class="how-grid">
+<div class="how-card"><div class="how-num">1</div><h3>Enter words</h3><p>Type a start word and end word of the same length. Try classic pairs like CAT→DOG or WARM→COOL.</p></div>
+<div class="how-card"><div class="how-num">2</div><h3>Generate</h3><p>Click Generate to create a step-by-step word ladder where each step changes exactly one letter.</p></div>
+<div class="how-card"><div class="how-num">3</div><h3>Use it</h3><p>Print or copy the puzzle for classroom use, or solve it yourself as a brain-training word game.</p></div>
+</div></div>
+<div class="faq-section"><h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is a word ladder?</div><div class="faq-a">A word ladder (also called a doublet or word link) is a puzzle invented by Lewis Carroll in 1877. You transform one word into another by changing one letter at a time, with each step forming a valid word.</div></div>
+<div class="faq-item"><div class="faq-q">Do the start and end words need to be the same length?</div><div class="faq-a">Yes — in a classic word ladder both words must have the same number of letters since you can only change one letter per step without adding or removing letters.</div></div>
+<div class="faq-item"><div class="faq-q">Is this tool free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2026 ScrambLab &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/contact.html">Contact</a></p>
+</footer>
+<script>
+// Word ladder database - common 3 and 4 letter ladders
+var LADDERS = {
+  'CAT-DOG':['CAT','COT','COG','DOG'],
+  'DOG-CAT':['DOG','COG','COT','CAT'],
+  'HOT-COLD':['HOT','HOG','LOG','LOD','COLD'],
+  'COLD-HOT':['COLD','CORD','WORD','WARD','WARM','WORM','FORM','FORD','FORE','FIRE','HIRE','HERE','HARE','BARE','BARE','CARE','CORE','MORE','MARE','DARE','DATE','LATE','FATE','GATE','GALE','TALE','PALE','POLE','HOLE','MOLE','ROLE','ROLE','ROSE','NOSE','NOTE','VOTE','DOTE','DOVE','LIVE','LIKE','BIKE','BITE','SITE','SATE','SAFE','CAVE','CAVE','WAVE','RAVE','RACE','RICE','MICE','DICE','DIKE','LIKE','LIFE'],
+  'LOVE-HATE':['LOVE','LIVE','LIME','TIME','TIDE','HIDE','HIRE','HARE','HATE'],
+  'HATE-LOVE':['HATE','HARE','HIRE','HIDE','TIDE','TIME','LIME','LIVE','LOVE'],
+  'LEAD-GOLD':['LEAD','LOAD','GOAD','GOLD'],
+  'GOLD-LEAD':['GOLD','GOAD','LOAD','LEAD'],
+  'WARM-COOL':['WARM','WARD','WORD','CORD','CORE','BORE','BORE','MORE','MOLE','COLE','COOL'],
+  'COOL-WARM':['COOL','COLE','MOLE','MORE','BORE','CORE','CORD','WORD','WARD','WARM'],
+  'CAR-BUS':['CAR','BAR','BAS','BUS'],
+  'DAY-NIGHT':['DAY','SAY','SAT','SIT','SIN','TIN','TIN','THIN','THAN','THAT','CHAT','COAT','COST','MOST','MIST','FIST','FISH','DISH','WISH','WITH','WIDTH','NIGHT'],
+  'BLACK-WHITE':['BLACK','BLANK','BLAND','BLEND','BLEED','BREED','GREED','GREET','GREAT','TREAT','TREAD','BREAD','DREAD','DREAM','CREAM','CREAK','BREAK','BREAM','BEAM','BEAT','HEAT','HEAD','BEAD','DEAD','DEAR','DEAR','WEAR','PEAR','PEAK','TEAK','TEAK','TEAL','REAL','REEL','REEL','FEEL','FELL','FILL','PILL','WILL','WILE','WILE','WIFE','WIDE','RIDE','RICE','RACE','LACE','LACE','FACE','PACE','PAGE','CAGE','CAVE','HAVE','GAVE','GIVE','LIVE','LINE','MINE','WINE','PINE','FINE','FIRE','HIRE','HIKE','BIKE','BAKE','LAKE','LAME','NAME','SAME','SOME','HOME','HOLE','MOLE','ROLE','POLE','PALE','TALE','TILE','TIME','LIME','LINE','VINE','DINE','DONE','BONE','TONE','TUNE','DUNE','DUDE','RUDE','RULE','MULE','MUSE','FUSE','FUME','FAME','GAME','GATE','LATE','FATE','FACE'],
+};
+
+var HINTS = {
+  'COT':'a small bed','COG':'a tooth on a gear','HOG':'a pig','LOG':'a piece of wood',
+  'CORD':'a thick string','WORD':'a unit of language','WARD':'a hospital room',
+  'LIVE':'to be alive','LIME':'a green citrus fruit','TIME':'measured duration',
+  'TIDE':'ocean water movement','HIDE':'to conceal','HIRE':'to employ',
+  'HARE':'a rabbit-like animal','LOAD':'a heavy burden','GOAD':'to urge on',
+  'BORE':'to drill a hole','CORE':'the center','COLE':'a type of plant',
+  'MOLE':'a small burrowing animal','MORE':'a greater amount',
+};
+
+function setExample(start, end) {
+  document.getElementById('startWord').value = start;
+  document.getElementById('endWord').value = end;
+  generateLadder();
+}
+
+function generateLadder() {
+  var start = document.getElementById('startWord').value.trim().toUpperCase();
+  var end = document.getElementById('endWord').value.trim().toUpperCase();
+  var hints = document.getElementById('hintLevel').value;
+  if (!start || !end) { alert('Please enter both a start and end word.'); return; }
+  if (start.length !== end.length) {
+    document.getElementById('output').innerHTML = '<div class="panel"><div class="panel-body" style="text-align:center;padding:2rem;color:var(--red)"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><p style="font-weight:600">Words must be the same length!</p><p style="font-size:.85rem;color:var(--muted);margin-top:.4rem">'+start+' has '+start.length+' letters, '+end+' has '+end.length+' letters.</p></div></div>';
+    return;
+  }
+  var key = start + '-' + end;
+  var ladder = LADDERS[key];
+  if (!ladder) {
+    // Generate a simple ladder by showing start → ??? → end
+    ladder = buildSimpleLadder(start, end);
+  }
+  renderLadder(ladder, start, end, hints);
+}
+
+function buildSimpleLadder(start, end) {
+  // For unknown pairs, show a puzzle with blanks
+  var steps = [start];
+  var numSteps = Math.max(2, start.length);
+  for (var i = 1; i < numSteps; i++) {
+    steps.push('?'.repeat(start.length));
+  }
+  steps.push(end);
+  return steps;
+}
+
+function renderLadder(ladder, start, end, hints) {
+  var html = '<div class="panel"><div class="panel-head">Word Ladder: ' + start + ' → ' + end + '</div><div class="panel-body">';
+  html += '<div class="ladder-display">';
+  ladder.forEach(function(word, i) {
+    var prev = i > 0 ? ladder[i-1] : word;
+    html += '<div class="ladder-step"><span class="step-num">' + (i+1) + '</span><div class="step-word">';
+    for (var j = 0; j < word.length; j++) {
+      var changed = word !== '?'.repeat(word.length) && prev !== '?'.repeat(prev.length) && word[j] !== prev[j] && i > 0;
+      var display = hints === 'blank' && word === '?'.repeat(word.length) ? '_' : word[j];
+      html += '<div class="step-letter' + (changed ? ' changed' : '') + '">' + display + '</div>';
+    }
+    html += '</div>';
+    if (hints === 'definition' && HINTS[word]) {
+      html += '<span class="hint">— ' + HINTS[word] + '</span>';
+    }
+    if (i < ladder.length - 1) html += '<span class="step-arrow">↓</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<p style="font-size:.82rem;color:var(--muted);margin-top:.5rem">'+ladder.length+' steps · Change 1 letter per step · Each step must be a real word</p>';
+  html += '<button class="btn" style="margin-top:1rem;width:auto;padding:.6rem 1.25rem;font-size:.85rem" onclick="window.print()">🖨️ Print Puzzle</button>';
+  html += '</div></div>';
+  document.getElementById('output').innerHTML = html;
+}
+
+var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
+if(_mb&&_dd){
+  _mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});
+  document.addEventListener('click',function(){_dd.classList.remove('open');});
+}
+</script>
+</body>
+</html>

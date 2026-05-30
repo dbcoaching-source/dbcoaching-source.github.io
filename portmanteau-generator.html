@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portmanteau Generator - Blend Two Words Together | ScrambLab</title>
+<meta name="description" content="Free portmanteau generator. Blend two words together to create a new word. Find famous portmanteau examples and create your own word mashups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0XYB05C3B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0XYB05C3B');</script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#e8852a;--muted:#7a6e5f;--border:#d4c9b5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;color:var(--paper);text-decoration:none}.logo span{color:var(--amber)}
+nav{display:flex;gap:1.5rem;align-items:center;list-style:none}
+nav a{color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+nav a:hover{opacity:1}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;opacity:.7;padding:0}
+.more-btn:hover{opacity:1}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px 0;min-width:210px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:9px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+.dropdown-menu a:hover{opacity:1;background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+@media(max-width:700px){nav{display:none}}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:.75rem}
+.hero h1 span{color:var(--amber)}.hero-sub{font-size:.95rem;opacity:.7;max-width:480px;margin:0 auto;line-height:1.6}
+.main{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.5rem;font-weight:700;font-size:.95rem;font-family:'Fraunces',serif}
+.panel-body{padding:1.5rem}
+.blend-input{display:grid;grid-template-columns:1fr 40px 1fr;gap:.75rem;align-items:end;margin-bottom:1.5rem}
+.field label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
+input[type=text]{width:100%;padding:.65rem .75rem;background:var(--cream);border:1px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:1.1rem;font-weight:600;outline:none;text-align:center}
+input[type=text]:focus{border-color:var(--amber)}
+.plus-sign{text-align:center;font-size:1.5rem;font-weight:900;color:var(--amber);padding-bottom:.6rem}
+.btn{background:var(--amber);color:#fff;border:none;border-radius:8px;padding:.75rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;width:100%;transition:background .2s}
+.btn:hover{background:var(--amber-light)}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:1rem}
+.result-card{background:var(--cream);border:2px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center;cursor:pointer;transition:all .2s}
+.result-card:hover{border-color:var(--amber)}
+.result-card.featured{border-color:var(--amber);background:rgba(200,101,26,.06)}
+.result-word{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;color:var(--amber);margin-bottom:.25rem}
+.result-parts{font-size:.72rem;color:var(--muted)}
+.result-parts span{color:var(--ink);font-weight:600}
+.famous-section{margin-bottom:1.5rem}
+.famous-title{font-weight:700;font-size:.88rem;margin-bottom:.75rem;font-family:'Fraunces',serif}
+.famous-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.famous-card{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:.75rem;cursor:pointer;transition:all .15s}
+.famous-card:hover{border-color:var(--amber)}
+.famous-word{font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;color:var(--amber)}
+.famous-parts{font-size:.68rem;color:var(--muted);margin-top:2px}
+.examples{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.example-btn{padding:4px 12px;background:var(--cream);border:1px solid var(--border);border-radius:20px;font-size:.75rem;cursor:pointer;font-family:'DM Sans',sans-serif}
+.example-btn:hover{border-color:var(--amber);color:var(--amber)}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-size:.7rem;color:var(--muted)}
+.faq-section{max-width:800px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem}
+footer a{color:var(--amber);text-decoration:none;opacity:.8}
+footer a:hover{opacity:1}
+@media(max-width:500px){.results-grid{grid-template-columns:1fr}.famous-grid{grid-template-columns:1fr 1fr}.blend-input{grid-template-columns:1fr 30px 1fr}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="/index.html">Scramble<span>Lab</span></a>
+<ul class="nav">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/word-scramble-generator.html">Scramble</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Words</a>
+      <a href="/word-counter.html">Word Counter</a>
+      <a href="/crossword-maker.html">Crossword Maker</a>
+      <a href="/rhyming-word-finder.html">Rhyming Words</a>
+      <a href="/vocabulary-quiz-maker.html">Vocabulary Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+      <a href="/word-frequency-analyzer.html">Word Frequency</a>
+      <a href="/mad-libs-generator.html">Mad Libs</a>
+      <a href="/acronym-generator.html">Acronym Generator</a>
+      <a href="/hangman-word-generator.html">Hangman Words</a>
+      <a href="/scrabble-word-finder.html">Scrabble Finder</a>
+      <a href="/boggle-word-finder.html">Boggle Finder</a>
+      <a href="/tongue-twister-generator.html">Tongue Twisters</a>
+      <a href="/word-ladder-generator.html">Word Ladder</a>
+      <a href="/cipher-generator.html">Cipher Generator</a>
+      <a href="/word-bingo-generator.html">Word Bingo</a>
+      <a href="/word-association-game.html">Word Association</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free · Instant · No Signup</div>
+<h1>Portmanteau <span>Generator</span></h1>
+<p class="hero-sub">Blend two words into one creative new word. Explore famous portmanteaus like "brunch" and "smog" or create your own mashup words.</p>
+</div>
+<div class="main">
+<div class="panel">
+<div class="panel-head">Blend Two Words</div>
+<div class="panel-body">
+<div style="margin-bottom:1rem">
+<div style="font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Try these examples</div>
+<div class="examples">
+  <button class="example-btn" onclick="setWords('SMOKE','FOG')">Smoke + Fog</button>
+  <button class="example-btn" onclick="setWords('BREAKFAST','LUNCH')">Breakfast + Lunch</button>
+  <button class="example-btn" onclick="setWords('SPLASH','SPATTER')">Splash + Spatter</button>
+  <button class="example-btn" onclick="setWords('LION','TIGER')">Lion + Tiger</button>
+  <button class="example-btn" onclick="setWords('MOTOR','HOTEL')">Motor + Hotel</button>
+</div>
+</div>
+<div class="blend-input">
+<div class="field"><label>First Word</label><input type="text" id="word1" value="SMOKE" oninput="this.value=this.value.toUpperCase();blend()"></div>
+<div class="plus-sign">+</div>
+<div class="field"><label>Second Word</label><input type="text" id="word2" value="FOG" oninput="this.value=this.value.toUpperCase();blend()"></div>
+</div>
+<button class="btn" onclick="blend()">✨ Generate Blends</button>
+</div></div>
+
+<div id="resultsPanel" class="panel">
+<div class="panel-head">Your Word Blends</div>
+<div class="panel-body" id="resultsBody">
+<div style="text-align:center;padding:1.5rem;color:var(--muted)">Enter two words above to generate blends</div>
+</div></div>
+
+<div class="panel">
+<div class="panel-head">Famous Portmanteaus</div>
+<div class="panel-body">
+<div class="famous-grid" id="famousGrid"></div>
+</div></div>
+<div class="ad-slot">Advertisement · Google AdSense</div>
+</div>
+<div class="faq-section"><h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is a portmanteau?</div><div class="faq-a">A portmanteau is a word formed by blending the sounds and meanings of two words together. The term was popularized by Lewis Carroll in "Through the Looking-Glass." Famous examples include brunch (breakfast + lunch), smog (smoke + fog), and motel (motor + hotel).</div></div>
+<div class="faq-item"><div class="faq-q">What are some famous portmanteau words?</div><div class="faq-a">Some well-known portmanteaus include: brunch (breakfast + lunch), smog (smoke + fog), motel (motor + hotel), spork (spoon + fork), podcast (iPod + broadcast), blog (web + log), and emoji (emotion + picture in Japanese).</div></div>
+<div class="faq-item"><div class="faq-q">Is this tool free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2026 ScrambLab &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/contact.html">Contact</a></p>
+</footer>
+<script>
+var FAMOUS=[
+  {word:'Brunch',w1:'Breakfast',w2:'Lunch'},
+  {word:'Smog',w1:'Smoke',w2:'Fog'},
+  {word:'Motel',w1:'Motor',w2:'Hotel'},
+  {word:'Spork',w1:'Spoon',w2:'Fork'},
+  {word:'Blog',w1:'Web',w2:'Log'},
+  {word:'Podcast',w1:'iPod',w2:'Broadcast'},
+  {word:'Emoticon',w1:'Emotion',w2:'Icon'},
+  {word:'Moped',w1:'Motor',w2:'Pedal'},
+  {word:'Liger',w1:'Lion',w2:'Tiger'},
+  {word:'Jeggings',w1:'Jeans',w2:'Leggings'},
+  {word:'Chillax',w1:'Chill',w2:'Relax'},
+  {word:'Staycation',w1:'Stay',w2:'Vacation'},
+  {word:'Infomercial',w1:'Information',w2:'Commercial'},
+  {word:'Sitcom',w1:'Situation',w2:'Comedy'},
+  {word:'Biopic',w1:'Biography',w2:'Picture'},
+  {word:'Camcorder',w1:'Camera',w2:'Recorder'},
+  {word:'Chortle',w1:'Chuckle',w2:'Snort'},
+  {word:'Electrocute',w1:'Electric',w2:'Execute'},
+];
+
+document.getElementById('famousGrid').innerHTML = FAMOUS.map(function(f){
+  return '<div class="famous-card" onclick="setWords(\''+f.w1.toUpperCase()+'\',\''+f.w2.toUpperCase()+'\')">'+
+    '<div class="famous-word">'+f.word+'</div>'+
+    '<div class="famous-parts">'+f.w1+' + '+f.w2+'</div>'+
+  '</div>';
+}).join('');
+
+function setWords(w1,w2){
+  document.getElementById('word1').value=w1;
+  document.getElementById('word2').value=w2;
+  blend();
+}
+
+function generateBlends(w1, w2){
+  var blends = [];
+  var a = w1.toLowerCase();
+  var b = w2.toLowerCase();
+  // Method 1: First half of w1 + second half of w2
+  for(var i=1; i<a.length; i++){
+    for(var j=1; j<b.length; j++){
+      var combo = a.slice(0,i) + b.slice(j);
+      if(combo.length >= 3 && combo.length <= 10) blends.push({word:combo, desc:'First '+i+' of "'+w1+'" + last '+(b.length-j)+' of "'+w2+'"'});
+    }
+  }
+  // Method 2: First half of w2 + second half of w1
+  for(var i=1; i<b.length; i++){
+    for(var j=1; j<a.length; j++){
+      var combo = b.slice(0,i) + a.slice(j);
+      if(combo.length >= 3 && combo.length <= 10) blends.push({word:combo, desc:'First '+i+' of "'+w2+'" + last '+(a.length-j)+' of "'+w1+'"'});
+    }
+  }
+  // Deduplicate and pick best ones
+  var seen = {};
+  var unique = blends.filter(function(b){
+    if(seen[b.word]) return false;
+    seen[b.word] = true;
+    return b.word !== a && b.word !== b.word && b.word.length >= 4;
+  });
+  // Score by how "pronounceable" they seem (prefer blends with vowels)
+  unique.sort(function(x,y){
+    var vx = (x.word.match(/[aeiou]/g)||[]).length;
+    var vy = (y.word.match(/[aeiou]/g)||[]).length;
+    return vy - vx;
+  });
+  return unique.slice(0, 8);
+}
+
+function blend(){
+  var w1 = document.getElementById('word1').value.trim();
+  var w2 = document.getElementById('word2').value.trim();
+  if(!w1 || !w2) return;
+  var blends = generateBlends(w1, w2);
+  if(blends.length === 0){
+    document.getElementById('resultsBody').innerHTML = '<p style="color:var(--muted);text-align:center;padding:1rem">No blends found. Try longer words!</p>';
+    return;
+  }
+  document.getElementById('resultsBody').innerHTML =
+    '<div class="results-grid">' +
+    blends.map(function(b, i){
+      var word = b.word.charAt(0).toUpperCase() + b.word.slice(1);
+      return '<div class="result-card'+(i===0?' featured':'')+'">'+
+        '<div class="result-word">'+word+'</div>'+
+        '<div class="result-parts">'+b.desc+'</div>'+
+      '</div>';
+    }).join('') +
+    '</div>' +
+    '<p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">Click any card to copy the word. Top result is the most pronounceable blend.</p>';
+  document.querySelectorAll('.result-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      var word = card.querySelector('.result-word').textContent;
+      navigator.clipboard.writeText(word).catch(function(){});
+      card.style.background='rgba(200,101,26,.15)';
+      setTimeout(function(){card.style.background='';},500);
+    });
+  });
+}
+
+var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
+if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});document.addEventListener('click',function(){_dd.classList.remove('open');});}
+blend();
+</script>
+</body>
+</html>

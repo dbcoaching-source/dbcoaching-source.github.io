@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cipher Generator - Encode & Decode Secret Messages | ScrambLab</title>
+<meta name="description" content="Free cipher generator. Encode and decode secret messages using Caesar cipher, ROT13, Atbash, and more. Perfect for kids and classrooms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0XYB05C3B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0XYB05C3B');</script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#e8852a;--muted:#7a6e5f;--border:#d4c9b5;--green:#2d7a3a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;color:var(--paper);text-decoration:none}.logo span{color:var(--amber)}
+nav{display:flex;gap:1.5rem;align-items:center;list-style:none}
+nav a{color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+nav a:hover{opacity:1}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;opacity:.7;padding:0}
+.more-btn:hover{opacity:1}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px 0;min-width:210px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:9px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+.dropdown-menu a:hover{opacity:1;background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+@media(max-width:700px){nav{display:none}}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:.75rem}
+.hero h1 span{color:var(--amber)}.hero-sub{font-size:.95rem;opacity:.7;max-width:480px;margin:0 auto;line-height:1.6}
+.main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:280px 1fr;gap:2rem;align-items:start}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+.panel:last-child{margin-bottom:0}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.5rem;font-weight:700;font-size:.95rem;font-family:'Fraunces',serif}
+.panel-body{padding:1.5rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
+select,input[type=range]{width:100%;padding:.65rem .75rem;background:var(--cream);border:1px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;appearance:none;cursor:pointer}
+select:focus{border-color:var(--amber)}
+input[type=range]{-webkit-appearance:none;height:4px;background:var(--border);padding:0;border:none;border-radius:2px;margin-top:.5rem;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--amber);border:2px solid var(--paper)}
+.range-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:4px}
+textarea{width:100%;padding:.75rem;background:var(--cream);border:1px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;resize:vertical;min-height:100px}
+textarea:focus{border-color:var(--amber)}
+.btn{background:var(--amber);color:#fff;border:none;border-radius:8px;padding:.75rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;width:100%;transition:background .2s;margin-bottom:.5rem}
+.btn:hover{background:var(--amber-light)}
+.btn-secondary{background:var(--cream);color:var(--ink);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--border)}
+.output-box{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1rem;font-family:monospace;font-size:.95rem;min-height:80px;word-break:break-all;letter-spacing:.05em;line-height:1.8}
+.cipher-tabs{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.cipher-tab{padding:6px 14px;background:var(--cream);border:1px solid var(--border);border-radius:20px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.cipher-tab.active{background:var(--amber);border-color:var(--amber);color:#fff}
+.cipher-tab:hover:not(.active){border-color:var(--amber);color:var(--amber)}
+.key-display{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:.75rem;font-family:monospace;font-size:.72rem;margin-bottom:1rem;line-height:1.6;overflow-x:auto;white-space:nowrap}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-size:.7rem;color:var(--muted)}
+.faq-section{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem}
+footer a{color:var(--amber);text-decoration:none;opacity:.8}
+footer a:hover{opacity:1}
+@media(max-width:700px){.main{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="/index.html">Scramble<span>Lab</span></a>
+<ul class="nav">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/word-scramble-generator.html">Scramble</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Words</a>
+      <a href="/word-counter.html">Word Counter</a>
+      <a href="/crossword-maker.html">Crossword Maker</a>
+      <a href="/rhyming-word-finder.html">Rhyming Words</a>
+      <a href="/vocabulary-quiz-maker.html">Vocabulary Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+      <a href="/word-frequency-analyzer.html">Word Frequency</a>
+      <a href="/mad-libs-generator.html">Mad Libs</a>
+      <a href="/acronym-generator.html">Acronym Generator</a>
+      <a href="/hangman-word-generator.html">Hangman Words</a>
+      <a href="/scrabble-word-finder.html">Scrabble Finder</a>
+      <a href="/boggle-word-finder.html">Boggle Finder</a>
+      <a href="/tongue-twister-generator.html">Tongue Twisters</a>
+      <a href="/word-ladder-generator.html">Word Ladder</a>
+      <a href="/word-bingo-generator.html">Word Bingo</a>
+      <a href="/portmanteau-generator.html">Portmanteau</a>
+      <a href="/word-association-game.html">Word Association</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free · Instant · No Signup</div>
+<h1>Cipher <span>Generator</span></h1>
+<p class="hero-sub">Encode and decode secret messages using Caesar cipher, ROT13, Atbash, Morse code, and more. Perfect for kids, classrooms, and puzzle lovers.</p>
+</div>
+<div class="main">
+<div class="input-col">
+<div class="panel">
+<div class="panel-head">Cipher Settings</div>
+<div class="panel-body">
+<div class="field"><label>Cipher Type</label>
+<select id="cipherType" onchange="updateCipherUI();encode()">
+  <option value="caesar">Caesar Cipher</option>
+  <option value="rot13">ROT13</option>
+  <option value="atbash">Atbash</option>
+  <option value="morse">Morse Code</option>
+  <option value="binary">Binary</option>
+  <option value="reverse">Reverse Text</option>
+  <option value="pigpen">Number Substitution</option>
+</select></div>
+<div id="shiftField" class="field"><label>Shift Amount: <span id="shiftVal">3</span></label>
+<input type="range" id="shift" min="1" max="25" value="3" oninput="document.getElementById('shiftVal').textContent=this.value;encode()">
+<div class="range-labels"><span>1</span><span>25</span></div></div>
+<div class="field"><label>Your Message</label>
+<textarea id="inputText" placeholder="Type your message here..." oninput="encode()">Hello World</textarea></div>
+<div id="keyDisplay" class="key-display"></div>
+</div></div>
+</div>
+<div class="output-col">
+<div class="panel">
+<div class="panel-head">Encoded Message</div>
+<div class="panel-body">
+<div class="cipher-tabs">
+  <button class="cipher-tab active" onclick="setMode('encode',this)">Encode</button>
+  <button class="cipher-tab" onclick="setMode('decode',this)">Decode</button>
+</div>
+<div id="outputBox" class="output-box"></div>
+<button class="btn" style="margin-top:1rem" onclick="copyOutput()">📋 Copy Encoded Text</button>
+<button class="btn btn-secondary" onclick="swapText()">⇅ Swap Input / Output</button>
+<div class="ad-slot">Advertisement · Google AdSense</div>
+</div></div>
+<div class="panel">
+<div class="panel-head">Cipher Key</div>
+<div class="panel-body">
+<div id="cipherKeyDisplay" style="font-family:monospace;font-size:.78rem;line-height:1.8;color:var(--muted)"></div>
+</div></div>
+</div>
+</div>
+<div class="faq-section"><h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">What is a Caesar cipher?</div><div class="faq-a">A Caesar cipher shifts each letter of the alphabet by a fixed number of positions. Julius Caesar reportedly used a shift of 3, turning A into D, B into E, and so on. It is one of the oldest and simplest encryption methods.</div></div>
+<div class="faq-item"><div class="faq-q">What is ROT13?</div><div class="faq-a">ROT13 is a special case of the Caesar cipher with a shift of 13. Because the alphabet has 26 letters, applying ROT13 twice returns the original text, making it its own decoder.</div></div>
+<div class="faq-item"><div class="faq-q">Is this tool free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2026 ScrambLab &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/contact.html">Contact</a></p>
+</footer>
+<script>
+var mode='encode';
+var MORSE={'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',' ':' / '};
+var MORSE_REV={};Object.keys(MORSE).forEach(function(k){MORSE_REV[MORSE[k]]=k;});
+function setMode(m,btn){mode=m;document.querySelectorAll('.cipher-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');encode();}
+function updateCipherUI(){var t=document.getElementById('cipherType').value;document.getElementById('shiftField').style.display=t==='caesar'?'block':'none';}
+function caesarShift(text,shift,decode){return text.split('').map(function(c){if(c.match(/[a-zA-Z]/)){var base=c===c.toUpperCase()?65:97;var s=decode?(26-shift):shift;return String.fromCharCode((c.charCodeAt(0)-base+s)%26+base);}return c;}).join('');}
+function atbash(text){return text.split('').map(function(c){if(c.match(/[a-zA-Z]/)){var base=c===c.toUpperCase()?65:97;return String.fromCharCode(base+25-(c.charCodeAt(0)-base));}return c;}).join('');}
+function toMorse(text){return text.toUpperCase().split('').map(function(c){return MORSE[c]||c;}).join(' ');}
+function fromMorse(text){return text.split(' ').map(function(c){return MORSE_REV[c]||c;}).join('');}
+function toBinary(text){return text.split('').map(function(c){return c.charCodeAt(0).toString(2).padStart(8,'0');}).join(' ');}
+function fromBinary(text){return text.split(' ').map(function(b){return String.fromCharCode(parseInt(b,2));}).join('');}
+function numberSub(text){return text.split('').map(function(c){if(c.match(/[a-zA-Z]/)){return (c.toUpperCase().charCodeAt(0)-64).toString()+'/';}return c;}).join('');}
+function encode(){
+  var text=document.getElementById('inputText').value;
+  var type=document.getElementById('cipherType').value;
+  var shift=parseInt(document.getElementById('shift').value)||3;
+  var dec=mode==='decode';
+  var result='';
+  if(type==='caesar')result=caesarShift(text,shift,dec);
+  else if(type==='rot13')result=caesarShift(text,13,false);
+  else if(type==='atbash')result=atbash(text);
+  else if(type==='morse')result=dec?fromMorse(text):toMorse(text);
+  else if(type==='binary')result=dec?fromBinary(text):toBinary(text);
+  else if(type==='reverse')result=text.split('').reverse().join('');
+  else if(type==='pigpen')result=numberSub(text);
+  document.getElementById('outputBox').textContent=result||'—';
+  updateKey(type,shift);
+}
+function updateKey(type,shift){
+  var html='';
+  if(type==='caesar'){
+    var plain='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var enc=plain.split('').map(function(c){return String.fromCharCode((c.charCodeAt(0)-65+shift)%26+65);}).join('');
+    html='Plain:  '+plain+'<br>Cipher: '+enc;
+  }else if(type==='rot13'){html='Rotate each letter by 13 positions';}
+  else if(type==='atbash'){html='A↔Z, B↔Y, C↔X, D↔W...';}
+  else if(type==='morse'){html='A=.- B=-... C=-.-. D=-..<br>E=. F=..-. G=--. H=....';}
+  else if(type==='binary'){html='Each letter converted to 8-bit binary';}
+  else if(type==='reverse'){html='Text is written backwards';}
+  else if(type==='pigpen'){html='A=1 B=2 C=3 ... Z=26';}
+  document.getElementById('cipherKeyDisplay').innerHTML=html;
+}
+function copyOutput(){var t=document.getElementById('outputBox').textContent;navigator.clipboard.writeText(t).then(function(){alert('Copied!');});}
+function swapText(){var out=document.getElementById('outputBox').textContent;document.getElementById('inputText').value=out;encode();}
+updateCipherUI();encode();
+var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
+if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});document.addEventListener('click',function(){_dd.classList.remove('open');});}
+</script>
+</body>
+</html>

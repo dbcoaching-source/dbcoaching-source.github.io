@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Bingo Card Generator - Free Printable Bingo Cards | ScrambLab</title>
+<meta name="description" content="Free word bingo card generator. Create custom printable bingo cards with your own words for classrooms, vocabulary practice, and parties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8115981364478047" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0XYB05C3B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0XYB05C3B');</script>
+<style>
+:root{--ink:#1a1208;--paper:#f5f0e8;--cream:#ede7d9;--amber:#c8651a;--amber-light:#e8852a;--muted:#7a6e5f;--border:#d4c9b5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;color:var(--paper);text-decoration:none}.logo span{color:var(--amber)}
+nav{display:flex;gap:1.5rem;align-items:center;list-style:none}
+nav a{color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+nav a:hover{opacity:1}
+.dropdown{position:relative}
+.more-btn{background:none;border:none;color:var(--paper);font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;opacity:.7;padding:0}
+.more-btn:hover{opacity:1}
+.dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px 0;min-width:210px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.dropdown-menu a{display:block;padding:9px 16px;color:var(--paper);text-decoration:none;font-size:.82rem;opacity:.7}
+.dropdown-menu a:hover{opacity:1;background:rgba(255,255,255,.05)}
+.dropdown.open .dropdown-menu{display:block}
+@media(max-width:700px){nav{display:none}}
+.hero{background:var(--ink);color:var(--paper);padding:3rem 2rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin-bottom:.75rem}
+.hero h1 span{color:var(--amber)}.hero-sub{font-size:.95rem;opacity:.7;max-width:480px;margin:0 auto;line-height:1.6}
+.main{max-width:1050px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:320px 1fr;gap:2rem;align-items:start}
+.panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+.panel:last-child{margin-bottom:0}
+.panel-head{background:var(--cream);border-bottom:1px solid var(--border);padding:1rem 1.5rem;font-weight:700;font-size:.95rem;font-family:'Fraunces',serif}
+.panel-body{padding:1.5rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem}
+select,input[type=text]{width:100%;padding:.65rem .75rem;background:var(--cream);border:1px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;appearance:none}
+select:focus,input[type=text]:focus{border-color:var(--amber)}
+textarea{width:100%;padding:.75rem;background:var(--cream);border:1px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;resize:vertical;min-height:160px}
+textarea:focus{border-color:var(--amber)}
+.btn{background:var(--amber);color:#fff;border:none;border-radius:8px;padding:.75rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;width:100%;transition:background .2s;margin-bottom:.5rem}
+.btn:hover{background:var(--amber-light)}
+.btn-outline{background:none;border:1px solid var(--amber);color:var(--amber)}
+.btn-outline:hover{background:var(--amber);color:#fff}
+.word-count{font-size:.75rem;color:var(--muted);margin-top:.35rem}
+.bingo-card{background:#fff;border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin-bottom:1rem}
+.bingo-header{display:grid;grid-template-columns:repeat(5,1fr);background:var(--amber);color:#fff}
+.bingo-header-cell{padding:.5rem;text-align:center;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;border-right:1px solid rgba(255,255,255,.3)}
+.bingo-header-cell:last-child{border-right:none}
+.bingo-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+.bingo-cell{padding:.5rem .25rem;text-align:center;border-top:1px solid var(--border);border-right:1px solid var(--border);font-size:.7rem;font-weight:600;min-height:52px;display:flex;align-items:center;justify-content:center;word-break:break-word;line-height:1.2;cursor:pointer;transition:background .15s}
+.bingo-cell:nth-child(5n){border-right:none}
+.bingo-cell.free{background:var(--amber);color:#fff;font-size:.65rem;font-weight:700}
+.bingo-cell.marked{background:#d4edda}
+.bingo-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;text-align:center;padding:.5rem;border-bottom:1px solid var(--border);background:var(--cream)}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1rem}
+.card-label{font-size:.72rem;color:var(--muted);text-align:center;margin-bottom:.35rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.ad-slot{background:var(--cream);border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin:1.5rem 0;font-size:.7rem;color:var(--muted)}
+.word-list-preview{display:flex;flex-wrap:wrap;gap:4px;margin-top:.5rem}
+.word-pill{background:var(--cream);border:1px solid var(--border);border-radius:20px;padding:2px 10px;font-size:.72rem}
+.faq-section{max-width:1050px;margin:0 auto 3rem;padding:0 1.5rem}
+.faq-section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;margin-bottom:1.25rem}
+.faq-item{border-top:1px solid var(--border);padding:1rem 0}
+.faq-q{font-weight:600;font-size:.9rem;margin-bottom:.4rem}
+.faq-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+footer{background:var(--ink);color:var(--paper);padding:2rem;text-align:center;font-size:.8rem}
+footer a{color:var(--amber);text-decoration:none;opacity:.8}
+footer a:hover{opacity:1}
+@media print{header,footer,.input-col,.faq-section,.ad-slot,.btn{display:none!important}.main{display:block;padding:0}.cards-grid{display:grid!important}}
+@media(max-width:700px){.main{grid-template-columns:1fr}.cards-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="/index.html">Scramble<span>Lab</span></a>
+<ul class="nav">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/word-scramble-generator.html">Scramble</a></li>
+  <li><a href="/anagram-solver.html">Anagram</a></li>
+  <li><a href="/word-search-generator.html">Word Search</a></li>
+  <li class="dropdown">
+    <button class="more-btn">More &#9660;</button>
+    <div class="dropdown-menu">
+      <a href="/spelling-test-generator.html">Spelling Test</a>
+      <a href="/random-word-generator.html">Random Words</a>
+      <a href="/word-counter.html">Word Counter</a>
+      <a href="/crossword-maker.html">Crossword Maker</a>
+      <a href="/rhyming-word-finder.html">Rhyming Words</a>
+      <a href="/vocabulary-quiz-maker.html">Vocabulary Quiz</a>
+      <a href="/word-unscrambler.html">Word Unscrambler</a>
+      <a href="/syllable-counter.html">Syllable Counter</a>
+      <a href="/palindrome-checker.html">Palindrome Checker</a>
+      <a href="/sentence-generator.html">Sentence Generator</a>
+      <a href="/word-frequency-analyzer.html">Word Frequency</a>
+      <a href="/mad-libs-generator.html">Mad Libs</a>
+      <a href="/acronym-generator.html">Acronym Generator</a>
+      <a href="/hangman-word-generator.html">Hangman Words</a>
+      <a href="/scrabble-word-finder.html">Scrabble Finder</a>
+      <a href="/boggle-word-finder.html">Boggle Finder</a>
+      <a href="/tongue-twister-generator.html">Tongue Twisters</a>
+      <a href="/word-ladder-generator.html">Word Ladder</a>
+      <a href="/cipher-generator.html">Cipher Generator</a>
+      <a href="/portmanteau-generator.html">Portmanteau</a>
+      <a href="/word-association-game.html">Word Association</a>
+    </div>
+  </li>
+</ul>
+</header>
+<div class="hero">
+<div class="hero-eyebrow">Free · Printable · No Signup</div>
+<h1>Word Bingo <span>Generator</span></h1>
+<p class="hero-sub">Create custom printable bingo cards with your own words. Perfect for vocabulary lessons, spelling practice, holiday parties, and classroom games.</p>
+</div>
+<div class="main">
+<div class="input-col">
+<div class="panel">
+<div class="panel-head">Bingo Card Settings</div>
+<div class="panel-body">
+<div class="field"><label>Card Title</label><input type="text" id="cardTitle" value="Vocabulary Bingo" oninput="generate()"></div>
+<div class="field"><label>Number of Cards</label>
+<select id="numCards" onchange="generate()">
+  <option value="1">1 card</option>
+  <option value="2" selected>2 cards</option>
+  <option value="4">4 cards</option>
+  <option value="6">6 cards</option>
+</select></div>
+<div class="field"><label>Free Space</label>
+<select id="freeSpace" onchange="generate()">
+  <option value="yes" selected>Yes — FREE center space</option>
+  <option value="no">No free space</option>
+</select></div>
+<div class="field">
+<label>Your Word List <span id="wordCount" style="color:var(--amber);font-weight:700"></span></label>
+<textarea id="wordList" oninput="updateCount();generate()" placeholder="Enter one word per line or comma separated...">Apple
+Banana
+Cherry
+Dragon
+Elephant
+Forest
+Galaxy
+Horizon
+Island
+Journey
+Kingdom
+Library
+Mountain
+Neptune
+Ocean
+Parrot
+Quiet
+Rainbow
+Sunset
+Thunder
+Umbrella
+Violet
+Whisper
+Xylophone
+Yellow
+Zebra
+Anchor
+Bridge
+Crystal
+Diamond</textarea>
+<div class="word-count">Need at least 24 words for a 5×5 card (25 squares minus free space)</div>
+</div>
+<button class="btn" onclick="generate()">🎯 Generate Bingo Cards</button>
+<button class="btn btn-outline" onclick="window.print()">🖨️ Print Cards</button>
+</div></div>
+</div>
+<div class="output-col">
+<div id="cardsOutput"><div style="text-align:center;padding:3rem;color:var(--muted)"><div style="font-size:3rem;margin-bottom:.75rem">🎯</div><p>Fill in your word list and click Generate to create bingo cards.</p></div></div>
+<div class="ad-slot">Advertisement · Google AdSense</div>
+</div>
+</div>
+<div class="faq-section"><h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">How many words do I need?</div><div class="faq-a">You need at least 24 unique words for a standard 5×5 bingo card with a free center space (25 squares minus 1 free space = 24 words). If you have more words, each card will use a random selection, making every card unique.</div></div>
+<div class="faq-item"><div class="faq-q">Can I use this for classroom vocabulary?</div><div class="faq-a">Absolutely — word bingo is one of the most engaging ways to practice vocabulary in the classroom. Enter your vocabulary words, generate multiple unique cards so every student gets a different card, and call out definitions instead of the words for an extra challenge.</div></div>
+<div class="faq-item"><div class="faq-q">Is this tool free?</div><div class="faq-a">Yes — completely free with no account or signup required.</div></div>
+</div>
+<footer>
+<p>&copy; 2026 ScrambLab &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/contact.html">Contact</a></p>
+</footer>
+<script>
+function updateCount(){
+  var words=getWords();
+  var el=document.getElementById('wordCount');
+  el.textContent='('+words.length+' words)';
+  el.style.color=words.length>=24?'#2d7a3a':'var(--amber)';
+}
+function getWords(){
+  var raw=document.getElementById('wordList').value;
+  return raw.split(/[\n,]+/).map(function(w){return w.trim().toUpperCase();}).filter(function(w){return w.length>0;});
+}
+function shuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+  return a;
+}
+function makeCard(words,title,freeSpace){
+  var shuffled=shuffle(words).slice(0,25);
+  if(freeSpace==='yes'&&shuffled.length>=24){shuffled.splice(12,0,'FREE');}
+  var html='<div class="bingo-card">';
+  html+='<div class="bingo-title">'+title+'</div>';
+  html+='<div class="bingo-header">';
+  ['B','I','N','G','O'].forEach(function(l){html+='<div class="bingo-header-cell">'+l+'</div>';});
+  html+='</div><div class="bingo-grid">';
+  for(var i=0;i<25;i++){
+    var word=shuffled[i]||'';
+    var isFree=word==='FREE';
+    html+='<div class="bingo-cell'+(isFree?' free':'')+('" onclick="this.classList.toggle(\'marked\')")>'+word+'</div>';
+  }
+  html+='</div></div>';
+  return html;
+}
+function generate(){
+  var words=getWords();
+  var title=document.getElementById('cardTitle').value||'Word Bingo';
+  var numCards=parseInt(document.getElementById('numCards').value)||2;
+  var freeSpace=document.getElementById('freeSpace').value;
+  updateCount();
+  if(words.length<24){
+    document.getElementById('cardsOutput').innerHTML='<div style="text-align:center;padding:2rem;color:#c0392b;background:#fff;border:1px solid var(--border);border-radius:12px"><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><p style="font-weight:600">Need at least 24 words</p><p style="font-size:.85rem;color:var(--muted);margin-top:.4rem">You have '+words.length+' — add '+(24-words.length)+' more to generate cards.</p></div>';
+    return;
+  }
+  var cols=numCards<=2?numCards:2;
+  var html='<div style="display:grid;grid-template-columns:repeat('+cols+',1fr);gap:1rem;margin-bottom:1rem">';
+  for(var i=0;i<numCards;i++){
+    html+='<div><div class="card-label">Card '+(i+1)+'</div>'+makeCard(words,title,freeSpace)+'</div>';
+  }
+  html+='</div>';
+  document.getElementById('cardsOutput').innerHTML=html;
+}
+var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
+if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});document.addEventListener('click',function(){_dd.classList.remove('open');});}
+updateCount();generate();
+</script>
+</body>
+</html>
