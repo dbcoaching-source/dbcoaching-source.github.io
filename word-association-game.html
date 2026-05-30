@@ -298,7 +298,7 @@ function switchTab(tab, btn) {
 }
 
 var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
-if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});document.addEventListener('click',function(){_dd.classList.remove('open');});}
+if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});_dd.addEventListener('click',function(e){e.stopPropagation();});document.addEventListener('click',function(){_dd.classList.remove('open');});}
 findAssociations();
 </script>
 </body>

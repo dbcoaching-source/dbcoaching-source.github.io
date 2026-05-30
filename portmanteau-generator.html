@@ -210,10 +210,10 @@ function generateBlends(w1, w2){
   }
   // Deduplicate and pick best ones
   var seen = {};
-  var unique = blends.filter(function(b){
-    if(seen[b.word]) return false;
-    seen[b.word] = true;
-    return b.word !== a && b.word !== b.word && b.word.length >= 4;
+  var b2 = b; var unique = blends.filter(function(item){
+    if(seen[item.word]) return false;
+    seen[item.word] = true;
+    return item.word !== a && item.word !== b2 && item.word.length >= 4;
   });
   // Score by how "pronounceable" they seem (prefer blends with vowels)
   unique.sort(function(x,y){
@@ -255,7 +255,7 @@ function blend(){
 }
 
 var _mb=document.querySelector('.more-btn'),_dd=document.querySelector('.dropdown');
-if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});document.addEventListener('click',function(){_dd.classList.remove('open');});}
+if(_mb&&_dd){_mb.addEventListener('click',function(e){e.stopPropagation();_dd.classList.toggle('open');});_dd.addEventListener('click',function(e){e.stopPropagation();});document.addEventListener('click',function(){_dd.classList.remove('open');});}
 blend();
 </script>
 </body>
